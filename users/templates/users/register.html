@@ -1,0 +1,33 @@
+<!-- extends base html -->
+{%extends 'base.html'%}
+<!-- loading bootstrap forms -->
+{% load bootstrap %}
+<!-- start block content -->
+{%block content%}
+<!-- start of form -->
+<form action="" method="POST">
+  <!-- token added -->
+  {% csrf_token%}
+  <!-- start of fieldset -->
+  <fieldset class="form-group">
+    <!-- start legend -->
+    <legend class="border-bottom mb-4">
+      Join today
+    </legend>
+    <!-- loading form -->
+    {{form|bootstrap}}
+    <!-- end form -->
+    <!-- end legend -->
+    <!-- start button wrapper div -->
+    <div class="form-group btn btn-outline-info" type="submit">
+      <!-- start button -->
+      <button>Sign up</button>
+      <!-- end button -->
+    </div>
+    <!-- end button wrapper div -->
+  </fieldset>
+  <!-- end fieldset -->
+</form>
+<!-- end form -->
+{%endblock%}
+<!-- end block content -->
