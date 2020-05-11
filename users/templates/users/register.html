@@ -1,7 +1,7 @@
 <!-- extends base html -->
 {%extends 'base.html'%}
 <!-- loading bootstrap forms -->
-{% load bootstrap %}
+{% load crispy_forms_tags %}
 <!-- start block content -->
 {%block content%}
 <!-- start of form -->
@@ -15,7 +15,7 @@
       Join today
     </legend>
     <!-- loading form -->
-    {{form|bootstrap}}
+    {{form|crispy}}
     <!-- end form -->
     <!-- end legend -->
     <!-- start button wrapper div -->
