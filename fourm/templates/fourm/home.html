@@ -1,6 +1,7 @@
 {%extends 'base.html'%} {%block content%} {%include '../partials/_navbar.html'%}
 {% if user.is_authenticated %}
 <h1 class="mt-5">This is my logged in home page</h1>
+
 {% else %}
 <h1 class="mt-5">This is my logged out home page home page</h1>
 {%endif%} {%endblock%}
