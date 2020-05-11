@@ -1,6 +1,68 @@
 {%extends 'base.html'%} {%block content%} {%include '../partials/_navbar.html'%}
 {% if user.is_authenticated %}
 <h1 class="mt-5">This is my logged in home page</h1>
-{%for post in posts%}{{post.title}}{%endfor%} {% else %}
+{%for post in posts%}
+<!-- taken and altered from https://bbbootstrap.com/snippets/forum-discussion-template-65198141 -->
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mb-4">
+        <div class="card-header">
+          <div class="media flex-wrap w-100 align-items-center">
+            <img
+              src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg"
+              class="d-block ui-w-40 rounded-circle"
+              alt=""
+            />
+            <div class="media-body ml-3">
+              <a href="javascript:void(0)" data-abc="true">{{post.author}}</a>
+              <div class="text-muted small">
+                {{ post.date_posted|date:"F, d, Y "}}
+              </div>
+            </div>
+            <div class="text-muted small ml-3">
+              <div>Member since <strong>{{author.date_added}}</strong></div>
+              <div><strong>134</strong> posts</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>
+            {{post.title}}
+          </p>
+          <p>
+            {{post.content}}
+          </p>
+        </div>
+        <div
+          class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3"
+        >
+          <div class="px-4 pt-3">
+            <a
+              href="#"
+              class="text-muted d-inline-flex align-items-center align-middle"
+              data-abc="true"
+            >
+              <i class="fas fa-heart text-danger"></i>&nbsp;
+              <span class="align-middle">445</span>
+            </a>
+            <span
+              class="text-muted d-inline-flex align-items-center align-middle ml-4"
+            >
+              <i class="fa fa-eye text-muted fsize-3"></i>&nbsp;
+              <span class="align-middle">14532</span>
+            </span>
+          </div>
+          <div class="px-4 pt-3">
+            <button type="button" class="btn btn-primary">
+              <i class="ion ion-md-create"></i>&nbsp; Reply
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endfor%} {% else %}
 <h1 class="mt-5">This is my logged out home page home page</h1>
 {%endif%} {%endblock%}
