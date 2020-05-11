@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from django.contrib.forms import UserCreationform
 
-# Create your views here.
+def register(request):
+    form = UserCreationForm()
+    return render(request,'users/register',{'form':form})
+
