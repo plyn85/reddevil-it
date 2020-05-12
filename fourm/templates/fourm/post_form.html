@@ -1,0 +1,41 @@
+<!-- extends base html -->
+{%extends 'base.html'%}
+<!-- loading crispy forms -->
+{% load crispy_forms_tags %}
+<!-- start block content -->
+{%block content%}
+<!-- start of wrapper div for form -->
+<div class="row justify-content-center">
+  <!-- wrapper col for form -->
+  <div class="col-8">
+    <!-- start of form -->
+    <form method="POST">
+      <!-- token added -->
+      {% csrf_token%}
+      <!-- start of fieldset -->
+      <fieldset class="form-group">
+        <!-- start legend -->
+        <legend class="border-bottom mb-4">
+          Fourm Post
+        </legend>
+        <!-- end legend -->
+        <!-- loading form -->
+        {{form|crispy}}
+
+        <!-- start button wrapper div -->
+        <div class="form-group btn btn-outline-info" type="submit">
+          <!-- start button -->
+          <button>Post</button>
+          <!-- end button -->
+        </div>
+        <!-- end button wrapper div -->
+      </fieldset>
+      <!-- end fieldset -->
+    </form>
+    <!-- end form -->
+  </div>
+  <!-- end wrapper col for form -->
+</div>
+<!-- end form wrapper div -->
+{%endblock%}
+<!-- end block content -->

@@ -27,7 +27,7 @@
               </div>
             </div>
             <div class="text-muted small ml-3">
-              <div>Member since <strong>{{author.date_added}}</strong></div>
+              <div>Member since <strong></strong></div>
               <div><strong>134</strong> posts</div>
             </div>
           </div>
@@ -37,7 +37,7 @@
           <!-- strat paragraph -->
           <p>
             <!-- start post title link to post detail -->
-            <a href="{% url 'post-detail'%}">
+            <a href="{% url 'post-detail' post.id%}">
               {{post.title}}
             </a>
             <!-- end link -->

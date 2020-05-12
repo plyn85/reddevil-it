@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from .models import Post
 
 
@@ -12,6 +12,7 @@ def home(request):
 
 
 class PostListView(ListView):
+    # adding post model
     model = Post
     # changing the default page where the list views looks for template
     template_name = 'fourm/home.html'
@@ -20,4 +21,12 @@ class PostListView(ListView):
 
 
 class PostDetailView(DetailView):
+    # adding post model
     model = Post
+
+
+class PostCreateView(CreateView):
+    # adding post model
+    model = Post
+    # only taking title and content fields from post model
+    fields = ['title', 'content']
