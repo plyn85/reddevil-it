@@ -12,8 +12,8 @@ def register(request):
             username = form.cleaned_data.get('username')
 
             messages.success(
-                request, f'{username} Your account has been created !')
-            return redirect('fourm-home')
+                request, f'{username} Your account has been created ! You are now able to log in')
+            return redirect('login')
     else:
         form = UserRegisterForm()
 
