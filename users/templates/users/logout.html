@@ -1,0 +1,20 @@
+<!-- extends base html -->
+{%extends 'base.html'%}
+<!-- start block content -->
+{%block content%}
+<!-- start of wrapper div-->
+<div class="row justify-content-center">
+  <!-- wrapper col-->
+  <div class="col-8">
+    <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+      <small class="muted">
+        Want to log back In?<a class="ml-2" href="{%url 'login'%}">Log In</a>
+      </small>
+    </div>
+  </div>
+  <!-- end wrapper col -->
+</div>
+<!-- end form wrapper -->
+{%endblock%}
+<!-- end block content -->
