@@ -1,15 +1,15 @@
 <!-- extends base html -->
 {%extends 'base.html'%}
-<!-- loading bootstrap forms -->
+<!-- loading crispy forms -->
 {% load crispy_forms_tags %}
 <!-- start block content -->
 {%block content%}
 <!-- start of form -->
-<form action="" method="POST">
+<form method="POST" class="row justify-content-center">
   <!-- token added -->
   {% csrf_token%}
   <!-- start of fieldset -->
-  <fieldset class="form-group">
+  <fieldset class="form-group col-8">
     <!-- start legend -->
     <legend class="border-bottom mb-4">
       Join today
@@ -29,5 +29,6 @@
   <!-- end fieldset -->
 </form>
 <!-- end form -->
+
 {%endblock%}
 <!-- end block content -->
