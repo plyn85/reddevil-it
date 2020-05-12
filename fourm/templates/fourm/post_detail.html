@@ -5,9 +5,7 @@
 <!-- adding navbar partial -->
 {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
 <!-- ending navbar partial -->
-{% if user.is_authenticated %}
-<h1 class="mt-5">This is my logged in home page</h1>
-{%for post in posts%}
+<h1 class="mt-5">This is my user posts page</h1>
 <!-- taken and altered from https://bbbootstrap.com/snippets/forum-discussion-template-65198141 -->
 <div class="container-fluid mt-5">
   <div class="row">
@@ -21,30 +19,23 @@
               alt=""
             />
             <div class="media-body ml-3">
-              <a href="/">{{post.author}}</a>
+              <a href="/">{{object.author}}</a>
               <div class="text-muted small">
-                {{ post.date_posted|date:"F, d, Y "}}
+                {{ object.date_posted|date:"F, d, Y "}}
               </div>
             </div>
             <div class="text-muted small ml-3">
-              <div>Member since <strong>{{author.date_added}}</strong></div>
+              <div>Member since <strong></strong></div>
               <div><strong>134</strong> posts</div>
             </div>
           </div>
         </div>
-        <!-- start card body -->
         <div class="card-body">
-          <!-- strat paragraph -->
           <p>
-            <!-- start post title link to post detail -->
-            <a href="{% url 'post-detail'%}">
-              {{post.title}}
-            </a>
-            <!-- end link -->
+            {{object.title}}
           </p>
-          <!-- end paragaph -->
           <p>
-            {{post.content}}
+            {{object.content}}
           </p>
         </div>
         <div
@@ -76,6 +67,4 @@
     </div>
   </div>
 </div>
-{%endfor%} {% else %}
-<h1 class="mt-5">This is my logged out home page home page</h1>
-{%endif%} {%endblock%}
+{%endblock%}
