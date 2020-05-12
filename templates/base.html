@@ -30,7 +30,12 @@
     {% endif %}
   </head>
   <body>
-    <header></header>
+    <!-- start header -->
+    <header>
+      <!--block nav -->
+      {% block nav %} {% endblock %}
+    </header>
+    <!-- end header -->
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8 mt-5">
