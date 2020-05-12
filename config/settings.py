@@ -130,3 +130,4 @@ STATICFILES_DIRS = (
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # redirecting user to home page after login
 LOGIN_REDIRECT_URL = "fourm-home"
+LOGIN_URL = "login"

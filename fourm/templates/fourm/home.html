@@ -1,4 +1,10 @@
-{%extends 'base.html'%} {%block content%} {%include '../partials/_navbar.html'%}
+<!-- extends base html -->
+{%extends 'base.html'%}
+<!-- start block content -->
+{%block content%}
+<!-- adding navbar partial -->
+{%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
+<!-- ending navbar partial -->
 {% if user.is_authenticated %}
 <h1 class="mt-5">This is my logged in home page</h1>
 {%for post in posts%}
