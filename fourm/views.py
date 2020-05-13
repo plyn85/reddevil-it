@@ -36,5 +36,4 @@ class PostCreateView(CreateView):
         # setting author to current logged In user
         form.instance.author = self.request.user
         # runnig the form
-        return super().form.valid(form)
-
+        return super().form_valid(form)
