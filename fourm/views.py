@@ -1,5 +1,5 @@
 from .models import Post
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
@@ -52,6 +52,21 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         form.instance.author = self.request.user
         # runnig the form
         return super().form_valid(form)
+
+    # adding test function so user can only update there own posts
+
+    def test_func(self):
+        # getting current post
+        post = self.get_object()
+        # checking if currenty user is the author of the post
+        if self.request.user == post.author:
+            return True
+        return False
+
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    # adding post model
+    model = Post
 
     # adding test function so user can only update there own posts
 

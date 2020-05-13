@@ -1,7 +1,5 @@
 <!-- extends base html -->
 {%extends 'base.html'%}
-<!-- loading crispy forms -->
-{% load crispy_forms_tags %}
 <!-- start block content -->
 {%block content%}
 <!-- start of wrapper div for form -->
@@ -11,21 +9,29 @@
     <!-- start of form -->
     <form method="POST">
       <!-- token added -->
-      {% csrf_token%}
-      <!-- start of fieldset -->
+      {% csrf_token %}
       <fieldset class="form-group">
         <!-- start legend -->
         <legend class="border-bottom mb-4">
-          Login
+          Post Delete
         </legend>
         <!-- end legend -->
-        <!-- loading form -->
-        {{form|crispy}}
+        <!--heading -->
+        <h2>Are you sure you want to delete post?"{{object.title}}"</h2>
 
         <!-- start button wrapper div -->
         <div class="form-group">
           <!-- start button -->
-          <button class="btn btn-outline-info" type="submit">Login</button>
+          <button class="btn btn-outline-danger" type="submit">
+            Yes, Delete
+          </button>
+          <!-- end button -->
+          <!-- start button -->
+          <a
+            class="btn btn-outline-secondary"
+            href="{% url 'post-detail' object.id %}"
+            >Cancel</a
+          >
           <!-- end button -->
         </div>
         <!-- end button wrapper div -->
@@ -33,11 +39,6 @@
       <!-- end fieldset -->
     </form>
     <!-- end form -->
-    <div class="border-top pt-3">
-      <small class="muted">
-        Need an account?<a class="ml-2" href="{%url 'register'%}">Sign Up</a>
-      </small>
-    </div>
   </div>
   <!-- end wrapper col for form -->
 </div>
