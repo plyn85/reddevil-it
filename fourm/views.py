@@ -1,5 +1,5 @@
 from .models import Post
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -27,6 +27,20 @@ class PostDetailView(DetailView):
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
+    # adding post model
+    model = Post
+    # only taking title and content fields from post model
+    fields = ['title', 'content']
+# overiding the from valid method here
+
+    def form_valid(self, form):
+        # setting author to current logged In user
+        form.instance.author = self.request.user
+        # runnig the form
+        return super().form_valid(form)
+
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     # adding post model
     model = Post
     # only taking title and content fields from post model
