@@ -1,7 +1,7 @@
 from .models import Post
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 def home(request):
@@ -40,7 +40,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostUpdateView(LoginRequiredMixin, UpdateView):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     # adding post model
     model = Post
     # only taking title and content fields from post model
@@ -52,3 +52,13 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
         form.instance.author = self.request.user
         # runnig the form
         return super().form_valid(form)
+
+    # adding test function so user can only update there own posts
+
+    def test_func(self):
+        # getting current post
+        post = self.get_object()
+        # checking if currenty user is the author of the post
+        if self.request.user == post.author:
+            return True
+        return False
