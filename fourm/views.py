@@ -67,6 +67,8 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     # adding post model
     model = Post
+    # adding route to home page after post Is deleted
+    success_url = "/"
 
     # adding test function so user can only update there own posts
 
