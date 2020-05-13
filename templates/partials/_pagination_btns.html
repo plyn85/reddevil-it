@@ -1,0 +1,44 @@
+{% if is_paginated %}
+<div class="row justify-content-center">
+  <div class="col-6">
+    <!-- for first and prev pages -->
+    {%if page_obj.has_previous%}
+    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+    <a
+      class="btn btn-outline-info mb-4"
+      href="?page={{page.obj.previous_page_number}}"
+      >Previous</a
+    >
+    {%endif%}
+    <!-- looping over all of the pages of the pagination -->
+    {%for num in page_obj.paginator.page_range%}
+    <!-- to see if where on the current page -->
+    {%if page_obj.number == num%}
+    <!-- displays current page number -->
+    <a class="btn btn-info mb-4" href="?page={{ num }}">{{num}}</a>
+    <!-- if the page number we are on in the loop is within 3 pages then we want to print it out-->
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+
+    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{num}}</a>
+    {%endif%}
+    <!-- end if -->
+    {%endfor%}
+    <!-- for next and last pages -->
+    {%if page_obj.has_next%}
+    <a
+      class="btn btn-outline-info mb-4"
+      href="?page={{page.obj.next_page_number}}"
+      >Next</a
+    >
+    <!-- if there where 30 pages this will say the page is equal to 30 -->
+    <a
+      class="btn btn-outline-info mb-4"
+      href="?page={{page_obj.paginator.num_pages}}"
+      >Last</a
+    >
+    {%endif%}
+    <!-- end for -->
+    {% endif %}
+    <!-- endif -->
+  </div>
+</div>
