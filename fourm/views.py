@@ -30,3 +30,11 @@ class PostCreateView(CreateView):
     model = Post
     # only taking title and content fields from post model
     fields = ['title', 'content']
+# overiding the from valid method here
+
+    def form_valid(self, form):
+        # setting author to current logged In user
+        form.instance.author = self.request.user
+        # runnig the form
+        return super().form.valid(form)
+
