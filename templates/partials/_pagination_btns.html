@@ -1,5 +1,9 @@
+<!-- taken form toturial found at https://www.youtube.com/watch?v=acOktTcTVEQ&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=11 -->
+
 {% if is_paginated %}
+<!-- row wraping pagination buttons -->
 <div class="row justify-content-center">
+  <!-- col wrapping pagination buttons -->
   <div class="col-6">
     <!-- for first and prev pages -->
     {%if page_obj.has_previous%}
@@ -41,4 +45,6 @@
     {% endif %}
     <!-- endif -->
   </div>
+  <!-- end row -->
 </div>
+<!-- end col -->
