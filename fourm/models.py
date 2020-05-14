@@ -18,6 +18,7 @@ class Post(models.Model):
     def get_absolute_url(self):
         # returning user to post detail page after thr have made a post
         return reverse('post-detail', kwargs={'pk': self.pk})
+    # counting the posts of each user
 
     def count_posts_of(user):
         return Post.objects.filter(author=user).count()
