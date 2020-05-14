@@ -30,7 +30,9 @@
             </div>
             <div class="text-muted small ml-3">
               <div>Member since <strong></strong></div>
-              <div><strong>134</strong> posts</div>
+              {%for p in num_post %}
+              <div><strong>{{p.author}}</strong> posts</div>
+              {%endfor%}
             </div>
           </div>
         </div>

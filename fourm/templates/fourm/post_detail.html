@@ -19,14 +19,16 @@
               alt=""
             />
             <div class="media-body ml-3">
-              <a href="/">{{object.author}}</a>
+              <a href="{%url 'user-post' object.author.username %}"
+                >{{object.author}}</a
+              >
               <div class="text-muted small">
                 {{ object.date_posted|date:"F, d, Y "}}
               </div>
             </div>
             <div class="text-muted small ml-3">
               <div>Member since <strong></strong></div>
-              <div><strong>134</strong> posts</div>
+              <div><strong></strong> posts</div>
             </div>
           </div>
         </div>
