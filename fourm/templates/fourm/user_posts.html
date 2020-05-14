@@ -5,8 +5,8 @@
 <!-- adding navbar partial -->
 {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
 <!-- ending navbar partial -->
-{% if user.is_authenticated %}
-<h1 class="mt-5">This is my logged in home page</h1>
+<!-- getting username that Is passed into url -->
+<h1 class="mt-5">Posts by {{post.kwargs.username}}</h1>
 {%for post in posts%}
 <!-- taken and altered from https://bbbootstrap.com/snippets/forum-discussion-template-65198141 -->
 <div class="container-fluid mt-5">
@@ -21,16 +21,14 @@
               alt=""
             />
             <div class="media-body ml-3">
-              <a href="{%url 'user-post' post.author.username %}"
-                >{{post.author}}</a
-              >
+              <h4>{{post.author}}</h4>
               <div class="text-muted small">
                 {{ post.date_posted|date:"F, d, Y "}}
               </div>
             </div>
             <div class="text-muted small ml-3">
               <div>Member since <strong></strong></div>
-              <div><strong>134</strong> posts</div>
+              <div><strong>{{page_obj.paginator.count}}</strong> posts</div>
             </div>
           </div>
         </div>
@@ -102,6 +100,6 @@
 </div>
 {%endfor%}
 <!-- adding partial pagination buttons -->
-{%include '../partials/_pagination_btns.html'%} {% else %}
-<h1 class="mt-5">This is my logged out home page home page</h1>
-{%endif%} {%endblock%}
+{%include '../partials/_pagination_btns.html'%}
+<!-- endblock content -->
+{%endblock%}
