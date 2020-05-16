@@ -10,14 +10,17 @@ def register(request):
         form = UserRegisterForm(request.POST)
 
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
+            user = form.save()
+            user.refresh_from_db()  # load the profile instance created by the signal
+            user.profile.birth_date = form.cleaned_data.get('birth_date')
+            user.profile.location = form.cleaned_data.get('location')
+            user.save()
         # authenticating pass word here so user is directed to home page after registering
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+            user = authenticate(username=user.username, password=raw_password)
             login(request, user)
             messages.success(
-                request, f'{username} Your account has been created your now logged In!')
+                request, f'{user.username} Your account has been created your now logged In!')
             return redirect('/')
     else:
         form = UserRegisterForm()
