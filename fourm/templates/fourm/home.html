@@ -28,9 +28,10 @@
                 {{ post.date_posted|date:"F, d, Y "}}
               </div>
             </div>
+            {% for p in profile %}
             <div class="text-muted small ml-3">
-              <div>Member since <strong></strong></div>
-
+              <div>Member since <strong>{{profile.date_joined}}</strong></div>
+              {% endfor%}
               <div><strong>{{num_post}}</strong> posts</div>
             </div>
           </div>
