@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from .models import Profile
 
+
 # creating a profile eveytime a user is created
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwags):
