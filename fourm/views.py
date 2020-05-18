@@ -6,11 +6,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Q
+from .filters import PostFilter
 
 
 def home(request, user):
     post_count = Post.objects.filter(author=request.user).count()
+    myFilter = OrderFilter()
     context = {
+        "myFilter": myFilter,
         'post_count': post_count,
         'posts': Post.objects.all()}
     return render(request, "fourm/home.html", context)
