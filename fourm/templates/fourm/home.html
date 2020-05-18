@@ -25,17 +25,17 @@
                 >{{post.author}}</a
               >
               <div class="text-muted small">
-                {{ post.date_posted|date:"F, d, Y "}}
+                {{ post.date_posted|date:"F d Y "}}
               </div>
             </div>
 
             <div class="text-muted small ml-3">
               <div>
                 Member since
-                <strong>{{user.date_joined|date:"F ,Y "}}</strong>
+                <strong>{{user.date_joined|date:"F Y "}}</strong>
               </div>
 
-              <div><strong></strong> posts</div>
+              <div><strong>{{post_count}} </strong> posts</div>
             </div>
           </div>
         </div>

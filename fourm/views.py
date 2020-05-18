@@ -3,10 +3,13 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.db.models import Count
 
 
-def home(request):
+def home(request, user):
+    post_count = Post.objects.filter(author=request.user).count()
     context = {
+        'post_count': post_count,
         'posts': Post.objects.all()}
     return render(request, "fourm/home.html", context)
 
@@ -14,6 +17,7 @@ def home(request):
 
 
 class PostListView(ListView):
+
     # adding post model
     model = Post
     # changing the default page where the list views looks for template
@@ -97,3 +101,4 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
