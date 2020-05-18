@@ -17,7 +17,7 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        # returning user to post detail page after thr have made a post
+        # returning user to post detail page after they have made a post
         return reverse('post-detail', kwargs={'pk': self.pk})
     # counting the posts of each user
 
@@ -28,7 +28,6 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(
         'fourm.Post', on_delete=models.CASCADE, related_name='comments')
-    author = models.CharField(max_length=200)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)

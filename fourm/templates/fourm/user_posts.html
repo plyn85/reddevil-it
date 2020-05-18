@@ -88,12 +88,19 @@
               {%endif%}
               <!-- endif -->
               <!-- start button -->
-              <button href="#" class="btn btn-outline-info">Reply</button>
+              <button type="button" class="btn btn-outline-info comments-btn">
+                Comments
+              </button>
               <!-- end button -->
             </div>
             <!-- end buttom wrapper div -->
           </div>
         </div>
+        <!-- wrapper div only want comments to ever be hidden on home page -->
+        <div class="hide comments">
+          {%include '../partials/_comments.html'%}
+        </div>
+        <!-- end wrapper div -->
       </div>
     </div>
   </div>
