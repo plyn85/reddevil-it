@@ -1,7 +1,8 @@
 from django import forms
-from .models import Comments
+from .models import Comment
 
-lass CommentForm(forms.ModelForm):
+
+class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment

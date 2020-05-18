@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+<!-- loading crispy forms -->
+{% load crispy_forms_tags %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <h1 class="text-center">New comment</h1>
+    <form method="POST" class="post-form">
+      {% csrf_token %}
+      <!-- loading form -->
+      {{form|crispy}}
+      <button type="submit" class="save btn btn-default">Send</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
