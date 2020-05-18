@@ -1,4 +1,4 @@
-from .models import Post
+from .models import Post, Comment
 from .forms import CommentForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import render, get_object_or_404, redirect
@@ -120,15 +120,19 @@ def add_comment_to_post(request, pk):
     return render(request, 'fourm/add_comment_to_post.html', {'form': form})
 
 
-@login_required
-def comment_approve(request, pk):
-    comment = get_object_or_404(Comment, pk=pk)
-    comment.approve()
-    return redirect('post_detail', pk=comment.post.pk)
+# @login_required
+# def comment_approve(request, pk):
+#     comment = get_object_or_404(Comment, pk=pk)
+#     comment.approve()
+#     return redirect('post-detail', pk=comment.post.pk)
 
 
-@login_required
-def comment_remove(request, pk):
-    comment = get_object_or_404(Comment, pk=pk)
-    comment.delete()
-    return redirect('post_detail', pk=comment.post.pk)
+# @login_required
+# def comment_remove(request, pk):
+#     comment = get_object_or_404(Comment, pk=pk)
+#     comment.delete()
+#     return redirect('post-detail', pk=comment.post.pk)
+
+
+# def approved_comments(self):
+#     return self.comments.filter(approved_comment=True)

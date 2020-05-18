@@ -4,11 +4,13 @@
 <div class="row justify-content-center">
   <div class="col-md-8">
     <h1 class="text-center">New comment</h1>
-    <form method="POST" class="post-form">
+    <form method="POST">
       {% csrf_token %}
       <!-- loading form -->
       {{form|crispy}}
-      <button type="submit" class="save btn btn-default">Send</button>
+      <button type="submit" class="btn btn-outline-info comments-btn">
+        Send
+      </button>
     </form>
   </div>
 </div>

@@ -1,6 +1,7 @@
 <!-- extends base html -->
 {%extends 'base.html'%}
 <!-- start block content -->
+
 {%block content%}
 <!-- adding navbar partial -->
 {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
@@ -95,14 +96,16 @@
               {%endif%}
               <!-- endif -->
               <!-- start button -->
-              <button href="#" class="btn btn-outline-info">Reply</button>
+              <button type="button" class="btn btn-outline-info comments-btn">
+                Comments
+              </button>
               <!-- end button -->
             </div>
             <!-- end buttom wrapper div -->
           </div>
         </div>
+        {%include '../partials/_comments.html'%}
       </div>
-      {%include '../partials/_comments.html'%}
     </div>
   </div>
 </div>

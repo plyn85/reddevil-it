@@ -80,13 +80,15 @@
             {%endif%}
             <!-- endif -->
             <!-- start button -->
-            <a class="btn btn-outline-info">Reply</a>
+            <button type="button" class="btn btn-outline-info comments-btn">
+              Comments
+            </button>
             <!-- end button -->
           </div>
           <!-- end buttom wrapper div -->
         </div>
+        {%include '../partials/_comments.html'%}
       </div>
-      {%include '../partials/_comments.html'%}
     </div>
   </div>
 </div>

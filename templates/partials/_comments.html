@@ -1,46 +1,21 @@
 <hr />
-<!-- link to add comment form -->
-<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}"
-  >Add comment</a
->
-<!-- loop trough comments -->
-{% for comment in post.comments.all %}
-<!-- if users comments are approved -->
-{% if user.is_authenticated or comment.approved_comment %}
-<!-- comments wrapper div -->
-<div class="comment">
-  <!-- date wrapper div -->
-  <div class="date">{{ comment.created_date }}</div>
-  <!-- end div -->
-  <!-- if comment is not approved -->
-  {% if not comment.approved_comment %}
-  <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"
-    ><span class="glyphicon glyphicon-remove"></span
-  ></a>
-  <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"
-    ><span class="glyphicon glyphicon-ok"></span
-  ></a>
-  {% endif %}
-  <!-- end if -->
-  <!-- end div -->
-  <!-- the author of the comment -->
-  <strong>{{ comment.author }}</strong>
-  {% endif %}
-  <!-- end if -->
-  <!-- the comment text -->
-  <p>{{ comment.text|linebreaks }}</p>
+<div class="row comments hide">
+  <div class="col">
+    <!-- link to add comment form -->
+    <a
+      class="btn btn-outline-info mb-2"
+      href="{% url 'add_comment_to_post' pk=post.pk %}"
+      >Add comment</a
+    >
+    {% for comment in post.comments.all %}
+    <div>
+      <div class="date">{{ comment.created_date|timesince }}</div>
+      <strong>{{ comment.author }}</strong>
+      <p>{{ comment.text|linebreaks }}</p>
+    </div>
+    {% empty %}
+    <p>No comments added yet(</p>
+    {% endfor %}
+    <!-- end for -->
+  </div>
 </div>
-<!-- end div -->
-{% endif %}
-<!-- end if -->
-<!-- empty condition added  -->
-{% empty %}
-<!-- do this if comments are empty -->
-<p>No comments here yet :(</p>
-<!-- link to post detail -->
-<a href="{% url 'post-detail' pk=post.pk %}"
-  >Comments: {{ post.comments.count }}</a
->
-<!-- end link -->
-{% endfor %}
-<!-- end for -->
