@@ -1,12 +1,14 @@
 <!-- extends base html -->
 {%extends 'base.html'%}
+<!-- loading crispy forms -->
+{% load crispy_forms_tags %}
 <!-- start block content -->
-
 {%block content%}
 <!-- adding navbar partial -->
 {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
 <!-- ending navbar partial -->
-<form action="{%url 'search'%}" method="get">
+<form method="get">
+  {{filterset.form|crispy}}
   <button class="btn btn-outline-info" type="submit">Search</button>
 </form>
 {% if user.is_authenticated %}

@@ -9,19 +9,41 @@ from django.db.models import Count, Q
 from .filters import PostFilter
 
 
-def home(request, user):
-    post_count = Post.objects.filter(author=request.user).count()
-    myFilter = OrderFilter()
+def home(request):
+    # post_count = Post.objects.filter(author=request.user).count()
+    posts = Post.objects.all()
+    posts = my_filter.qs
     context = {
-        "myFilter": myFilter,
-        'post_count': post_count,
-        'posts': Post.objects.all()}
+        # 'post_count': post_count,
+        'posts': posts}
     return render(request, "fourm/home.html", context)
 
 # <app>/<model>_<veiwtype>.html is what django class based views look for by default
 
 
-class PostListView(ListView):
+class FilteredListView(ListView):
+    """added from a tutorial found at https://www.caktusgroup.com/blog/2018/10/18/filtering-and-pagination-django/"""
+
+    filterset_class = None
+
+    def get_queryset(self):
+        # getting the query set
+        queryset = super().get_queryset()
+        # then using the parameters to instantiate the filter set
+        self.filterset = self.filterset_class(
+            self.request.GET, queryset=queryset)
+        # returning the filtered queryset
+        return self.filterset.qs.distinct()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Pass the filterset to the template - it provides the form.
+        context['filterset'] = self.filterset
+        return context
+
+
+class PostListView(FilteredListView):
+    filterset_class = PostFilter
 
     # adding post model
     model = Post
