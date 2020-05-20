@@ -43,8 +43,9 @@ class FilteredListView(ListView):
 
 
 class PostListView(FilteredListView):
-    filterset_class = PostFilter
 
+    # filterset_class = CommentsFilter
+    filterset_class = PostFilter
     # adding post model
     model = Post
     # changing the default page where the list views looks for template
