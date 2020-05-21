@@ -1,5 +1,7 @@
 <!-- extends base html -->
 {%extends 'base.html'%}
+<!-- loading crispy forms -->
+{% load crispy_forms_tags %}
 <!-- adding navbar partial -->
 {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
 <!-- ending navbar partial -->
@@ -15,7 +17,31 @@
     <p class="text-secondary">{{ user.last_name }}</p>
     <p class="text-secondary">{{ user.profile.birth_date }}</p>
     <p class="text-secondary">{{ user.profile.location}}</p>
+    <!-- start of form -->
+    <form method="POST">
+      <!-- token added -->
+      {% csrf_token%}
+      <!-- start of fieldset -->
+      <fieldset class="form-group">
+        <!-- start legend -->
+        <legend class="border-bottom mb-4">
+          Join today
+        </legend>
+        <!-- end legend -->
+        <!-- loading form -->
+        {{form|crispy}}
+
+        <!-- start button wrapper div -->
+        <div class="form-group">
+          <!-- start button -->
+          <button class="btn btn-outline-info" type="submit">Sign up</button>
+          <!-- end button -->
+        </div>
+        <!-- end button wrapper div -->
+      </fieldset>
+      <!-- end fieldset -->
+    </form>
   </div>
-  {%endblock%}
-  <!-- end block content -->
 </div>
+{%endblock%}
+<!-- end block content -->
