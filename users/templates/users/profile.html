@@ -18,23 +18,23 @@
     <p class="text-secondary">{{ user.profile.birth_date }}</p>
     <p class="text-secondary">{{ user.profile.location}}</p>
     <!-- start of form -->
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
       <!-- token added -->
       {% csrf_token%}
       <!-- start of fieldset -->
       <fieldset class="form-group">
         <!-- start legend -->
         <legend class="border-bottom mb-4">
-          Join today
+          Update your Info Profile Info
         </legend>
         <!-- end legend -->
-        <!-- loading form -->
-        {{form|crispy}}
+        <!-- loading user/profile updateform -->
+        {{u_form|crispy}} {{p_form|crispy}}
 
         <!-- start button wrapper div -->
         <div class="form-group">
           <!-- start button -->
-          <button class="btn btn-outline-info" type="submit">Sign up</button>
+          <button class="btn btn-outline-info" type="submit">Update</button>
           <!-- end button -->
         </div>
         <!-- end button wrapper div -->

@@ -5,7 +5,7 @@ from .models import Profile
 
 
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
+
     username = forms.CharField(
         max_length=50, required=True, help_text='Requried. No more then 50 characters')
     first_name = forms.CharField(
@@ -25,7 +25,6 @@ class UserRegisterForm(UserCreationForm):
 
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
 
     birth_date = forms.DateField(help_text='Required. Format: YYYY-MM-DD')
     location = forms.CharField(
@@ -39,4 +38,5 @@ class UserUpdateForm(forms.ModelForm):
 
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
-        field = ['image']
+        model = Profile
+        fields = ['image']
