@@ -26,14 +26,10 @@ class UserRegisterForm(UserCreationForm):
 
 class UserUpdateForm(forms.ModelForm):
 
-    birth_date = forms.DateField(help_text='Required. Format: YYYY-MM-DD')
-    location = forms.CharField(
-        max_length=30, required=True, help_text='Required.')
-
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name',
-                  'email', 'location', 'birth_date', ]
+                  'email']
 
 
 class ProfileUpdateForm(forms.ModelForm):

@@ -8,6 +8,10 @@ class Profile(models.Model):
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
+    first_name = models.CharField(blank=True,
+                                  max_length=30)
+    last_name = models.CharField(blank=True,
+                                 max_length=30)
 
     def __str__(self):
         return f'{self.user.username} Profile'
