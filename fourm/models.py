@@ -24,6 +24,8 @@ class Post(models.Model):
 
     # def count_posts_of(user):
     #     return Post.objects.filter(author=user).count()
+    def get_like_url(self):
+        return reverse('like-toggle', kwargs={'pk': self.pk})
 
 
 class Comment(models.Model):
