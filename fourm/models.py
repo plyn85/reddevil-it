@@ -28,6 +28,9 @@ class Post(models.Model):
     def get_like_url(self):
         return reverse('like-toggle', kwargs={'pk': self.pk})
 
+    def get_like_api_url(self):
+        return reverse('like-api-toggle', kwargs={'pk': self.pk})
+
 
 class Comment(models.Model):
     post = models.ForeignKey(

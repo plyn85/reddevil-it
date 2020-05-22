@@ -78,16 +78,12 @@ class PostLikeToggle(RedirectView):
 
 
 class PostLikeAPIToggle(APIView):
-    """
-    View to list all users in the system.
 
-    * Requires token authentication.
-    * Only admin users are able to access this view.
-    """
     authentication_classes = [authentication.SessionAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
-    def get(self, request, format=None):
+    def get(self, request, *args, **kwargs):
+        # getting post object
         obj = get_object_or_404(Post, pk=kwargs['pk'])
         # post.likes.all()
         url_ = obj.get_absolute_url()
@@ -99,7 +95,7 @@ class PostLikeAPIToggle(APIView):
                 liked = False
                 obj.likes.remove(user)
             else:
-                liked = False
+                liked = True
                 obj.likes.add(user)
                 updated = True
         data = {
