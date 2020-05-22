@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView,  PostDeleteView, UserPostListView, add_comment_to_post, PostLikeRedirect
+from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView,  PostDeleteView, UserPostListView, add_comment_to_post, PostLikeToggle
 from django_filters.views import FilterView
 from .filters import PostFilter
 
@@ -8,7 +8,7 @@ urlpatterns = [
     # path('search/', search, name='search'),
     path('user/<str:username>', UserPostListView.as_view(), name="user-post"),
     path('post/<int:pk>/like/',
-         PostLikeRedirect.as_view(), name="like"),
+         PostLikeToggle.as_view(), name="like-toogle"),
     path('post/<int:pk>/', PostDetailView.as_view(), name="post-detail"),
     path('post/new/', PostCreateView.as_view(), name="post-create"),
     path('post/<int:pk>/delete', PostDeleteView.as_view(), name="post-delete"),

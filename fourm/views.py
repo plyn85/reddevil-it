@@ -55,7 +55,7 @@ class PostListView(FilteredListView):
     paginate_by = 5
 
 
-class PostLikeRedirect(RedirectView):
+class PostLikeToggle(RedirectView):
     # permanent = False
     # query_string = True
     # pattern_name = 'post-detail'
@@ -66,7 +66,10 @@ class PostLikeRedirect(RedirectView):
         url_ = obj.get_absolute_url()
         user = self.request.user
         if user.is_authenticated:
-            obj.likes.add(user)
+            if user in obj.likes.all():
+                obj.likes.remove(user)
+            else:
+                obj.likes.add(user)
 
         return url_
 
