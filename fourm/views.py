@@ -1,6 +1,6 @@
 from .models import Post, Comment
 from .forms import CommentForm
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, RedirectView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -53,6 +53,22 @@ class PostListView(FilteredListView):
     context_object_name = "posts"
     ordering = ['-date_posted']
     paginate_by = 5
+
+
+class PostLikeRedirect(RedirectView):
+    # permanent = False
+    # query_string = True
+    # pattern_name = 'post-detail'
+
+    def get_redirect_url(self, *args, **kwargs):
+        obj = get_object_or_404(Post, pk=kwargs['pk'])
+        # post.likes.all()
+        url_ = obj.get_absolute_url()
+        user = self.request.user
+        if user.is_authenticated:
+            obj.likes.add(user)
+
+        return url_
 
 
 class UserPostListView(ListView):
