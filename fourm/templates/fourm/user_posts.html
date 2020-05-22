@@ -50,7 +50,9 @@
         <div
           class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3"
         >
-          <p>likes :{{post.likes.count}}</p>
+          <p>
+            likes :{{post.likes.count}}<a href="{{post.get_like_url}}">Like</a>
+          </p>
           <div class="px-4 pt-3">
             <!-- start button wrapper div -->
             <div class="px-4 pt-3">
