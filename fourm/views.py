@@ -1,3 +1,6 @@
+from rest_framework.views import APIView
+from rest_framework import authentication, permissions
+from rest_framework.response import Response
 from .models import Post, Comment
 from .forms import CommentForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, RedirectView
@@ -72,6 +75,39 @@ class PostLikeToggle(RedirectView):
                 obj.likes.add(user)
 
         return url_
+
+
+class PostLikeAPIToggle(APIView):
+    """
+    View to list all users in the system.
+
+    * Requires token authentication.
+    * Only admin users are able to access this view.
+    """
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, format=None):
+        obj = get_object_or_404(Post, pk=kwargs['pk'])
+        # post.likes.all()
+        url_ = obj.get_absolute_url()
+        user = self.request.user
+        updated = False
+        liked = False
+        if user.is_authenticated:
+            if user in obj.likes.all():
+                liked = False
+                obj.likes.remove(user)
+            else:
+                liked = False
+                obj.likes.add(user)
+                updated = True
+        data = {
+            "updated": updated,
+            "liked": liked
+        }
+
+        return Response(data)
 
 
 class UserPostListView(ListView):
