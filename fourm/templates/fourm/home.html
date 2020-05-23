@@ -64,7 +64,13 @@
           class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3"
         >
           <p>
-            likes :{{post.likes.count}} <a href="{{post.get_like_url}}">Like</a>
+            <a
+              class="like-btn"
+              data-href="{{post.get_like_api_url}}"
+              data-likes="{{post.likes.count}}"
+              href="{{post.get_like_url}}"
+              >{{object.likes.count}}Like</a
+            >
           </p>
 
           <div class="px-4 pt-3">

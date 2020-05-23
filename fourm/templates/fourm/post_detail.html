@@ -44,8 +44,12 @@
           class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3"
         >
           <p>
-            likes :{{object.likes.count}}<a href="{{object.get_like_url}}"
-              >Like</a
+            <a
+              class="like-btn"
+              data-href="{{object.get_like_api_url}}"
+              data-likes="{{post.likes.count}}"
+              href="{{object.get_like_url}}"
+              >{{object.likes.count}}Like</a
             >
           </p>
           <!-- start button wrapper div -->

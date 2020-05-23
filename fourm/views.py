@@ -59,13 +59,11 @@ class PostListView(FilteredListView):
 
 
 class PostLikeToggle(RedirectView):
-    # permanent = False
-    # query_string = True
-    # pattern_name = 'post-detail'
+    """ from a tutorial at https://www.youtube.com/watch?v=pkPRtQf6oQ8&t=678s """
 
     def get_redirect_url(self, *args, **kwargs):
         obj = get_object_or_404(Post, pk=kwargs['pk'])
-        # post.likes.all()
+
         url_ = obj.get_absolute_url()
         user = self.request.user
         if user.is_authenticated:
@@ -74,10 +72,11 @@ class PostLikeToggle(RedirectView):
             else:
                 obj.likes.add(user)
 
-        return url_
+            return url_
 
 
 class PostLikeAPIToggle(APIView):
+    """ from a tutorial at https://www.youtube.com/watch?v=pkPRtQf6oQ8&t=678s """
 
     authentication_classes = [authentication.SessionAuthentication]
     permission_classes = [permissions.IsAuthenticated]
@@ -85,25 +84,28 @@ class PostLikeAPIToggle(APIView):
     def get(self, request, *args, **kwargs):
         # getting post object
         obj = get_object_or_404(Post, pk=kwargs['pk'])
-        # post.likes.all()
+
         url_ = obj.get_absolute_url()
         user = self.request.user
         updated = False
         liked = False
+        # if the user is a logged in user
         if user.is_authenticated:
+            # if the user has already liked a post
             if user in obj.likes.all():
                 liked = False
                 obj.likes.remove(user)
+        # if ther user hasn, t liked the post
             else:
                 liked = True
                 obj.likes.add(user)
                 updated = True
-        data = {
-            "updated": updated,
-            "liked": liked
-        }
+            data = {
+                "updated": updated,
+                "liked": liked
+            }
 
-        return Response(data)
+            return Response(data)
 
 
 class UserPostListView(ListView):

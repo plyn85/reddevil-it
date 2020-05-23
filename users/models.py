@@ -17,12 +17,12 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    def save(self):
-        super().save()
-
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        # now where going grab the saved Image an resize It
         img = Image.open(self.image.path)
 
-        if img.height > 150 or img.height > 150:
-            output_size = (150, 150)
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
