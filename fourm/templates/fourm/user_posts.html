@@ -27,7 +27,9 @@
               </div>
             </div>
             <div class="text-muted small ml-3">
-              <div>Member since <strong></strong></div>
+              <div>
+                Member since <strong>{{user.date_joined|date:"F Y "}}</strong>
+              </div>
               <div><strong>{{page_obj.paginator.count}}</strong> posts</div>
             </div>
           </div>
