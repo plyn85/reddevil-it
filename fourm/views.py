@@ -186,6 +186,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 @login_required
 def add_comment_to_post(request, pk):
+    """ from a tutorial at https://tutorial-extensions.djangogirls.org/en/homework_create_more_models/ """
+
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = CommentForm(request.POST)

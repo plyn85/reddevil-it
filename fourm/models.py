@@ -20,11 +20,9 @@ class Post(models.Model):
     def get_absolute_url(self):
         # returning user to post detail page after they have made a post
         return reverse('post-detail', kwargs={'pk': self.pk})
-    # counting the posts of each user
 
-    # def count_posts_of(user):
-    #     return Post.objects.filter(author=user).count()
     # returning user to post detail page after they have Liked  a post
+
     def get_like_url(self):
         return reverse('like-toggle', kwargs={'pk': self.pk})
 
@@ -33,8 +31,13 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
+    """ taken from a tutorial found at https://tutorial-extensions.djangogirls.org/en/homework_create_more_models/ """
+
     post = models.ForeignKey(
         'fourm.Post', on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User,  models.SET_NULL,
+                               blank=True,
+                               null=True,)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)
