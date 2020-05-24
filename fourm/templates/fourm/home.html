@@ -6,12 +6,13 @@
 {%block content%}
 <!-- adding navbar partial -->
 {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
+<!-- if user -->
+{% if user.is_authenticated %}
 <!-- ending navbar partial -->
 <form method="get">
   {{filterset.form|crispy}}
   <button class="btn btn-outline-info" type="submit">Search</button>
 </form>
-{% if user.is_authenticated %}
 <h1 class="mt-5">This is my logged in home page</h1>
 {%for post in posts%}
 <!-- taken and altered from https://bbbootstrap.com/snippets/forum-discussion-template-65198141 -->
