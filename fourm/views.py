@@ -59,14 +59,18 @@ class PostListView(FilteredListView):
 
 
 class PostLikeToggle(RedirectView):
-    """ from a tutorial at https://www.youtube.com/watch?v=pkPRtQf6oQ8&t=678s """
+    """ from a tutorial at https://www.youtube.com/watch?v=pkPRtQf6oQ8&t=678s This view gets the object adds the like and returns back to the detail view"""
 
     def get_redirect_url(self, *args, **kwargs):
+        # getting the post object of each post
         obj = get_object_or_404(Post, pk=kwargs['pk'])
-
+    #     getting the url of the post
         url_ = obj.get_absolute_url()
+        # getting current user
         user = self.request.user
+        # authenticating  user
         if user.is_authenticated:
+            # if the user has already liked post remove
             if user in obj.likes.all():
                 obj.likes.remove(user)
             else:

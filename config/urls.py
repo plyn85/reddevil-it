@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('fourm.urls')),
     path('', include('users.urls')),
+    path('', include('store.urls')),
 ]
 
 # this Is only being added when where in debug mode

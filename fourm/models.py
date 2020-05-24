@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.urls import reverse_lazy
 # creating post model
 
 
@@ -19,19 +20,19 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         # returning user to post detail page after they have made a post
-        return reverse('post-detail', kwargs={'pk': self.pk})
+        return reverse_lazy('post-detail', kwargs={'pk': self.pk})
 
-    # returning user to post detail page after they have Liked  a post
+    # returning user to post detail page after they have Liked a post
 
     def get_like_url(self):
-        return reverse('like-toggle', kwargs={'pk': self.pk})
+        return reverse_lazy('like-toggle', kwargs={'pk': self.pk})
 
     def get_like_api_url(self):
-        return reverse('like-api-toggle', kwargs={'pk': self.pk})
+        return reverse_lazy('like-api-toggle', kwargs={'pk': self.pk})
 
 
 class Comment(models.Model):
-    """ taken from a tutorial found at https://tutorial-extensions.djangogirls.org/en/homework_create_more_models/ """
+    """ from a tutorial found at https://tutorial-extensions.djangogirls.org/en/homework_create_more_models/ """
 
     post = models.ForeignKey(
         'fourm.Post', on_delete=models.CASCADE, related_name='comments')

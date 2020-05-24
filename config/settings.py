@@ -35,7 +35,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'fourm.apps.FourmConfig',
     'users.apps.UsersConfig',
-    'store.apps.UsersConfig',
+    'store.apps.StoreConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

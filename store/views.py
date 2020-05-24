@@ -1,9 +1,9 @@
 from django.shortcuts import render
 
 
-def store(request):
+def shop(request):
     context = {}
-    return render(request, 'store/store.html')
+    return render(request, 'store/shop.html')
 
 
 def cart(request):
@@ -14,8 +14,3 @@ def cart(request):
 def checkout(request):
     context = {}
     return render(request, 'store/checkout.html')
-
-
-def main(request):
-    context = {}
-    return render(request, 'store/main.html')

@@ -14,6 +14,7 @@ $(document).ready(function () {
    taken from a tutorial at https://www.youtube.com/watch?v=pkPRtQf6oQ8&t=678s */
 
   /*  function added here then passed into success function update text when like/unlike button clicked */
+
   function updateText(btn, newCount, verb) {
     btn.text(newCount + " " + verb);
     // this prevents num of likes displaying as a negitive value
@@ -30,27 +31,29 @@ $(document).ready(function () {
     // getiing the likes count and changing it to a variable
     var likeCount = parseInt(this_.attr("data-likes"));
 
-    $.ajax({
-      url: likeUrl,
-      method: "GET",
-      data: {},
-      success: function (data) {
-        var newLikes;
-        if (data.liked) {
-          //add one like
-          var newLikes = likeCount + 1;
-          updateText(this_, newLikes, "unlike");
-        } else {
-          // remove one like
-          var newLikes = likeCount - 1;
-          updateText(this_, newLikes, "like");
-        }
-        console.log(data);
-      },
-      error: function (error) {
-        console.log(error);
-        console.log("error");
-      },
-    });
+    if (likeUrl) {
+      $.ajax({
+        url: likeUrl,
+        method: "GET",
+        data: {},
+        success: function (data) {
+          console.log(data);
+          var newLikes;
+          if (data.liked) {
+            //add one like
+            var newLikes = likeCount + 1;
+            updateText(this_, newLikes, "unlike");
+          } else {
+            // remove one like
+            var newLikes = likeCount - 1;
+            updateText(this_, newLikes, "like");
+          }
+        },
+        error: function (error) {
+          console.log(error);
+          console.log("error");
+        },
+      });
+    }
   });
 });
