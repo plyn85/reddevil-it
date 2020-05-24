@@ -4,6 +4,7 @@
 {%block content%}
 <!-- adding navbar partial -->
 {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
+<!-- taken from https://bootsnipp.com/snippets/ZXKKD -->
 <div class="container mt-5">
   <div class="row">
     <div class="col-12">
@@ -64,14 +65,7 @@
               <td>Sub-Total</td>
               <td class="text-right">255,90 €</td>
             </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>Shipping</td>
-              <td class="text-right">6,90 €</td>
-            </tr>
+
             <tr>
               <td></td>
               <td></td>
@@ -90,9 +84,12 @@
           <button class="btn btn-block btn-light">Continue Shopping</button>
         </div>
         <div class="col-sm-12 col-md-6 text-right">
-          <button class="btn btn-lg btn-block btn-success text-uppercase">
+          <a
+            class="btn btn-lg btn-block btn-success text-uppercase"
+            href="{%url 'checkout'%}"
+          >
             Checkout
-          </button>
+          </a>
         </div>
       </div>
     </div>
