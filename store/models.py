@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Product(models.Model):
     name = models.CharField(max_length=254, null=True)
     description = models.TextField()
-    price = models.FloatField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='images')
 
     def __str__(self):
@@ -15,7 +15,7 @@ class Product(models.Model):
 class Customer(models.Model):
     user = models.OneToOneField(User, models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=254, null="True")
-    email = models.CharField(max_length=254, null="True")
+    email = models.EmailField(max_length=254, null="True")
 
     def __str__(self):
         return self.name
@@ -33,7 +33,7 @@ class Order(models.Model):
 
     @property
     def get_cart_total(self):
-        """Getting all the order items then looping trough them to get the total; values  """
+        """Getting all the order items then looping trough them to get the total value  """
         # querying the child order items
         orderitems = self.orderitem_set.all()
         # looping trough orders and getting the totals
@@ -42,10 +42,10 @@ class Order(models.Model):
 
     @property
     def get_cart_items(self):
-        """Getting all the order items then looping trough them to get the total; values  """
+        """Getting all the order items then looping trough them to get the total quantity """
         # querying the child order items
         orderitems = self.orderitem_set.all()
-        # looping trough orders and getting the totals
+        # looping trough items and getting the total num
         total = sum([item.quantity for item in orderitems])
         return total
 
