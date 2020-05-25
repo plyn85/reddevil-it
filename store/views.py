@@ -23,7 +23,7 @@ def cart(request):
         items = []
 
     context = {'items': items}
-    return render(request, 'store/cart.html')
+    return render(request, 'store/cart.html', context)
 
 
 def checkout(request):

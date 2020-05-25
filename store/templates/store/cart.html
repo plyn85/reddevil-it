@@ -21,49 +21,34 @@
             </tr>
           </thead>
           <tbody>
+            {%for item in items%}
             <tr>
-              <td><img src="https://dummyimage.com/50x50/55595c/fff" /></td>
-              <td>Product Name Dada</td>
+              <td><img src="{{item.product.image.url}}" /></td>
+              <td>{{item.product.name}}</td>
               <td>In stock</td>
-              <td><input class="form-control" type="text" value="1" /></td>
-              <td class="text-right">124,90 €</td>
+              <td>
+                <input
+                  class="form-control"
+                  type="text"
+                  value="{{item.quantity}}"
+                />
+              </td>
+              <td class="text-right">€{{item.product.price}}</td>
               <td class="text-right">
                 <button class="btn btn-sm btn-danger">
                   <i class="fa fa-trash"></i>
                 </button>
               </td>
             </tr>
-            <tr>
-              <td><img src="https://dummyimage.com/50x50/55595c/fff" /></td>
-              <td>Product Name Toto</td>
-              <td>In stock</td>
-              <td><input class="form-control" type="text" value="1" /></td>
-              <td class="text-right">33,90 €</td>
-              <td class="text-right">
-                <button class="btn btn-sm btn-danger">
-                  <i class="fa fa-trash"></i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td><img src="https://dummyimage.com/50x50/55595c/fff" /></td>
-              <td>Product Name Titi</td>
-              <td>In stock</td>
-              <td><input class="form-control" type="text" value="1" /></td>
-              <td class="text-right">70,00 €</td>
-              <td class="text-right">
-                <button class="btn btn-sm btn-danger">
-                  <i class="fa fa-trash"></i>
-                </button>
-              </td>
-            </tr>
+            {%endfor%}
+
             <tr>
               <td></td>
               <td></td>
               <td></td>
               <td></td>
               <td>Sub-Total</td>
-              <td class="text-right">255,90 €</td>
+              <td class="text-right">€</td>
             </tr>
 
             <tr>
@@ -81,7 +66,9 @@
     <div class="col mb-2">
       <div class="row">
         <div class="col-sm-12 col-md-6">
-          <button class="btn btn-block btn-light">Continue Shopping</button>
+          <a href="{%url 'shop'%}" class="btn btn-block btn-light"
+            >Continue Shopping</a
+          >
         </div>
         <div class="col-sm-12 col-md-6 text-right">
           <a
