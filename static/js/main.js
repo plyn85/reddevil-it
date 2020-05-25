@@ -56,4 +56,8 @@ $(document).ready(function () {
       });
     }
   });
+  // overriding default carousel speed
+  $(".carousel").carousel({
+    interval: 2000,
+  });
 });
