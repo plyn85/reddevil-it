@@ -31,14 +31,33 @@ class Order(models.Model):
     def __str__(self):
         return str(self.id)
 
+    @property
+    def get_cart_total(self):
+        """Getting all the order items then looping trough them to get the total; values  """
+        # querying the child order items
+        orderitems = self.orderitem_set.all()
+        # looping trough orders and getting the totals
+        total = sum([item.get_total for item in orderitems])
+        return total
+
+    @property
+    def get_cart_items(self):
+        """Getting all the order items then looping trough them to get the total; values  """
+        # querying the child order items
+        orderitems = self.orderitem_set.all()
+        # looping trough orders and getting the totals
+        total = sum([item.quantity for item in orderitems])
+        return total
+
 
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
-#    getting the value of each item or items ordered
+
     @property
     def get_total(self):
+        """ gets the total for each item an multiplys by the the quatity """
         total = self.product.price * self.quantity
         return total

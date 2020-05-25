@@ -41,24 +41,16 @@
                 </button>
               </td>
             </tr>
-            {%endfor%}
-
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>Sub-Total</td>
-              <td class="text-right">€</td>
-            </tr>
-
+            €{{item.get_cart_total}} {%endfor%}
             <tr>
               <td></td>
               <td></td>
               <td></td>
               <td></td>
               <td><strong>Total</strong></td>
-              <td class="text-right"><strong> €</strong></td>
+              <td class="text-right">
+                <strong> </strong>
+              </td>
             </tr>
           </tbody>
         </table>
