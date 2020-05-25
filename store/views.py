@@ -3,7 +3,7 @@ from .models import Product
 
 
 def shop(request):
-    products.objects.all()
+    products = Product.objects.all()
     context = {'products': products}
     return render(request, 'store/shop.html', context)
 

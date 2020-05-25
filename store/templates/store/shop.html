@@ -8,6 +8,7 @@
 <!--taken altered from -- https://startbootstrap.com/templates/shop-homepage/ -->
 
 <!-- Page Content -->
+
 <div class="container mt-5 row justify-content-center">
   <div class="col-lg-10">
     <div
@@ -66,15 +67,17 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-
     <div class="row">
+      {%for product in products%}
       <div class="col-md-6 mb-4">
         <div class="card h-150">
           <a href="#"
             ><img class="card-img-top" src="http://placehold.it/700x400" alt=""
           /></a>
+          <div class="card-text text-center mb-2">{{product.name}}</div>
+          <div class="card-text text-center">{{product.description}}</div>
           <div class="card-body">
-            <h5 class="text-center">$24.99</h5>
+            <h5 class="text-center">${{product.price}}</h5>
           </div>
           <div class="card-footer text-center">
             <button class="btn btn-outline-secondary add-btn">
@@ -84,97 +87,11 @@
           </div>
         </div>
       </div>
-
-      <div class="col-md-6 mb-4">
-        <div class="card h-150">
-          <a href="#"
-            ><img class="card-img-top" src="http://placehold.it/700x400" alt=""
-          /></a>
-          <div class="card-body">
-            <h5 class="text-center">$24.99</h5>
-          </div>
-          <div class="card-footer text-center">
-            <button class="btn btn-outline-secondary add-btn">
-              Add to Cart
-            </button>
-            <a class="btn btn-outline-success" href="#">View</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 mb-4">
-        <div class="card h-150">
-          <a href="#"
-            ><img class="card-img-top" src="http://placehold.it/700x400" alt=""
-          /></a>
-          <div class="card-body">
-            <h5 class="text-center">$24.99</h5>
-          </div>
-          <div class="card-footer text-center">
-            <button class="btn btn-outline-secondary add-btn">
-              Add to Cart
-            </button>
-            <a class="btn btn-outline-success" href="#">View</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 mb-4">
-        <div class="card h-150">
-          <a href="#"
-            ><img class="card-img-top" src="http://placehold.it/700x400" alt=""
-          /></a>
-          <div class="card-body">
-            <h5 class="text-center">$24.99</h5>
-          </div>
-          <div class="card-footer text-center">
-            <button class="btn btn-outline-secondary add-btn">
-              Add to Cart
-            </button>
-            <a class="btn btn-outline-success" href="#">View</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 mb-4">
-        <div class="card h-150">
-          <a href="#"
-            ><img class="card-img-top" src="http://placehold.it/700x400" alt=""
-          /></a>
-          <div class="card-body">
-            <h5 class="text-center">$24.99</h5>
-          </div>
-          <div class="card-footer text-center">
-            <button class="btn btn-outline-secondary add-btn">
-              Add to Cart
-            </button>
-            <a class="btn btn-outline-success" href="#">View</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 mb-4">
-        <div class="card h-150">
-          <a href="#"
-            ><img class="card-img-top" src="http://placehold.it/700x400" alt=""
-          /></a>
-          <div class="card-body">
-            <h5 class="text-center">$24.99</h5>
-          </div>
-          <div class="card-footer text-center">
-            <button class="btn btn-outline-secondary add-btn">
-              Add to Cart
-            </button>
-            <a class="btn btn-outline-success" href="#">View</a>
-          </div>
-        </div>
-      </div>
-      <!-- /.row -->
+      {%endfor%}
     </div>
     <!-- /.col-lg-9 -->
   </div>
   <!-- /.row -->
 </div>
 <!-- /.container -->
-
 {%endblock%}
