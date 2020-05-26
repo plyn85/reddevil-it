@@ -50,4 +50,6 @@ def checkout(request):
 
 
 def updateItem(request):
+    products = Product.objects.all()
+
     return JsonResponse('item was added', safe=False)
