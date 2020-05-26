@@ -22,7 +22,10 @@
       type="text/css"
       href="{% static 'css/style.css' %}"
     />
-
+    <!-- making user available on every page -->
+    <script type="text/javascript">
+      let user = "{{request.user}}";
+    </script>
     {% if title %}
     <title>RedDevil-it - {{ title }}</title>
     {% else %}
