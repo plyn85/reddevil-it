@@ -19,10 +19,24 @@
         {%for item in items %}
         <li class="list-group-item d-flex justify-content-between lh-condensed">
           <div>
-            <h6 class="my-0">{{item.product.name}}</h6>
-            <small class="text-muted">Brief description</small>
+            <div class="my-0">
+              <img
+                class="img-fluid checkout-img"
+                src="{{item.product.image.url}}"
+              />
+              <h6 class="mt-4 ml-2">
+                {{item.product.name}}
+              </h6>
+
+              <span class="ml-2">Quantity</span>
+              <input
+                class="form-control"
+                type="text"
+                value="{{item.quantity}}"
+              />
+            </div>
           </div>
-          <span class="text-muted">€ {{item.product.price}}</span>
+          <span class="text-muted input-sm">€ {{item.product.price}}</span>
         </li>
         {%endfor%}
         <li class="list-group-item d-flex justify-content-between bg-light">
