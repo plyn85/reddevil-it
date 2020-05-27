@@ -25,6 +25,7 @@ $(document).ready(function () {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-CSRFToken": csrftoken,
         },
         // data we send to the backend as a string
         body: JSON.stringify({ productId: productId, action: action }),
@@ -39,6 +40,9 @@ $(document).ready(function () {
           console.log("error");
         });
     }
-    postUserOrder().then(console.log("succcess"));
+    // calling async await function and adding success message
+    postUserOrder().then((data) => {
+      console.log("data:", data, "Success");
+    });
   }
 });
