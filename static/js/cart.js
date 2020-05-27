@@ -35,8 +35,14 @@ $(document).ready(function () {
         return response.json();
       })
       // then logging the data
-      .then(function (data) {
-        console.log("data:", data);
+      .then(function (response) {
+        return response;
+      })
+      // adding catch statment for errors
+      .catch(function (error) {
+        console.log(error);
+        // adding my own error message
+        console.log("error");
       });
   }
 });
