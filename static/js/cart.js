@@ -19,30 +19,26 @@ $(document).ready(function () {
 
   function upDateUserOrder(productId, action) {
     console.log("user is logged In");
-    // where we want to send the data to
-    var url = "/update_item/";
-
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // data we send to the backend as a string
-      body: JSON.stringify({ productId: productId, action: action }),
-    })
-      // once the data is sent to the view return a promise
-      .then(function (response) {
-        return response.json();
-      })
-      // then logging the data
-      .then(function (response) {
-        return response;
-      })
-      // adding catch statment for errors
-      .catch(function (error) {
-        console.log(error);
-        // adding my own error message
-        console.log("error");
+    //  adding async function to make the fetch request
+    async function postUserOrder() {
+      const response = await fetch("/update_item/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // data we send to the backend as a string
+        body: JSON.stringify({ productId: productId, action: action }),
       });
+      // returning the response that comes back Into json
+      const json = await response
+        .json()
+        // adding catch statment for errors
+        .catch(function (error) {
+          console.log(error);
+          // adding my own error message
+          console.log("error");
+        });
+    }
+    postUserOrder().then(console.log("succcess"));
   }
 });
