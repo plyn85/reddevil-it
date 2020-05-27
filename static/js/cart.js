@@ -20,6 +20,7 @@ $(document).ready(function () {
   function upDateUserOrder(productId, action) {
     console.log("user is logged In");
     //  adding async function to make the fetch request
+
     async function postUserOrder() {
       const response = await fetch("/update_item/", {
         method: "POST",
@@ -31,18 +32,14 @@ $(document).ready(function () {
         body: JSON.stringify({ productId: productId, action: action }),
       });
       // returning the response that comes back Into json
-      const json = await response
-        .json()
-        // adding catch statment for errors
-        .catch(function (error) {
-          console.log(error);
-          // adding my own error message
-          console.log("error");
-        });
+      const data = await response.json();
+
+      console.log("data:", data, "succcess");
     }
-    // calling async await function and adding success message
-    postUserOrder().then((data) => {
-      console.log("data:", data, "Success");
+    // calling async await function and adding catch error function
+    postUserOrder().catch((error) => {
+      console.log("error");
+      console.error(error);
     });
   }
 });
