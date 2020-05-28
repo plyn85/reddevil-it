@@ -33,6 +33,18 @@
                   value="{{item.quantity}}"
                 />
               </td>
+              <td>
+                <i
+                  data-product="{{item.product.id}}"
+                  data-action="add"
+                  class="fas fa-sort-up fa-2x update-cart"
+                ></i>
+                <i
+                  data-product="{{item.product.id}}"
+                  data-action="remove"
+                  class="fas fa-sort-down fa-2x mr-3 update-cart"
+                ></i>
+              </td>
               <td class="text-right">€{{item.product.price}}</td>
               <td class="text-right">
                 Total: €{{item.get_total}}
