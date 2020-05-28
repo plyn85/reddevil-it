@@ -18,10 +18,12 @@ def shop(request):
         cartItems = order.get_cart_items
     # if user is not logged in return an empty list
     else:
+
         items = []
         # setting empty cart for users who are not logged In
         order = {'get_cart_total': 0, 'get_cart_items': 0}
-
+        # setting empty Items for users who are not logged In
+        cartItems = order['get_cart_items']
     products = Product.objects.all()
     context = {'products': products, 'cartItems': cartItems}
     return render(request, 'store/shop.html', context)
