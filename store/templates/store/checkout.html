@@ -33,7 +33,16 @@
                 class="form-control"
                 type="text"
                 value="{{item.quantity}}"
-              />
+              /><i
+                data-product="{{item.product.id}}"
+                data-action="add"
+                class="fas fa-sort-up fa-2x update-cart"
+              ></i>
+              <i
+                data-product="{{item.product.id}}"
+                data-action="remove"
+                class="fas fa-sort-down fa-2x mr-3 update-cart mr-5"
+              ></i>
             </div>
           </div>
           <span class="text-muted input-sm">€ {{item.product.price}}</span>

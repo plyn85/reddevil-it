@@ -93,7 +93,7 @@ def updateItem(request):
         orderItem.quantity = (orderItem.quantity - 1)
     # saving orderitem to cart
     orderItem.save()
-    # delete order item if its less than or equal to 0
+    # delete order item if none remain
     if orderItem.quantity <= 0:
         orderItem.delete()
 
