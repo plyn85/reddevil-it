@@ -2,10 +2,9 @@
 {%extends 'base.html'%}
 <!-- loading crispy forms -->
 {% load crispy_forms_tags %}
+
 <!-- start block content -->
 {%block content%}
-<!-- adding navbar partial -->
-{%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
 <!-- if user -->
 {% if user.is_authenticated %}
 <!-- ending navbar partial -->

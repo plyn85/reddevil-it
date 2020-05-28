@@ -29,8 +29,9 @@
         {% endif %}
         <a class="nav-item nav-link" href="{%url 'shop'%}">Shop</a>
         <a class="nav-item nav-link" href="{%url 'cart'%}"
-          ><i class="fas fa-shopping-cart"></i
-        ></a>
+          ><i class="fas fa-shopping-cart"></i>
+          <p id="cart-total">{{cartItems}}</p></a
+        >
       </div>
     </div>
   </div>
