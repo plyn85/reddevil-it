@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product, Order
+from .models import Product, Order, OrderItem
 from django.http import JsonResponse
 import json
 
@@ -58,4 +58,21 @@ def updateItem(request):
     action = data['action']
     print('action:', action)
     print('productId:', productId)
+
+# getting customer and productId
+    customer = request.user.customer
+    product = Product.objects.get(id=productId)
+
+    order, created = Order.objects.get_or_create(
+        customer=customer, complete=False)
+
+    orderItem, created = OrderItem.objects.get_or_create(
+        order=order, product=product)
+    if action == 'add':
+        orderItem.quantity = (orderItem.quantity + 1)
+    elif action == 'remove':
+        orderItem.quantity = (orderItem.quantity - 1)
+    # saving orderitem to cart
+    orderItem.save()
+
     return JsonResponse('item was added', safe=False)

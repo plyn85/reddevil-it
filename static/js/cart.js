@@ -34,7 +34,7 @@ $(document).ready(function () {
       // returning the response that comes back Into json
       const data = await response.json();
 
-      console.log("data:", data, "succcess");
+      console.log(data, "succcess");
     }
     // calling async await function and adding catch error function
     postUserOrder().catch((error) => {
