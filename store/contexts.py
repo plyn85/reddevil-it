@@ -1,12 +1,11 @@
 from .models import Product, Order, OrderItem
-from django.conf import settings
 
 
 def cart_contents(request):
     if request.user.is_authenticated:
         customer = request.user.customer
     # creating or getting the order item
-        order, created = Order.  objects.get_or_create(
+        order, created = Order.objects.get_or_create(
             customer=customer, complete=False)
     # getting the items attached to the order
     # getting all order items that have the order as the parent
@@ -22,6 +21,7 @@ def cart_contents(request):
         # setting empty Items for users who are not logged In
         cartItems = order['get_cart_items']
     products = Product.objects.all()
-    context = {'products': products, 'cartItems': cartItems}
+    context = {'items': items, 'products': products,
+               'cartItems': cartItems, 'order': order}
 
     return context
