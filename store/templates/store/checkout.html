@@ -247,6 +247,16 @@
       </form>
     </div>
   </div>
-
-  {%endblock%}
 </div>
+
+{%endblock%}
+<!-- potsload js block -->
+{% block postloadjs%}
+<!-- super block -->
+{{block.super}}
+<!-- stripe public key -->
+{{ stripe_public_key|json_script:"id_stripe_public_key"}}
+<!-- stripe secret key -->
+{{ client_secret|json_script:"id_client_secret"}}
+<!-- endblock -->
+{%endblock%}

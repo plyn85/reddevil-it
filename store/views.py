@@ -15,8 +15,11 @@ def cart(request):
 
 
 def checkout(request):
-
-    return render(request, 'store/checkout.html')
+    context = {
+        'stripe_public_key': 'pk_test_OtuMpmziQFrVOnItNeA1NK8n00Pdyae7Qg',
+        'client_secret': 'test client secret'
+    }
+    return render(request, 'store/checkout.html', context)
 
 
 def updateItem(request):
