@@ -47,7 +47,16 @@
       </div>
       {% block content %}{% endblock %}
     </main>
-
+    <!-- potsload js block -->
+    {% block postloadjs%}
+    <!-- super block -->
+    {{block.super}}
+    <!-- stripe public key -->
+    {{ stripe_public_key|json_script:"id_stripe_public_key"}}
+    <!-- stripe secret key -->
+    {{ client_secret|json_script:"id_client_secret"}}
+    <!-- endblock -->
+    {%endblock%}
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
