@@ -18,15 +18,23 @@ def cart(request):
 
 
 def checkout(request):
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
     # setting cuttent cart to imported cart_contents method
     current_cart = cart_contents(request)
     total = current_cart['cart_total']
     stripe_total = round(total * 100)
+    stripe.api_key = stripe_secret_key
+    intent = stripe.PaymentIntent.create(
+        amount=stripe_total,
+        currency=settings.STRIPE_CURRENCY
+    )
+    if not stripe_public_key:
+        messages.warning(request, 'Stripe Public key Is Missing!')
 
     context = {
-        'stripe_public_key': 'pk_test_OtuMpmziQFrVOnItNeA1NK8n00Pdyae7Qg',
-        'client_secret': 'test client secret',
-        'stripe_total': stripe_total
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
     }
     return render(request, 'store/checkout.html', context)
 
