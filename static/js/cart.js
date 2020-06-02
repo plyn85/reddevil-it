@@ -1,7 +1,6 @@
 $(document).ready(function () {
   // click function for add to cart button
   $(".update-cart").click(function () {
-    let user = "{{request.user}}";
     //  setting data-product and data action buttons to variables
     let productId = this.dataset.product;
     let action = this.dataset.action;
