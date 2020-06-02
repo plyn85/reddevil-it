@@ -2,6 +2,9 @@ from django.shortcuts import render
 from .models import Product, Order, OrderItem
 from django.http import JsonResponse
 import json
+from django.conf import settings
+import stripe
+from . contexts import cart_contents
 
 
 def shop(request):
@@ -15,9 +18,15 @@ def cart(request):
 
 
 def checkout(request):
+    # setting cuttent cart to imported cart_contents method
+    current_cart = cart_contents(request)
+    total = current_cart['cart_total']
+    stripe_total = round(total * 100)
+
     context = {
         'stripe_public_key': 'pk_test_OtuMpmziQFrVOnItNeA1NK8n00Pdyae7Qg',
-        'client_secret': 'test client secret'
+        'client_secret': 'test client secret',
+        'stripe_total': stripe_total
     }
     return render(request, 'store/checkout.html', context)
 

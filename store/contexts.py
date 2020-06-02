@@ -10,7 +10,9 @@ def cart_contents(request):
     # getting the items attached to the order
     # getting all order items that have the order as the parent
         items = order.orderitem_set.all()
-    # getting all cart Items passing it into context
+    #  getting cart tottal amount
+        cart_total = order.get_cart_total
+    #  getting cart total items
         cartItems = order.get_cart_items
     # if user is not logged in return an empty list
     else:
@@ -22,6 +24,6 @@ def cart_contents(request):
         cartItems = order['get_cart_items']
     products = Product.objects.all()
     context = {'items': items, 'products': products,
-               'cartItems': cartItems, 'order': order}
+               'cartItems': cartItems, 'order': order, 'cart_total': cart_total}
 
     return context
