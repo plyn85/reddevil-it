@@ -47,30 +47,16 @@
           <span class="text-muted input-sm">€ {{item.product.price}}</span>
         </li>
         {%endfor%}
-        <li class="list-group-item d-flex justify-content-between bg-light">
-          <div class="text-success">
-            <h6 class="my-0">Promo code</h6>
-            <small>EXAMPLECODE</small>
-          </div>
-          <span class="text-success">-$5</span>
-        </li>
+
         <li class="list-group-item d-flex justify-content-between">
           <span>Total (EUR)</span>
           <strong>€ {{cart_total}}</strong>
         </li>
       </ul>
-
-      <form class="card p-2">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Promo code" />
-          <div class="input-group-append">
-            <button type="submit" class="btn btn-secondary">Redeem</button>
-          </div>
-        </div>
-      </form>
     </div>
     <div class="col-md-6 order-md-1">
-      <form id="payment-form">
+      <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+        {% csrf_token %}
         <div id="card-element">
           <!-- Elements will create input elements here -->
         </div>
@@ -78,14 +64,19 @@
         <!-- We'll put the error messages in this element -->
         <div id="card-errors" role="alert"></div>
 
-        <button
-          class="btn btn-primary btn-lg btn-block"
-          type="submit"
-          id="submit"
-        >
-          Pay
+        <button id="submit-button" class="btn btn-black rounded-0">
+          <span class="font-weight-bold">Complete Order</span>
+          <span class="icon">
+            <i class="fas fa-lock"></i>
+          </span>
         </button>
       </form>
+      <p class="small text-danger my-0">
+        <span class="icon">
+          <i class="fas fa-exclamation-circle"></i>
+        </span>
+        <span>Your card will be charged <strong>${{cart_total }}</strong></span>
+      </p>
     </div>
   </div>
 </div>
