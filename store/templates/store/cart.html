@@ -1,5 +1,5 @@
 <!-- extends base html -->
-{%extends 'base.html'%}
+{%extends 'base.html'%}{% load static %}
 <!-- start block content -->
 {%block content%}
 <!-- adding navbar partial -->
@@ -89,4 +89,6 @@
     </div>
   </div>
 </div>
+{%endblock%} {% block postloadjs%}
+<script src="{% static 'store/js/cart.js' %}"></script>
 {%endblock%}

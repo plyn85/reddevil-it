@@ -18,8 +18,8 @@ def cart(request):
 
 
 def checkout(request):
-    stripe_secret_key = settings.STRIPE_SECRET_KEY
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
     # setting cuttent cart to imported cart_contents method
     current_cart = cart_contents(request)
     total = current_cart['cart_total']
@@ -29,6 +29,7 @@ def checkout(request):
         amount=stripe_total,
         currency=settings.STRIPE_CURRENCY
     )
+
     if not stripe_public_key:
         messages.warning(request, 'Stripe Public key Is Missing!')
 

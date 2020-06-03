@@ -50,17 +50,10 @@
       </div>
       {% block content %}{% endblock %}
     </main>
-    {% block postloadjs%}
-    <!-- super block -->
-    {{block.super}}
-    <!-- stripe public key -->
-    {{ stripe_public_key|json_script:"id_stripe_public_key"}}
-    <!-- stripe secret key -->
-    {{ client_secret|json_script:"id_client_secret"}}
-    <!-- endblock -->
-    {%endblock%}
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {% block corejs %}
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
       integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
@@ -82,10 +75,10 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="{% static 'js/stripe.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+
     <!-- stripe -->
-    <script src="{% static 'js/cart.js' %}"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    {% endblock %} {% block postloadjs%} {%endblock%}
   </body>
 </html>
