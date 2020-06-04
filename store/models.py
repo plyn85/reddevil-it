@@ -15,11 +15,11 @@ class Product(models.Model):
 
 class Customer(models.Model):
     user = models.OneToOneField(User, models.CASCADE, null=True, blank=True)
-    name = models.CharField(max_length=254, null="True")
+    full_name = models.CharField(max_length=254, null="True")
     email = models.EmailField(max_length=254, null="True")
 
     def __str__(self):
-        return self.name
+        return self.full_name
 
 
 class Order(models.Model):
@@ -79,3 +79,21 @@ class OrderItem(models.Model):
         """ gets the total for each item an multiplys by the the quatity """
         total = self.product.price * self.quantity
         return total
+
+    def __str__(self):
+        return f'SKU {self.product.name} on order {self.order.transaction_id}'
+
+
+class Shipping(models.Model):
+    customer = models.ForeignKey(
+        Customer,  models.CASCADE, null=True, blank=True)
+    order = models.ForeignKey(Order,  models.CASCADE, null=True, blank=True)
+    email = models.EmailField(max_length=254, null=False, blank=False)
+    phone_number = models.CharField(max_length=20, null=False, blank=False)
+    country = models.CharField(max_length=40, null=False, blank=False)
+    postcode = models.CharField(max_length=20, null=True, blank=True)
+    town_or_city = models.CharField(max_length=40, null=False, blank=False)
+    street_address1 = models.CharField(max_length=80, null=False, blank=False)
+    street_address2 = models.CharField(max_length=80, null=True, blank=True)
+    county = models.CharField(max_length=80, null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
