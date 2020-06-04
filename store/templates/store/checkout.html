@@ -61,13 +61,27 @@
       <!-- payment form -->
       <form action="{% url 'checkout' %}" method="POST" id="payment-form">
         {% csrf_token %}
+        <!-- starat detials fieldset -->
         <fieldset class="rounded px-3 mb-5">
           <legend class="fieldset-label small text-black px-2 w-auto">
-            Delivery
+            Details
           </legend>
           {{customer_form.full_name|as_crispy_field}}
           {{customer_form.email|as_crispy_field}}
           {{customer_form.phone_number|as_crispy_field}}
+        </fieldset>
+        <!-- end fieldset -->
+        <!-- start shipping fieldset -->
+        <fieldset class="rounded px-3 mb-5">
+          <legend class="fieldset-label small text-black px-2 w-auto">
+            Delivery
+          </legend>
+          {{shipping_form.country|as_crispy_field}}
+          {{shipping_form.postcode|as_crispy_field}}
+          {{shipping_form.town_or_city|as_crispy_field}}
+          {{shipping_form.street_address1|as_crispy_field}}
+          {{shipping_form.street_address2|as_crispy_field}}
+          {{shipping_form.county|as_crispy_field}}
           <div class="form-check form-check-inline float-right mr-0">
             {% if user.is_authenticated %}
             <label class="form-check-label" for="id-save-info"
@@ -92,6 +106,8 @@
             {% endif %}
           </div>
         </fieldset>
+        <!-- end fieldset -->
+        <!-- start stripe field set -->
         <fieldset class="rounded px-3 mb-2">
           <div id="card-element">
             <!-- Elements will create input elements here -->

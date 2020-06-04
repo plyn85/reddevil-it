@@ -32,12 +32,12 @@ def checkout(request):
     )
     customer_form = CustomerForm()
     shipping_form = ShippingForm()
-    print(shipping_form)
     if not stripe_public_key:
         messages.warning(request, 'Stripe Public key Is Missing!')
 
     context = {
         'customer_form': customer_form,
+        'shipping_form': shipping_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
     }
