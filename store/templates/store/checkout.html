@@ -56,7 +56,9 @@
         </li>
       </ul>
     </div>
+    <!-- div wrapping payment form -->
     <div class="col-md-6 order-md-1">
+      <!-- payment form -->
       <form action="{% url 'checkout' %}" method="POST" id="payment-form">
         {% csrf_token %}
         <fieldset class="rounded px-3 mb-5">

@@ -31,7 +31,6 @@ def checkout(request):
         currency=settings.STRIPE_CURRENCY
     )
     customer_form = CustomerForm()
-    print(customer_form)
     if not stripe_public_key:
         messages.warning(request, 'Stripe Public key Is Missing!')
 
