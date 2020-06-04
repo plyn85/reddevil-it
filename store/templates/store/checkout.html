@@ -2,6 +2,8 @@
 {%extends 'base.html'%} {% load static %}
 <!-- start block content -->
 {%block content%}
+<!-- loading crispy forms -->
+{% load crispy_forms_tags %}
 <!-- adding navbar partial -->
 {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
 <!-- taken from https://glitch.com/edit/#!/bootstrap-4-example-checkout?path=index.html%3A223%3A0 -->
@@ -57,26 +59,69 @@
     <div class="col-md-6 order-md-1">
       <form action="{% url 'checkout' %}" method="POST" id="payment-form">
         {% csrf_token %}
-        <div id="card-element">
-          <!-- Elements will create input elements here -->
+        <fieldset class="rounded px-3 mb-5">
+          <legend class="fieldset-label small text-black px-2 w-auto">
+            Delivery
+          </legend>
+          {{customer_form.full_name|as_crispy_field}}
+          {{customer_form.email|as_crispy_field}}
+          {{customer_form.phone_number|as_crispy_field}}
+          <div class="form-check form-check-inline float-right mr-0">
+            {% if user.is_authenticated %}
+            <label class="form-check-label" for="id-save-info"
+              >Save this delivery information to my profile</label
+            >
+            <input
+              class="form-check-input ml-2 mr-0"
+              type="checkbox"
+              id="id-save-info"
+              name="save-info"
+              checked
+            />
+            {% else %}
+            <label class="form-check-label" for="id-save-info">
+              <a class="text-info" href="{% url 'account_signup' %}"
+                >Create an account</a
+              >
+              or
+              <a class="text-info" href="{% url 'account_login' %}">login</a> to
+              save this information
+            </label>
+            {% endif %}
+          </div>
+        </fieldset>
+        <fieldset class="rounded px-3 mb-2">
+          <div id="card-element">
+            <!-- Elements will create input elements here -->
+          </div>
+
+          <!-- We'll put the error messages in this element -->
+          <div id="card-errors" role="alert"></div>
+        </fieldset>
+        <div class="text-right mt-2 mb-2">
+          <a href="{% url 'cart' %}" class="btn btn-outline-black rounded-0">
+            <span class="icon">
+              <i class="fas fa-chevron-left"></i>
+            </span>
+            <span class="font-weight-bold">Adjust Cart</span>
+          </a>
+          <button id="submit-button" class="btn btn-black rounded-0">
+            <span class="font-weight-bold">Complete Order</span>
+            <span class="icon">
+              <i class="fas fa-lock"></i>
+            </span>
+          </button>
+          <p class="small text-danger my-0">
+            <span class="icon">
+              <i class="fas fa-exclamation-circle"></i>
+            </span>
+            <span
+              >Your card will be charged
+              <strong>${{ cart_total|floatformat:2 }}</strong></span
+            >
+          </p>
         </div>
-
-        <!-- We'll put the error messages in this element -->
-        <div id="card-errors" role="alert"></div>
-
-        <button id="submit-button" class="btn btn-black rounded-0">
-          <span class="font-weight-bold">Complete Order</span>
-          <span class="icon">
-            <i class="fas fa-lock"></i>
-          </span>
-        </button>
       </form>
-      <p class="small text-danger my-0">
-        <span class="icon">
-          <i class="fas fa-exclamation-circle"></i>
-        </span>
-        <span>Your card will be charged <strong>${{cart_total }}</strong></span>
-      </p>
     </div>
   </div>
 </div>

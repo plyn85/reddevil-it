@@ -36,6 +36,7 @@ def checkout(request):
         messages.warning(request, 'Stripe Public key Is Missing!')
 
     context = {
+        'customer_form': customer_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
     }
