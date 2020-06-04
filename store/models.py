@@ -17,6 +17,7 @@ class Customer(models.Model):
     user = models.OneToOneField(User, models.CASCADE, null=True, blank=True)
     full_name = models.CharField(max_length=254, null="True")
     email = models.EmailField(max_length=254, null="True")
+    phone_number = models.CharField(max_length=20, null=True, blank=False)
 
     def __str__(self):
         return self.full_name
@@ -88,8 +89,6 @@ class Shipping(models.Model):
     customer = models.ForeignKey(
         Customer,  models.CASCADE, null=True, blank=True)
     order = models.ForeignKey(Order,  models.CASCADE, null=True, blank=True)
-    email = models.EmailField(max_length=254, null=False, blank=False)
-    phone_number = models.CharField(max_length=20, null=False, blank=False)
     country = models.CharField(max_length=40, null=False, blank=False)
     postcode = models.CharField(max_length=20, null=True, blank=True)
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
