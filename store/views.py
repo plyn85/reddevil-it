@@ -5,7 +5,7 @@ import json
 from django.conf import settings
 import stripe
 from . contexts import cart_contents
-from . forms import CustomerForm
+from . forms import CustomerForm, ShippingForm
 
 
 def shop(request):
@@ -31,6 +31,8 @@ def checkout(request):
         currency=settings.STRIPE_CURRENCY
     )
     customer_form = CustomerForm()
+    shipping_form = ShippingForm()
+    print(shipping_form)
     if not stripe_public_key:
         messages.warning(request, 'Stripe Public key Is Missing!')
 
