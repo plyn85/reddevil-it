@@ -8,7 +8,7 @@ $(document).ready(function () {
     if (user === "AnonymousUser") {
       addCookieItem(productId, action);
     } else {
-    /* if logged In user call function from below */
+      /* if logged In user call function from below */
       upDateUserOrder(productId, action);
     }
   });
@@ -31,6 +31,9 @@ $(document).ready(function () {
         delete cart[productId];
       }
     }
+
+    document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+    location.reload();
   }
 
   // function will update the user order
