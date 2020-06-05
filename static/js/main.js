@@ -61,9 +61,10 @@ $(document).ready(function () {
     interval: 2500,
   });
 
-  // The following function are copying from
-  // https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
-  function getCookie(name) {
+  /* The following function are copying from
+   https://docs.djangoproject.com/en/dev/ref/csrf/#ajax 
+   Its being used to set make csrf token across all pages*/
+  function getToken(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== "") {
       var cookies = document.cookie.split(";");
@@ -78,7 +79,9 @@ $(document).ready(function () {
     }
     return cookieValue;
   }
-  var csrftoken = getCookie("csrftoken");
+  var csrftoken = getToken("csrftoken");
+
+  /* the following was taken from https://tutorialebooks.com/code-snippets/js-cookie-example-2/* Its being used to search for and parse a cookie stored in the browser*/
 
   function getCookie(name) {
     // Split cookie string and get all individual name=value pairs in an array
@@ -99,4 +102,13 @@ $(document).ready(function () {
     // Return null if not found
     return null;
   }
+  // converting cart into JSON object
+  let cart = JSON.parse(getCookie("cart"));
+  // If the browser doesnt contain a cart cookie create one
+  if (cart == undefined) {
+    cart = {};
+    console.log("Cart created", cart);
+    document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+  }
+  console.log("Cart:", cart);
 });
