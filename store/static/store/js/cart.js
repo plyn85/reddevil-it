@@ -4,18 +4,16 @@ $(document).ready(function () {
     //  setting data-product and data action buttons from ckeckout.html to variables
     let productId = this.dataset.product;
     let action = this.dataset.action;
-    // console.log("productId:", productId, "action:", action, user);
-    // conditional for non logged In user
+    /* if non logged In user call function from below */
     if (user === "AnonymousUser") {
       addCookieItem(productId, action);
-    }
-    // if logged In user
-    else {
+    } else {
+    /* if logged In user call function from below */
       upDateUserOrder(productId, action);
     }
   });
-  /* function will update non logged In users order 
-  checking If item is in cart If its not create It if so add one to quantity*/
+  /*add an item if it those not exist if the item already 
+  exists increase quantity by one */
   function addCookieItem(productId, action) {
     console.log("not logged In");
     if (action == "add") {
@@ -23,6 +21,14 @@ $(document).ready(function () {
         cart[productId] = { quantity: 1 };
       } else {
         cart[productId]["quantity"] += 1;
+      }
+    }
+    /* decrease item by one or if its equal or less then zero remove */
+    if (action == "remove") {
+      cart[productId]["quantity"] -= 1;
+      if (cart[productId] <= 0) {
+        console.log("item deleted");
+        delete cart[productId];
       }
     }
   }
