@@ -1,4 +1,5 @@
 from .models import Product, Order, OrderItem
+import json
 
 
 def cart_contents(request):
@@ -17,6 +18,10 @@ def cart_contents(request):
         cartItems = order.get_cart_items
     # if user is not logged in return an empty list
     else:
+
+        cart = json.loads(request.COOKIES['cart'])
+
+        print('CART:', cart)
 
         items = []
         # setting empty cart for users who are not logged In
