@@ -20,7 +20,7 @@ def cart_contents(request):
     else:
         try:
             cart = json.loads(request.COOKIES['cart'])
-        # if theres no cookie return an empty cart object
+    # if theres no cookie return an empty cart object
         except:
             cart = {}
         print('CART:', cart)
@@ -31,8 +31,24 @@ def cart_contents(request):
         # setting empty Items for users who are not logged In
         cartItems = order['get_cart_items']
     # looping trough cart object and returning items plus the quantity of the entire cart
-    for i in cart:
-        cartItems += cart[i]['quantity']
+        for i in cart:
+            cartItems += cart[i]['quantity']
+    # getting product Id
+            product = Product.objects.get(id=i)
+    # getting cart total
+            total = (product.price * cart[i]['quantity'])
+    # adding cart total an quantity to order dict from above
+            order['get_cart_total'] += total
+            order['get_cart_items'] += cart[i]['quantity']
+    #  creating repersentation of cart Items
+            item = {
+                'id': product.id,
+                'product': {'id': product.id, 'name': product.name, 'price': product.price,
+                            'image': product.image}, 'quantity': cart[i]['quantity'],
+
+            }
+    #  adding item to items list
+            items.append(item)
 
     products = Product.objects.all()
 
