@@ -26,7 +26,7 @@ $(document).ready(function () {
     /* decrease item by one or if its equal or less then zero remove */
     if (action == "remove") {
       cart[productId]["quantity"] -= 1;
-      if (cart[productId] <= 0) {
+      if (cart[productId]["quantity"] <= 0) {
         console.log("item deleted");
         delete cart[productId];
       }
