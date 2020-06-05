@@ -9,6 +9,10 @@ $(document).ready(function () {
   $(".comments-btn").click(function () {
     $(".comments").toggle();
   });
+  // overriding default carousel speed
+  $(".carousel").carousel({
+    interval: 2500,
+  });
 
   /* adding ajax for like button 
    taken from a tutorial at https://www.youtube.com/watch?v=pkPRtQf6oQ8&t=678s */
@@ -55,10 +59,6 @@ $(document).ready(function () {
         },
       });
     }
-  });
-  // overriding default carousel speed
-  $(".carousel").carousel({
-    interval: 2500,
   });
 
   /* The following function are copying from
