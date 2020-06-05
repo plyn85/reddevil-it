@@ -46,9 +46,6 @@ class Order(models.Model):
             self.transaction_id = self._generate_transaction_id()
         super().save(*args, **kwargs)
 
-    def __str__(self):
-        return self.transaction_id
-
     @property
     def get_cart_total(self):
         """Getting all the order items then looping trough them to get the total value  """
@@ -66,6 +63,9 @@ class Order(models.Model):
         # looping trough items and getting the total num
         total = sum([item.quantity for item in orderitems])
         return total
+
+    def __str__(self):
+        return self.transaction_id
 
 
 class OrderItem(models.Model):
@@ -96,3 +96,6 @@ class Shipping(models.Model):
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.product

@@ -19,8 +19,10 @@ def cart(request):
 
 
 def checkout(request):
+
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
+
     if request.method == 'POST':
         shipping_form_data = {
             'country': request.POST['country'],
@@ -42,18 +44,19 @@ def checkout(request):
         if shipping_form.is_valid() and customer_form.is_valid():
             shipping_order = shipping_form.save()
             customer_order = customer_form.save()
+    else:
 
         # setting cuttent cart to imported cart_contents method
-    current_cart = cart_contents(request)
-    total = current_cart['cart_total']
-    stripe_total = round(total * 100)
-    stripe.api_key = stripe_secret_key
-    intent = stripe.PaymentIntent.create(
-        amount=stripe_total,
-        currency=settings.STRIPE_CURRENCY)
+        current_cart = cart_contents(request)
+        total = current_cart['cart_total']
+        stripe_total = round(total * 100)
+        stripe.api_key = stripe_secret_key
+        intent = stripe.PaymentIntent.create(
+            amount=stripe_total,
+            currency=settings.STRIPE_CURRENCY)
 
-    if not stripe_public_key:
-        messages.warning(request, 'Stripe Public key Is Missing!')
+        if not stripe_public_key:
+            messages.warning(request, 'Stripe Public key Is Missing!')
     customer_form = CustomerForm()
     shipping_form = ShippingForm()
     context = {

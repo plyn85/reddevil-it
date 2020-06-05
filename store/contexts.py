@@ -2,6 +2,7 @@ from .models import Product, Order, OrderItem
 
 
 def cart_contents(request):
+
     if request.user.is_authenticated:
         customer = request.user.customer
     # creating or getting the order item
@@ -22,8 +23,10 @@ def cart_contents(request):
         order = {'get_cart_total': 0, 'get_cart_items': 0}
         # setting empty Items for users who are not logged In
         cartItems = order['get_cart_items']
+
     products = Product.objects.all()
+
     context = {'items': items, 'products': products,
-               'cartItems': cartItems, 'order': order, 'cart_total': cart_total}
+               'cartItems': cartItems, 'order': order, }
 
     return context
