@@ -5,7 +5,7 @@ import json
 from django.conf import settings
 import stripe
 from . contexts import cart_contents
-from . forms import CustomerForm, ShippingForm
+from . forms import OrderForm
 
 
 def shop(request):
@@ -24,7 +24,7 @@ def checkout(request):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
     if request.method == 'POST':
-        shipping_form_data = {
+        form_data = {
             'country': request.POST['country'],
             'postcode': request.POST['postcode'],
             'town_or_city': request.POST['town_or_city'],
@@ -78,11 +78,11 @@ def updateItem(request):
     print('productId:', productId)
 
 # getting customer and productId
-    customer = request.user.customer
+    customer = request.user.profile
     product = Product.objects.get(id=productId)
 
     order, created = Order.objects.get_or_create(
-        customer=customer, complete=False)
+        profile=customer, complete=False)
 
     orderItem, created = OrderItem.objects.get_or_create(
         order=order, product=product)

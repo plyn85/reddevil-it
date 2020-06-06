@@ -1,4 +1,4 @@
-from .models import Product, Order, OrderItem, Customer
+from .models import Product, Order, OrderItem
 from users.models import Profile
 import json
 from django.shortcuts import get_object_or_404
@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 def cart_contents(request):
 
     if request.user.is_authenticated:
-        #    getting users profile an setting it customer variable
+        # getting users profile an setting it customer variable
         customer = request.user.profile
 
     # creating or getting the order item
@@ -15,7 +15,8 @@ def cart_contents(request):
             profile=customer, complete=False)
     # getting the items attached to the order
         items = order.orderitem_set.all()
-
+    # getting cart total
+        cart_total = order.get_cart_total
     #  getting cart total items
         cartItems = order.get_cart_items
     # if user is not logged in return cart cookie
@@ -60,6 +61,6 @@ def cart_contents(request):
     # obj = OrderItem.objects.get_cart_total()
     # cart_total = obj
     context = {'items': items, 'products': products,
-               'cartItems': cartItems, 'order': order, }
+               'cartItems': cartItems, 'order': order}
 
     return context

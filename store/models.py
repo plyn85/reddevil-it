@@ -14,25 +14,26 @@ class Product(models.Model):
         return self.name
 
 
-class Customer(models.Model):
-    user = models.OneToOneField(User, models.CASCADE, null=True, blank=True)
-    full_name = models.CharField(max_length=254, null="True")
-    email = models.EmailField(max_length=254, null="True")
-    phone_number = models.CharField(max_length=20, null=True, blank=False)
-
-    def __str__(self):
-        return self.full_name
-
-
 class Order(models.Model):
     profile = models.OneToOneField(Profile, on_delete=models.SET_NULL,
                                    null=True, blank=True, related_name='customer_profile')
-    customer = models.ForeignKey(
-        Customer, on_delete=models.SET_NULL, null=True, blank=True)
+    full_name = models.CharField(max_length=254, null=False, default="")
+    email = models.EmailField(max_length=254, null=False, default="")
+    phone_number = models.CharField(
+        max_length=20, null=False, blank=False, default="")
+    country = models.CharField(
+        max_length=40, null=False, blank=False, default="")
+    postcode = models.CharField(max_length=20, null=True, blank=True)
+    town_or_city = models.CharField(
+        max_length=40, null=False, blank=False, default="")
+    street_address1 = models.CharField(
+        max_length=80, null=False, blank=False, default="")
+    street_address2 = models.CharField(max_length=80, null=True, blank=True)
+    county = models.CharField(max_length=80, null=True, blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False)
     transaction_id = models.CharField(
-        max_length=32, null=True, editable=False)
+        max_length=32, null=False, editable=False, default="")
 
     def _generate_transaction_id(self):
         """
@@ -57,9 +58,8 @@ class Order(models.Model):
         # querying the child order items
         orderitems = self.orderitem_set.all()
         # looping trough orders and getting the totals
-        for item in orderitems:
-            total = sum([item.get_total])
-            return total
+
+        total = sum([item.get_total for item in orderitems])
 
     @property
     def get_cart_items(self):
@@ -67,9 +67,8 @@ class Order(models.Model):
         # querying the child order items
         orderitems = self.orderitem_set.all()
         # looping trough items and getting the total num
-        for item in orderitems:
-            total = sum([item.quantity])
-            return total
+
+        total = sum([item.quantity for item in orderitems])
 
     def __str__(self):
         return self.transaction_id
@@ -90,19 +89,3 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f'SKU {self.product.name} on order {self.order.transaction_id}'
-
-
-class Shipping(models.Model):
-    customer = models.ForeignKey(
-        Customer,  models.CASCADE, null=True, blank=True)
-    order = models.ForeignKey(Order,  models.CASCADE, null=True, blank=True)
-    country = models.CharField(max_length=40, null=False, blank=False)
-    postcode = models.CharField(max_length=20, null=True, blank=True)
-    town_or_city = models.CharField(max_length=40, null=False, blank=False)
-    street_address1 = models.CharField(max_length=80, null=False, blank=False)
-    street_address2 = models.CharField(max_length=80, null=True, blank=True)
-    county = models.CharField(max_length=80, null=True, blank=True)
-    date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.product
