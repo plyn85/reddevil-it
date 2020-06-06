@@ -25,6 +25,9 @@ def checkout(request):
 
     if request.method == 'POST':
         form_data = {
+            'full_name': request.POST['full_name'],
+            'email': request.POST['email'],
+            'phone_number': request.POST['phone_number'],
             'country': request.POST['country'],
             'postcode': request.POST['postcode'],
             'town_or_city': request.POST['town_or_city'],
@@ -33,17 +36,12 @@ def checkout(request):
             'county': request.POST['county'],
 
         }
-        customer_form_data = {
-            'full_name': request.POST['full_name'],
-            'email': request.POST['email'],
-            'phone_number': request.POST['phone_number'],
 
-        }
-        shipping_form = ShippingForm(shipping_form_data)
-        customer_form = CustomerForm(customer_form_data)
-        if shipping_form.is_valid() and customer_form.is_valid():
-            shipping_order = shipping_form.save()
-            customer_order = customer_form.save()
+        order_form = OrderForm(form_data)
+
+        if order_form.is_valid():
+            order = shipping_form.save()
+
     else:
 
         # setting cuttent cart to imported cart_contents method
@@ -57,11 +55,9 @@ def checkout(request):
 
         if not stripe_public_key:
             messages.warning(request, 'Stripe Public key Is Missing!')
-    customer_form = CustomerForm()
-    shipping_form = ShippingForm()
+
     context = {
-        'customer_form': customer_form,
-        'shipping_form': shipping_form,
+        'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
     }
