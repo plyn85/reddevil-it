@@ -16,8 +16,6 @@ class Product(models.Model):
 
 class Customer(models.Model):
     user = models.OneToOneField(User, models.CASCADE, null=True, blank=True)
-    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL,
-                                null=True, blank=True, related_name='customer')
     full_name = models.CharField(max_length=254, null="True")
     email = models.EmailField(max_length=254, null="True")
     phone_number = models.CharField(max_length=20, null=True, blank=False)
@@ -27,6 +25,8 @@ class Customer(models.Model):
 
 
 class Order(models.Model):
+    profile = models.OneToOneField(Profile, on_delete=models.SET_NULL,
+                                   null=True, blank=True, related_name='customer_profile')
     customer = models.ForeignKey(
         Customer, on_delete=models.SET_NULL, null=True, blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
