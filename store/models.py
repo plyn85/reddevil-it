@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import Profile
 from django.contrib.auth.models import User
 import uuid
 
@@ -15,6 +16,8 @@ class Product(models.Model):
 
 class Customer(models.Model):
     user = models.OneToOneField(User, models.CASCADE, null=True, blank=True)
+    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL,
+                                null=True, blank=True, related_name='customer')
     full_name = models.CharField(max_length=254, null="True")
     email = models.EmailField(max_length=254, null="True")
     phone_number = models.CharField(max_length=20, null=True, blank=False)
@@ -48,12 +51,15 @@ class Order(models.Model):
 
     @property
     def get_cart_total(self):
-        """Getting all the order items then looping trough them to get the total value  """
+        """Getting all the order items then looping trough them to get the total value  
+         _set.all gives the reverse relasionship to all here
+        """
         # querying the child order items
         orderitems = self.orderitem_set.all()
         # looping trough orders and getting the totals
-        total = sum([item.get_total for item in orderitems])
-        return total
+        for item in orderitems:
+            total = sum([item.get_total])
+            return total
 
     @property
     def get_cart_items(self):
@@ -61,8 +67,9 @@ class Order(models.Model):
         # querying the child order items
         orderitems = self.orderitem_set.all()
         # looping trough items and getting the total num
-        total = sum([item.quantity for item in orderitems])
-        return total
+        for item in orderitems:
+            total = sum([item.quantity])
+            return total
 
     def __str__(self):
         return self.transaction_id
