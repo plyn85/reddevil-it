@@ -40,27 +40,33 @@ def checkout(request):
         order_form = OrderForm(form_data)
 
         if order_form.is_valid():
-            order = shipping_form.save()
+            order = order_form.save()
 
     else:
 
         # setting cuttent cart to imported cart_contents method
-        current_cart = cart_contents(request)
-        total = current_cart['cart_total']
+        profile = request.user.profile
+        order, created = Order.objects.get_or_create(
+            profile=profile, complete=False)
+        # getting cart total
+        total = order.get_cart_total
+
+        stripe_total = total
         stripe_total = round(total * 100)
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY)
 
+        order_form = OrderForm()
         if not stripe_public_key:
             messages.warning(request, 'Stripe Public key Is Missing!')
 
-    context = {
-        'order_form': order_form,
-        'stripe_public_key': stripe_public_key,
-        'client_secret': intent.client_secret,
-    }
+        context = {
+            'order_form': order_form,
+            'stripe_public_key': stripe_public_key,
+            'client_secret': intent.client_secret,
+        }
     return render(request, 'store/checkout.html', context)
 
 

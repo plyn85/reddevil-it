@@ -8,11 +8,11 @@ def cart_contents(request):
 
     if request.user.is_authenticated:
         # getting users profile an setting it customer variable
-        customer = request.user.profile
+        profile = request.user.profile
 
     # creating or getting the order item
         order, created = Order.objects.get_or_create(
-            profile=customer, complete=False)
+            profile=profile, complete=False)
     # getting the items attached to the order
         items = order.orderitem_set.all()
     # getting cart total

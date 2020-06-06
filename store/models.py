@@ -35,6 +35,28 @@ class Order(models.Model):
     transaction_id = models.CharField(
         max_length=32, null=False, editable=False, default="")
 
+    @property
+    def get_cart_total(self):
+        """Getting all the order items then looping trough them to get the total value  
+         _set.all gives the reverse relasionship to all here
+        """
+        # querying the child order items
+        orderitems = self.orderitem_set.all()
+        # looping trough orders and getting the totals
+
+        total = sum([item.get_total for item in orderitems])
+        return total
+
+    @property
+    def get_cart_items(self):
+        """Getting all the order items then looping trough them to get the total quantity """
+        # querying the child order items
+        orderitems = self.orderitem_set.all()
+        # looping trough items and getting the total num
+
+        total = sum([item.quantity for item in orderitems])
+        return total
+
     def _generate_transaction_id(self):
         """
         Generate a random, unique order number using UUID
@@ -49,26 +71,6 @@ class Order(models.Model):
         if not self.transaction_id:
             self.transaction_id = self._generate_transaction_id()
         super().save(*args, **kwargs)
-
-    @property
-    def get_cart_total(self):
-        """Getting all the order items then looping trough them to get the total value  
-         _set.all gives the reverse relasionship to all here
-        """
-        # querying the child order items
-        orderitems = self.orderitem_set.all()
-        # looping trough orders and getting the totals
-
-        total = sum([item.get_total for item in orderitems])
-
-    @property
-    def get_cart_items(self):
-        """Getting all the order items then looping trough them to get the total quantity """
-        # querying the child order items
-        orderitems = self.orderitem_set.all()
-        # looping trough items and getting the total num
-
-        total = sum([item.quantity for item in orderitems])
 
     def __str__(self):
         return self.transaction_id
