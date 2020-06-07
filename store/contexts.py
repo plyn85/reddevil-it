@@ -7,13 +7,11 @@ from django.shortcuts import get_object_or_404
 def cart_contents(request):
 
     if request.user.is_authenticated:
-        # getting users profile an setting it customer variable
+        # getting users profile an passing into get or create
         profile = request.user.profile
 
-    # creating or getting the order item
-        order, created = Order.objects.get_or_create(
-            profile=profile, complete=False)
-    # getting the items attached to the order
+        order = Order.objects.get(profile=profile)
+    # getting the items attached to that order
         items = order.orderitem_set.all()
     # getting cart total
         cart_total = order.get_cart_total

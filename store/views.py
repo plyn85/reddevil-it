@@ -9,6 +9,10 @@ from . forms import OrderForm
 
 
 def shop(request):
+    logged_out_user = request.user
+    order, created = Order.objects.get_or_create(
+        full_name=logged_out_user, complete=False)
+    print(order)
 
     return render(request, 'store/shop.html')
 
@@ -45,9 +49,9 @@ def checkout(request):
     else:
 
         # setting cuttent cart to imported cart_contents method
-        profile = request.user.profile
+        logged_out_user = request.user
         order, created = Order.objects.get_or_create(
-            profile=profile, complete=False)
+            full_name=logged_out_user, complete=False)
         # getting cart total
         total = order.get_cart_total
 
