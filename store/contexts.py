@@ -10,7 +10,9 @@ def cart_contents(request):
         # getting users profile an passing into get or create
         profile = request.user.profile
 
-        order = Order.objects.get(profile=profile)
+    # first trying to get the order for the user and If it does not exist create one for the user
+        order, created = Order.objects.get_or_create(
+            profile=profile, complete=False)
     # getting the items attached to that order
         items = order.orderitem_set.all()
     # getting cart total

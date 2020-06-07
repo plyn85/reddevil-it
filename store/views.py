@@ -9,10 +9,6 @@ from . forms import OrderForm
 
 
 def shop(request):
-    logged_out_user = request.user
-    order, created = Order.objects.get_or_create(
-        full_name=logged_out_user, complete=False)
-    print(order)
 
     return render(request, 'store/shop.html')
 
@@ -47,15 +43,11 @@ def checkout(request):
             order = order_form.save()
 
     else:
-
-        # setting cuttent cart to imported cart_contents method
-        logged_out_user = request.user
+        profile = request.user.profile
         order, created = Order.objects.get_or_create(
-            full_name=logged_out_user, complete=False)
-        # getting cart total
-        total = order.get_cart_total
-
-        stripe_total = total
+            profile=profile, complete=False)
+        cart_total = order.get_cart_total
+        total = cart_total
         stripe_total = round(total * 100)
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
@@ -67,6 +59,7 @@ def checkout(request):
             messages.warning(request, 'Stripe Public key Is Missing!')
 
         context = {
+            'cart_total': cart_total,
             'order_form': order_form,
             'stripe_public_key': stripe_public_key,
             'client_secret': intent.client_secret,
