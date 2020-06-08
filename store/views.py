@@ -26,6 +26,8 @@ def checkout(request):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
     if request.method == 'POST':
+        cart = json.loads(request.COOKIES['cart'])
+
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
@@ -42,8 +44,14 @@ def checkout(request):
         order_form = OrderForm(form_data)
 
         if order_form.is_valid():
-            order_form.save()
-
+            order = order_form.save()
+            # looping trough cart object and returning items plus the quantity of the entire cart
+            for item, item_quantity in cart.items():
+                product = Product.objects.get(id=item)
+                item_quantity = cart[item]['quantity']
+                order_item = OrderItem(
+                    order=order, product=product, quantity=item_quantity)
+                order_item.save()
             return redirect(reverse('checkout_success'))
 
         else:

@@ -25,7 +25,7 @@ class OrderItemAdminInline(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderItemAdminInline,)
 
-    readonly_fields = ('transaction_id', 'date_ordered')
+    readonly_fields = ('transaction_id', 'date_ordered', 'full_name',)
 
     fields = ("profile", 'transaction_id', 'date_ordered', 'full_name',
               'email', 'phone_number', 'country',
@@ -33,7 +33,7 @@ class OrderAdmin(admin.ModelAdmin):
               'street_address2', 'county',
               )
 
-    list_display = ('transaction_id', 'date_ordered', 'full_name',
+    list_display = ('transaction_id', 'date_ordered', 'full_name', "profile"
                     )
 
     ordering = ('-date_ordered',)
