@@ -36,6 +36,7 @@ def cart_contents(request):
             product = Product.objects.get(id=item)
             item_quantity = cart[item]['quantity']
             total += item_quantity * product.price
+            print(total)
             product_count += item_quantity
             print(product_count)
 
@@ -45,11 +46,11 @@ def cart_contents(request):
                             'image': product.image}, 'quantity': cart[item]['quantity'], 'get_total': total,
 
             })
+        grand_total = total
+        print(grand_total)
+        # print(cart_items)
 
-        print(cart_items)
-
-    products = Product.objects.all()
-
-    context = {"cart_items": cart_items, "products": products}
+    context = {"cart_items": cart_items,
+               "product_count": product, "grand_total": grand_total}
 
     return context

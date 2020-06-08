@@ -9,8 +9,10 @@ from . forms import OrderForm
 
 
 def shop(request):
+    products = Product.objects.all()
+    context = {"products": products}
 
-    return render(request, 'store/shop.html')
+    return render(request, 'store/shop.html', context)
 
 
 def cart(request):
