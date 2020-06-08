@@ -50,7 +50,9 @@ def checkout(request):
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
     else:
-
+        cart_total = cart_contents(request)
+        total = cart_total["grand_total"]
+        stripe_total = total
         stripe_total = round(total * 100)
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(

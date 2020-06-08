@@ -13,11 +13,11 @@ def cart_contents(request):
         order, created = Order.objects.get_or_create(
             profile=profile, complete=False)
 
-        items = order.orderitem_set.all()
+        cart_items = order.orderitem_set.all()
 
-        cart_total = order.get_cart_total
+        grand_total = order.get_cart_total
 
-        cartItems = order.get_cart_items
+        product_count = order.get_cart_items
 
     else:
         try:
@@ -51,6 +51,6 @@ def cart_contents(request):
         # print(cart_items)
 
     context = {"cart_items": cart_items,
-               "product_count": product, "grand_total": grand_total}
+               "product_count": product_count, "grand_total": grand_total, }
 
     return context
