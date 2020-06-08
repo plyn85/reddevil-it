@@ -7,60 +7,49 @@ from django.shortcuts import get_object_or_404
 def cart_contents(request):
 
     if request.user.is_authenticated:
-        # getting users profile an passing into get or create
+
         profile = request.user.profile
 
-    # first trying to get the order for the user and If it does not exist create one for the user
         order, created = Order.objects.get_or_create(
             profile=profile, complete=False)
-    # getting the items attached to that order
+
         items = order.orderitem_set.all()
-    # getting cart total
+
         cart_total = order.get_cart_total
-    #  getting cart total items
+
         cartItems = order.get_cart_items
-    # if user is not logged in return cart cookie
+
     else:
         try:
             cart = json.loads(request.COOKIES['cart'])
-    # if theres no cookie return an empty cart object
+            print('CART:', cart)
         except:
             cart = {}
-        print('CART:', cart)
 
-        items = []
-        # setting empty Items for users who are not logged In
-        # setting empty cart for users who are not logged In
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
-        cartItems = order['get_cart_items']
+        cart_items = []
+
+        product_count = 0
+        total = 0
+
     # looping trough cart object and returning items plus the quantity of the entire cart
-        for i in cart:
-            cartItems += cart[i]['quantity']
-    # getting product Id
-            product = Product.objects.get(id=i)
-    # getting cart total
-            total = (product.price * cart[i]['quantity'])
-    # adding cart total an quantity to order dict from above
-            order['get_cart_total'] += total
-            order['get_cart_items'] += cart[i]['quantity']
-    #  creating repersentation of cart Items
-            item = {
+        for item, item_quantity in cart.items():
+            product = Product.objects.get(id=item)
+            item_quantity = cart[item]['quantity']
+            total += item_quantity * product.price
+            product_count += item_quantity
+            print(product_count)
+
+            cart_items.append({
                 'id': product.id,
                 'product': {'id': product.id, 'name': product.name, 'price': product.price,
-                            'image': product.image}, 'quantity': cart[i]['quantity'],
+                            'image': product.image}, 'quantity': cart[item]['quantity'], 'get_total': total,
 
-            }
-    #  adding item to items list
-            items.append(item)
+            })
+
+        print(cart_items)
 
     products = Product.objects.all()
 
-    # creating or getting the order item
-
-    #  getting cart total amount
-    # obj = OrderItem.objects.get_cart_total()
-    # cart_total = obj
-    context = {'items': items, 'products': products,
-               'cartItems': cartItems, 'order': order}
+    context = {"cart_items": cart_items, "products": products}
 
     return context

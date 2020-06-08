@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from .models import Product, Order, OrderItem
 from django.http import JsonResponse
 import json
@@ -40,14 +40,15 @@ def checkout(request):
         order_form = OrderForm(form_data)
 
         if order_form.is_valid():
-            order = order_form.save()
+            order_form.save()
 
+            return redirect(reverse('checkout_success'))
+
+        else:
+            messages.error(request, 'There was an error with your form. \
+                Please double check your information.')
     else:
-        profile = request.user.profile
-        order, created = Order.objects.get_or_create(
-            profile=profile, complete=False)
-        cart_total = order.get_cart_total
-        total = cart_total
+
         stripe_total = round(total * 100)
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
@@ -55,16 +56,21 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY)
 
         order_form = OrderForm()
-        if not stripe_public_key:
-            messages.warning(request, 'Stripe Public key Is Missing!')
+    if not stripe_public_key:
+        messages.warning(request, 'Stripe Public key Is Missing!')
+    template = 'store/checkout.html'
+    context = {
 
-        context = {
-            'cart_total': cart_total,
-            'order_form': order_form,
-            'stripe_public_key': stripe_public_key,
-            'client_secret': intent.client_secret,
-        }
-    return render(request, 'store/checkout.html', context)
+        'order_form': order_form,
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
+    }
+    return render(request, template, context)
+
+
+def checkout_success(request):
+
+    return render(request, 'store/checkout_success.html')
 
 
 def updateItem(request):
@@ -76,7 +82,6 @@ def updateItem(request):
     print('action:', action)
     print('productId:', productId)
 
-# getting customer and productId
     customer = request.user.profile
     product = Product.objects.get(id=productId)
 

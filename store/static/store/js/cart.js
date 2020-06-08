@@ -12,8 +12,10 @@ $(document).ready(function () {
       upDateUserOrder(productId, action);
     }
   });
-  /*add an item if it those not exist if the item already 
-  exists increase quantity by one */
+  /*cookie created in script tag in base html 
+  adds an item to the cookie in the cart 
+  if it those not exist if the item already 
+  exists increase quantity by one  */
   function addCookieItem(productId, action) {
     console.log("not logged In");
     if (action == "add") {
