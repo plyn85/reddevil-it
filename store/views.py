@@ -85,9 +85,11 @@ def checkout(request):
 def checkout_success(request, transaction_id):
 
     order = get_object_or_404(Order, transaction_id=transaction_id)
-    print(order)
     context = {"order": order}
-    return render(request, 'store/checkout_success.html', context)
+    response = render(request, 'store/checkout_success.html', context)
+    # remove cart from cookies when checkout success page reached
+    response.delete_cookie("cart")
+    return response
 
 
 def updateItem(request):
