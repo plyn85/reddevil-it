@@ -6,6 +6,25 @@ from django.conf import settings
 import stripe
 from . contexts import cart_contents
 from . forms import OrderForm
+from django.views.generic import ListView
+
+
+def shop(request):
+
+    products = Product.objects.all()
+    context = {"products": products}
+
+    return render(request, 'store/shop.html', context)
+
+
+class ProductListView(ListView):
+
+    model = Product
+    # changing the default page where the list views looks for template
+    template_name = 'store/shop.html'
+    context_object_name = "products"
+    ordering = ['price']
+    paginate_by = 5
 
 
 def shop(request):
