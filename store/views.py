@@ -6,7 +6,7 @@ from django.conf import settings
 import stripe
 from . contexts import cart_contents
 from . forms import OrderForm
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 
 def shop(request):
@@ -25,6 +25,11 @@ class ProductListView(ListView):
     context_object_name = "products"
     ordering = ['price']
     paginate_by = 5
+
+
+class ProductDetailView(DetailView):
+    # adding post model
+    model = Product
 
 
 def shop(request):
