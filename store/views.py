@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Product, Order, OrderItem
 from django.http import JsonResponse
 import json
@@ -9,6 +9,7 @@ from . forms import OrderForm
 
 
 def shop(request):
+
     products = Product.objects.all()
     context = {"products": products}
 
@@ -42,7 +43,6 @@ def checkout(request):
         }
 
         order_form = OrderForm(form_data)
-
         if order_form.is_valid():
             order = order_form.save()
             # looping trough cart object and returning items plus the quantity of the entire cart
@@ -52,11 +52,13 @@ def checkout(request):
                 order_item = OrderItem(
                     order=order, product=product, quantity=item_quantity)
                 order_item.save()
-            return redirect(reverse('checkout_success'))
+
+            return redirect(reverse('checkout_success', args=[order.transaction_id]))
 
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
+
     else:
         cart_total = cart_contents(request)
         total = cart_total["grand_total"]
@@ -80,9 +82,12 @@ def checkout(request):
     return render(request, template, context)
 
 
-def checkout_success(request):
+def checkout_success(request, transaction_id):
 
-    return render(request, 'store/checkout_success.html')
+    order = get_object_or_404(Order, transaction_id=transaction_id)
+    print(order)
+    context = {"order": order}
+    return render(request, 'store/checkout_success.html', context)
 
 
 def updateItem(request):
