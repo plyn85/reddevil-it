@@ -95,7 +95,7 @@ def checkout_success(request, transaction_id):
 def updateItem(request):
     # getting data sent In from cart.js
     data = json.loads(request.body)
-    # qureying the data an getting the values
+    # querying the data an getting the values
     productId = data['productId']
     action = data['action']
     print('action:', action)
