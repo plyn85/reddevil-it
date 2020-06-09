@@ -59,14 +59,16 @@
       console.log("Cart:", cart);
     </script>
 
-    <!-- Required meta tags -->
+    {% block meta %}
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
-    <!-- Bootstrap CSS -->
+    {% endblock %}
+    <!-- core css -->
+    {% block corecss %}
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -79,6 +81,11 @@
       type="text/css"
       href="{% static 'css/style.css' %}"
     />
+    {% endblock %}
+
+    <!-- extra block css -->
+    {% block extra_css %} {% endblock %}
+    <!-- core js -->
     {% block corejs %}
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
@@ -134,8 +141,6 @@
       {% block content %}{% endblock %}
     </main>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     {% block postloadjs%} {%endblock%}
   </body>
 </html>

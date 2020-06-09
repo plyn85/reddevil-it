@@ -1,5 +1,10 @@
 <!-- extends base html -->
 {%extends 'base.html'%} {% load static %}
+<!-- core css -->
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/store.css' %}" />
+
+{% endblock %}
 <!-- start block content -->
 {%block content%}
 <!-- loading crispy forms -->
@@ -140,6 +145,13 @@
       </form>
     </div>
   </div>
+</div>
+<div id="loading-overlay">
+  <h1 class="text-light logo-font loading-spinner">
+    <span class="icon">
+      <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+    </span>
+  </h1>
 </div>
 {%endblock%} {% block postloadjs%}
 <!-- super block -->
