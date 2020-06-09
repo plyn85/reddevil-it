@@ -1,39 +1,37 @@
 <!-- extends base html -->
-{%extends 'base.html'%}
-{% load static %}
+{%extends 'base.html'%} {% load static %}
 <!-- adding navbar partial -->
 {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
 <!-- start block content -->
 {%block content%}
 <div class="row justify-content-center mt-5">
-
-    <div class="col-md-5 mb-4">
-      <div class="card h-150">
-        <a href="#"
-          ><img
-            class="card-img-top"
-            src="{{product.image.url}}"
-            alt="Images of products we are selling"
-        /></a>
-        <div class="card-text text-center mb-2">{{object.name}}</div>
-        <div class="card-text text-center">{{object.description}}</div>
-        <div class="card-body">
-          <h5 class="text-center">€{{object.price}}</h5>
-        </div>
-        <div class="card-footer text-center">
-          <button data-product={{product.id}} data-action='add' class="btn btn-outline-secondary add-btn update-cart">
-            Add to Cart
-          </button>
-        </div>
+  <div class="col-md-5 mb-4">
+    <div class="card h-150">
+      <a href="#"
+        ><img
+          class="card-img-top"
+          src="{{product.image.url}}"
+          alt="Images of products we are selling"
+      /></a>
+      <div class="card-text text-center mb-2">{{object.name}}</div>
+      <div class="card-text text-center">{{object.description}}</div>
+      <div class="card-body">
+        <h5 class="text-center">€{{object.price}}</h5>
       </div>
-   
+      <div class="card-footer text-center">
+        <button
+          data-product="{{product.id}}"
+          data-action="add"
+          class="btn btn-outline-secondary add-btn update-cart"
+        >
+          Add to Cart
+        </button>
+      </div>
     </div>
-   
   </div>
-  <!-- /.col-lg-9 -->
 </div>
+
 <!-- /.row -->
-{%endblock%}
-{% block postloadjs%}
+{%endblock%} {% block postloadjs%}
 <script src="{% static 'store/js/cart.js' %}"></script>
 {%endblock%}
