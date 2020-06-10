@@ -8,19 +8,16 @@ class UserRegisterForm(UserCreationForm):
 
     username = forms.CharField(
         max_length=50, required=True, help_text='Requried. No more then 50 characters')
-    first_name = forms.CharField(
+    full_name = forms.CharField(
         max_length=30, required=False, help_text='Optional.')
-    last_name = forms.CharField(
-        max_length=30, required=False, help_text='Optional.')
+
     email = forms.EmailField(
         max_length=254, help_text='Required. Provide a valid email address.')
-    location = forms.CharField(
-        max_length=30, required=True, help_text='Required.')
 
     class Meta:
         model = User
-        fields = ['username',  'first_name', 'last_name',
-                  'email', 'password1', 'password2', 'location', ]
+        fields = ['username', "full_name",
+                  'email', 'password1', 'password2']
 
 
 class UserUpdateForm(forms.ModelForm):
