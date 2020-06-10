@@ -13,15 +13,12 @@ from .filters import PostFilter
 
 
 def home(request):
-    # post_count = Post.objects.filter(author=request.user).count()
     posts = Post.objects.all()
-    posts = my_filter.qs
+    # posts = my_filter.qs
     context = {
         # 'post_count': post_count,
         'posts': posts}
     return render(request, "fourm/home.html", context)
-
-# <app>/<model>_<veiwtype>.html is what django class based views look for by default
 
 
 class FilteredListView(ListView):

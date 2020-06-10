@@ -54,6 +54,7 @@ $(document).ready(function () {
         // data we send to the backend as a string
         body: JSON.stringify({ productId: productId, action: action }),
       });
+
       // returning the response that comes back Into json
       const data = await response.json();
 
