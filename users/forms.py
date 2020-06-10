@@ -44,7 +44,7 @@ class ProfileForm(forms.ModelForm):
 
         self.fields['default_phone_number'].widget.attrs['autofocus'] = True
         for field in self.fields:
-            if field != 'default_country':
+            if field != 'default_country' and not 'image':
                 if self.fields[field].required:
                     placeholder = f'{placeholders[field]} *'
                 else:
@@ -60,4 +60,3 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ['username',
                   'email']
-
