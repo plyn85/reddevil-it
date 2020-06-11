@@ -42,9 +42,6 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileForm(instance=profile)
-        # orders = OrderItem(order=profile)
-        # # orders = profile.order.set_all()
-        # print(orders)
 
     context = {
         'u_form': u_form,

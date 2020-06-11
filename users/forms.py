@@ -6,20 +6,12 @@ from .models import Profile
 
 class UserRegisterForm(UserCreationForm):
 
-    username = forms.CharField(
-        max_length=50, required=True, help_text='Requried. No more then 50 characters')
-    full_name = forms.CharField(
-        max_length=30, required=False, help_text='Optional.')
-    password1 = forms.CharField(
-        label="password", help_text='At least 8 charcters.')
-
-    email = forms.EmailField(
-        max_length=254, help_text='Required. Provide a valid email address.')
+    email = forms.EmailField()
 
     class Meta:
         model = User
-        fields = ['full_name', 'username',
-                  'email', ]
+        fields = ['first_name', "last_name", 'username',
+                  'email', 'password1', 'password2']
 
 
 class ProfileForm(forms.ModelForm):
