@@ -4,14 +4,13 @@ $(document).ready(function () {
   setTimeout(function () {
     $("#flashed-message").hide("slow");
   }, 10000);
-
-  /* this will hide an show the comments */
-  $(".comments-btn").click(function () {
-    $(".comments").toggle();
-  });
   // overriding default carousel speed
   $(".carousel").carousel({
     interval: 2500,
+  });
+  /* this will hide an show the comments */
+  $(".comments-btn").click(function () {
+    $(".comments").toggle();
   });
 
   /* adding ajax for like button 
