@@ -24,10 +24,11 @@ def register(request):
 
 @login_required
 def profile(request):
+    profile = get_object_or_404(Profile, user=request.user)
     if request.method == "POST":
-        u_form = UserUpdateForm(request.POST, instance=request.user,)
+        u_form = UserUpdateForm(request.POST, instance=profile)
         p_form = ProfileForm(
-            request.POST, instance=request.user.profile)
+            request.POST, instance=profile)
         # both forms have to be valid to save the data
         if u_form.is_valid() and p_form.is_valid():
 
@@ -40,9 +41,9 @@ def profile(request):
 
     else:
         u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileForm(instance=request.user.profile)
-        # order = get_object_or_404(Order, profile=order_profile)
-        # print(order)
+        p_form = ProfileForm(instance=profile)
+        # orders = profile.orders.all()
+        # print(orders)
 
     context = {
         'u_form': u_form,
