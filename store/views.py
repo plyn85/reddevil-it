@@ -7,6 +7,8 @@ import stripe
 from . contexts import cart_contents
 from . forms import OrderForm
 from django.views.generic import ListView, DetailView
+from users.models import Profile
+from users.forms import ProfileForm
 
 
 def shop(request):
@@ -109,6 +111,27 @@ def checkout(request):
 def checkout_success(request, transaction_id):
 
     order = get_object_or_404(Order, transaction_id=transaction_id)
+
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user=request.user)
+        print(profile)
+        # Attach the user's profile to the order
+        order.user_profile = profile
+        order.save()
+
+        profile_data = {
+            'default_phone_number': order.phone_number,
+            'default_country': order.country,
+            'default_postcode': order.postcode,
+            'default_town_or_city': order.town_or_city,
+            'default_street_address1': order.street_address1,
+            'default_street_address2': order.street_address2,
+            'default_county': order.county,
+        }
+        user_profile_form = ProfileForm(profile_data, instance=profile)
+        if user_profile_form.is_valid():
+            user_profile_form.save()
+
     context = {"order": order}
     response = render(request, 'store/checkout_success.html', context)
     # remove cart from cookies when checkout success page reached
