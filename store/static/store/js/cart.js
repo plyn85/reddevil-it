@@ -5,12 +5,12 @@ $(document).ready(function () {
     let productId = this.dataset.product;
     let action = this.dataset.action;
     /* if non logged In user call function from below */
-    if (user === "AnonymousUser") {
-      addCookieItem(productId, action);
-    } else {
-      /* if logged In user call function from below */
-      upDateUserOrder(productId, action);
-    }
+    // if (user === "AnonymousUser") {
+    addCookieItem(productId, action);
+    // } else {
+    /* if logged In user call function from below */
+    // upDateUserOrder(productId, action);
+    // }
   });
   /*cookie created in script tag in base html 
   adds an item to the cookie in the cart 
@@ -37,33 +37,33 @@ $(document).ready(function () {
     document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
     location.reload();
   }
-
-  // function will update the user order
-
-  function upDateUserOrder(productId, action) {
-    console.log("user is logged In");
-    //  adding async function to make the fetch request
-
-    async function postUserOrder() {
-      const response = await fetch("/update_item/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRFToken": csrftoken,
-        },
-        // data we send to the backend as a string
-        body: JSON.stringify({ productId: productId, action: action }),
-      });
-
-      // returning the response that comes back Into json
-      const data = await response.json();
-
-      location.reload();
-    }
-    // calling async await function and adding catch error function
-    postUserOrder().catch((error) => {
-      console.log("error");
-      console.error(error);
-    });
-  }
 });
+//   // function will update the user order
+
+//   function upDateUserOrder(productId, action) {
+//     console.log("user is logged In");
+//     //  adding async function to make the fetch request
+
+//     async function postUserOrder() {
+//       const response = await fetch("/update_item/", {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//           "X-CSRFToken": csrftoken,
+//         },
+//         // data we send to the backend as a string
+//         body: JSON.stringify({ productId: productId, action: action }),
+//       });
+
+//       // returning the response that comes back Into json
+//       const data = await response.json();
+
+//       location.reload();
+//     }
+//     // calling async await function and adding catch error function
+//     postUserOrder().catch((error) => {
+//       console.log("error");
+//       console.error(error);
+//     });
+//   }
+// });
