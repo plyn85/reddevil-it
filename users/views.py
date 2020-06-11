@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileForm
 from .models import Profile
 from fourm.models import Post
+from store.models import Order
 
 
 def register(request):
@@ -26,7 +27,7 @@ def profile(request):
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=request.user,)
         p_form = ProfileForm(
-            request.POST, request.FILES, instance=request.user.profile)
+            request.POST, instance=request.user.profile)
         # both forms have to be valid to save the data
         if u_form.is_valid() and p_form.is_valid():
 
@@ -40,6 +41,8 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileForm(instance=request.user.profile)
+        # order = get_object_or_404(Order, profile=order_profile)
+        # print(order)
 
     context = {
         'u_form': u_form,

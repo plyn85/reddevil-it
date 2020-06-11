@@ -114,9 +114,8 @@ def checkout_success(request, transaction_id):
 
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
-        print(profile)
         # Attach the user's profile to the order
-        order.user_profile = profile
+        order.profile = profile
         order.save()
 
         profile_data = {
@@ -139,31 +138,31 @@ def checkout_success(request, transaction_id):
     return response
 
 
-def updateItem(request):
-    # getting data sent In from cart.js
-    data = json.loads(request.body)
-    # querying the data an getting the values
-    productId = data['productId']
-    action = data['action']
-    print('action:', action)
-    print('productId:', productId)
+# def updateItem(request):
+#     # getting data sent In from cart.js
+#     data = json.loads(request.body)
+#     # querying the data an getting the values
+#     productId = data['productId']
+#     action = data['action']
+#     print('action:', action)
+#     print('productId:', productId)
 
-    customer = request.user.profile
-    product = Product.objects.get(id=productId)
+#     customer = request.user.profile
+#     product = Product.objects.get(id=productId)
 
-    order, created = Order.objects.get_or_create(
-        profile=customer, complete=False)
+#     order, created = Order.objects.get_or_create(
+#         profile=customer, complete=False)
 
-    orderItem, created = OrderItem.objects.get_or_create(
-        order=order, product=product)
-    if action == 'add':
-        orderItem.quantity = (orderItem.quantity + 1)
-    elif action == 'remove':
-        orderItem.quantity = (orderItem.quantity - 1)
-    # saving orderitem to cart
-    orderItem.save()
-    # delete order item if none remain
-    if orderItem.quantity <= 0:
-        orderItem.delete()
+#     orderItem, created = OrderItem.objects.get_or_create(
+#         order=order, product=product)
+#     if action == 'add':
+#         orderItem.quantity = (orderItem.quantity + 1)
+#     elif action == 'remove':
+#         orderItem.quantity = (orderItem.quantity - 1)
+#     # saving orderitem to cart
+#     orderItem.save()
+#     # delete order item if none remain
+#     if orderItem.quantity <= 0:
+#         orderItem.delete()
 
-    return JsonResponse('item was added', safe=False)
+#     return JsonResponse('item was added', safe=False)
