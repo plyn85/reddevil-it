@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileForm
 from .models import Profile
 from fourm.models import Post
-from store.models import Order
+from store.models import Order, OrderItem
 
 
 def register(request):
@@ -14,7 +14,7 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Your account has been created!')
+            messages.warning(request, f'Your account has been created!')
             return redirect('login')
     else:
         form = UserRegisterForm()
@@ -42,7 +42,8 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileForm(instance=profile)
-        # orders = profile.orders.all()
+        # orders = OrderItem(order=profile)
+        # # orders = profile.order.set_all()
         # print(orders)
 
     context = {

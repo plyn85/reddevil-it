@@ -3,6 +3,7 @@ from .models import Product, Order, OrderItem
 from django.http import JsonResponse
 import json
 from django.conf import settings
+from django.contrib import messages
 import stripe
 from . contexts import cart_contents
 from . forms import OrderForm
@@ -86,6 +87,12 @@ def checkout(request):
                 Please double check your information.')
 
     else:
+        cart = json.loads(request.COOKIES['cart'])
+        if not cart:
+            messages.warning(
+                request, "There's nothing in your cart at the moment")
+            return redirect(reverse('shop'))
+
         cart_total = cart_contents(request)
         total = cart_total["grand_total"]
         stripe_total = total
