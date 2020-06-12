@@ -16,8 +16,8 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    profile = models.OneToOneField(Profile, on_delete=models.SET_NULL,
-                                   null=True, blank=True, related_name='orders')
+    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL,
+                                null=True, blank=True, related_name='orders')
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, default="")
     phone_number = models.CharField(
@@ -31,9 +31,8 @@ class Order(models.Model):
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
-    complete = models.BooleanField(default=False)
     transaction_id = models.CharField(
-        max_length=32, null=False, editable=False, default="")
+        max_length=32, null=False, editable=False)
 
     @property
     def get_cart_total(self):
