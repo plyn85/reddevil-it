@@ -53,7 +53,6 @@ def profile(request):
 
 def order_history(request, transaction_id):
     order = get_object_or_404(Order, transaction_id=transaction_id)
-
     template = 'store/checkout_success.html'
     context = {
         'order': order,
