@@ -46,7 +46,8 @@ def profile(request):
     context = {
         'u_form': u_form,
         'p_form': p_form,
-        'orders': orders
+        'orders': orders,
+
     }
     return render(request, 'users/profile.html', context)
 
@@ -56,7 +57,7 @@ def order_history(request, transaction_id):
     template = 'store/checkout_success.html'
     context = {
         'order': order,
-
+        'from_profile': True
     }
 
     return render(request, template, context)
