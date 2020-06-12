@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import register, profile
+from .views import register, profile, order_history
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -15,5 +15,7 @@ urlpatterns = [
         template_name='users/password_reset_comfirm.html'), name="password_reset_confirm"),
     path('password_reset_complete/', auth_views.PasswordResetCompleteView.as_view(
         template_name='users/password_reset_complete.html'), name="password_reset-compelete"),
+    path('order_history/<transaction_id>',
+         order_history, name='order_history'),
 
 ]

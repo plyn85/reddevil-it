@@ -42,9 +42,22 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileForm(instance=profile)
-
+        orders = profile.orders.all
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form,
+        'orders': orders
     }
     return render(request, 'users/profile.html', context)
+
+
+def order_history(request, transaction_id):
+    order = get_object_or_404(Order, transaction_id=transaction_id)
+
+    template = 'store/checkout_success.html'
+    context = {
+        'order': order,
+
+    }
+
+    return render(request, template, context)
