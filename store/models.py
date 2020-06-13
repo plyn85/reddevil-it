@@ -46,7 +46,12 @@ class Order(models.Model):
         """
         self.total = self.orderitems.aggregate(Sum('orderitem_total'))[
             'orderitem_total__sum']or 0
-        self.total
+        if self.total < settings.FREE_DELIVERY_THRESHOLD:
+            self.delivery_cost = self.total * \
+                settings.STANDARD_DELIVERY_PERCENTAGE / 100
+        else:
+            self.delivery_cost = 0
+        self.grand_total = self.order_total + self.delivery_cost
         self.save()
 
     def _generate_transaction_id(self):
