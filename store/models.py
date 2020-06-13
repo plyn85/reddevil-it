@@ -41,7 +41,7 @@ class Order(models.Model):
         """Update total each time a item Is added
         """
         self.total = self.orderitems.aggregate(Sum('orderitem_total'))[
-            'orderitem_total__sum']
+            'orderitem_total__sum']or 0
         self.total
         self.save()
 
