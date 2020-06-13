@@ -34,7 +34,11 @@ class Order(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
     transaction_id = models.CharField(
         max_length=32, null=False, editable=False)
+    delivery_cost = models.DecimalField(
+        max_digits=6, decimal_places=2, null=False, default=0)
     total = models.DecimalField(
+        max_digits=10, decimal_places=2, null=False, default=0)
+    grand_total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0)
 
     def get_cart_total(self):
