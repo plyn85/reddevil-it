@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 import uuid
 from django_countries.fields import CountryField
 from django.db.models import Sum
+from django.conf import settings
+from decimal import Decimal
 
 
 class Product(models.Model):
@@ -51,7 +53,7 @@ class Order(models.Model):
                 settings.STANDARD_DELIVERY_PERCENTAGE / 100
         else:
             self.delivery_cost = 0
-        self.grand_total = self.order_total + self.delivery_cost
+        self.grand_total = self.total + self.delivery_cost
         self.save()
 
     def _generate_transaction_id(self):
