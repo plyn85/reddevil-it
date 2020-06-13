@@ -52,10 +52,18 @@
           <span class="text-muted input-sm">€ {{item.product.price}}</span>
         </li>
         {%endfor%}
-
         <li class="list-group-item d-flex justify-content-between">
           <span>Total (EUR)</span>
-          <strong>€ {{total}}</strong>
+          <strong>€ {{total|floatformat:2}}</strong>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Delivery (EUR)</span>
+          <strong>€ {{delivery|floatformat:2}}</strong>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Grand Total(EUR)</span>
+          <strong>€ {{grand_total|floatformat:2}}</strong>
         </li>
       </ul>
     </div>
@@ -138,7 +146,7 @@
             </span>
             <span
               >Your card will be charged
-              <strong>${{ order.get_cart_total|floatformat:2 }}</strong></span
+              <strong>${{ grand_total|floatformat:2 }}</strong></span
             >
           </p>
         </div>
