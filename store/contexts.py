@@ -46,11 +46,11 @@ def cart_contents(request):
                         'image': product.image}, 'quantity': cart[item]['quantity'], 'get_total': total,
 
         })
-    grand_total = total
-    print(grand_total)
+    total = total
+    print(total)
     # print(cart_items)
 
     context = {"cart_items": cart_items,
-               "product_count": product_count, "grand_total": grand_total, }
+               "product_count": product_count, "total": total, }
 
     return context
