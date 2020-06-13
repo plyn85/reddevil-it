@@ -2,6 +2,8 @@ from .models import Product, Order, OrderItem
 from users.models import Profile
 import json
 from django.shortcuts import get_object_or_404
+from django.conf import settings
+from decimal import Decimal
 
 
 def cart_contents(request):
@@ -46,11 +48,18 @@ def cart_contents(request):
                         'image': product.image}, 'quantity': cart[item]['quantity'], 'get_total': total,
 
         })
-    total = total
-    print(total)
-    # print(cart_items)
+    if total < settings.FREE_DELIVERY_THRESHOLD:
+        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
+        free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
+    else:
+        delivery = 0
+        free_delivery_delta = 0
+
+    grand_total = delivery + total
 
     context = {"cart_items": cart_items,
-               "product_count": product_count, "total": total, }
+               "product_count": product_count, "total": total, 'delivery': delivery,  'free_delivery_delta': free_delivery_delta,
+               'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
+               'grand_total': grand_total, }
 
     return context

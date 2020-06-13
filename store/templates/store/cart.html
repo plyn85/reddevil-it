@@ -63,7 +63,11 @@
               </td>
               <td><strong>Total</strong></td>
               <td class="text-right">
-                <strong>€ {{total}} </strong>
+                <h6><strong> €{{ total|floatformat:2 }}</strong></h6>
+                <h6>Delivery: €{{ delivery|floatformat:2 }}</h6>
+                <h6 class="mt-4">
+                  <strong>Grand Total: €{{ grand_total|floatformat:2 }}</strong>
+                </h6>
               </td>
             </tr>
           </tbody>
