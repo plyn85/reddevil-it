@@ -19,21 +19,22 @@ admin.site.register(Product, ProductAdmin)
 
 class OrderItemAdminInline(admin.TabularInline):
     model = OrderItem
-    readonly_fields = ('product',)
+    readonly_fields = ('orderitem_total',)
 
 
 class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderItemAdminInline,)
 
-    readonly_fields = ('transaction_id', 'date_ordered', 'full_name',)
+    readonly_fields = ('transaction_id', 'date_ordered',
+                       'full_name', 'total',)
 
     fields = ("profile", 'transaction_id', 'date_ordered', 'full_name',
               'email', 'phone_number', 'country',
               'postcode', 'town_or_city', 'street_address1',
-              'street_address2', 'county',
+              'street_address2', 'county', 'total',
               )
 
-    list_display = ('transaction_id', 'date_ordered', 'full_name', "profile"
+    list_display = ('transaction_id', 'date_ordered', 'full_name', "profile", 'total'
                     )
 
     ordering = ('-date_ordered',)

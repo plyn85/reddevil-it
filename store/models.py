@@ -3,6 +3,7 @@ from users.models import Profile
 from django.contrib.auth.models import User
 import uuid
 from django_countries.fields import CountryField
+from django.db.models import Sum
 
 
 class Product(models.Model):
@@ -33,28 +34,16 @@ class Order(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
     transaction_id = models.CharField(
         max_length=32, null=False, editable=False)
+    total = models.DecimalField(
+        max_digits=10, decimal_places=2, null=False, default=0)
 
-    @property
     def get_cart_total(self):
-        """Getting all the order items then looping trough them to get the total value  
-         _set.all gives the reverse relasionship to all here
+        """Update total each time a item Is added
         """
-        # querying the child order items
-        orderitems = self.orderitem_set.all()
-        # looping trough orders and getting the totals
-
-        total = sum([item.get_total for item in orderitems])
-        return total
-
-    @property
-    def get_cart_items(self):
-        """Getting all the order items then looping trough them to get the total quantity """
-        # querying the child order items
-        orderitems = self.orderitem_set.all()
-        # looping trough items and getting the total num
-
-        total = sum([item.quantity for item in orderitems])
-        return total
+        self.total = self.orderitems.aggregate(Sum('orderitem_total'))[
+            'orderitem_total__sum']
+        self.total
+        self.save()
 
     def _generate_transaction_id(self):
         """
@@ -82,12 +71,13 @@ class OrderItem(models.Model):
         Order, on_delete=models.SET_NULL, null=True, related_name="orderitems",)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
+    orderitem_total = models.DecimalField(
+        max_digits=6, decimal_places=2, null=False, blank=False, editable=False, default=0)
 
-    @property
-    def get_total(self):
+    def save(self, *args, **kwargs):
         """ gets the total for each item an multiplys by the the quatity """
-        total = self.product.price * self.quantity
-        return total
+        self.orderitem_total = self.product.price * self.quantity
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.product.name} on order {self.order.transaction_id}'
