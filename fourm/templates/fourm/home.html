@@ -13,8 +13,10 @@
 
 <!-- adding delivery discount partial partial -->
 {%include '../partials/_delivery_banner.html'%}
-<!-- taken and altered from https://bbbootstrap.com/snippets/forum-discussion-template-65198141 -->
+
 <div class="container-fluid">
+<!-- adding delivery discount partial partial -->
+{%include '../partials/_carousel.html'%}
   <form method="get">
     <div class="form-row justify-content-center">
       <div class="col-12 col-md-6">
@@ -52,10 +54,9 @@
     </div>
   </form>
 
-  <!-- {{filterset.form}} -->
-
+  <!-- taken and altered from https://bbbootstrap.com/snippets/forum-discussion-template-65198141 -->
   {%for post in posts%}
-  <div class="row mt-3">
+  <div class="row mt-3 justify-content-center">
     <div class="col-md-8">
       <div class="card mb-4">
         <div class="card-header">
@@ -145,8 +146,8 @@
       </div>
     </div>
   </div>
-</div>
 {%endfor%}
+</div>
 <!-- adding partial pagination buttons -->
 {%include '../partials/_pagination_btns.html'%} {% else %}
 <h1 class="mt-5">This is my logged out home page home page</h1>

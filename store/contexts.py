@@ -7,7 +7,7 @@ from decimal import Decimal
 
 
 def cart_contents(request):
-
+    products = Product.objects.all()
     # if request.user.is_authenticated:
 
     #     profile = request.user.profile
@@ -60,6 +60,8 @@ def cart_contents(request):
     context = {"cart_items": cart_items,
                "product_count": product_count, "total": total, 'delivery': delivery,  'free_delivery_delta': free_delivery_delta,
                'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
-               'grand_total': grand_total, }
+               'grand_total': grand_total,
+               'products': products,
+               }
 
     return context
