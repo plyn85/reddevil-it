@@ -1,24 +1,59 @@
 <!-- extends base html -->
 {%extends 'base.html'%}
 <!-- loading crispy forms -->
-{% load crispy_forms_tags %}
-
+{% load widget_tweaks %}
 <!-- adding navbar partial -->
 {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
 <!-- start block content -->
+<!-- ending navbar partial -->
+
 {%block content%}
 <!-- if user -->
 {% if user.is_authenticated %}
-<!-- ending navbar partial -->
-<form method="get">
-  {{filterset.form|crispy}}
-  <button class="btn btn-outline-info" type="submit">Search</button>
-</form>
+
 <!-- adding delivery discount partial partial -->
-{%include '../partials/_delivery_banner.html'%} {%for post in posts%}
+{%include '../partials/_delivery_banner.html'%}
 <!-- taken and altered from https://bbbootstrap.com/snippets/forum-discussion-template-65198141 -->
-<div class="container-fluid mt-5">
-  <div class="row">
+<div class="container-fluid">
+  <form method="get">
+    <div class="form-row justify-content-center">
+      <div class="col-12 col-md-6">
+        <div class="input-group">
+          {% render_field filterset.form.content class="form-control"%}
+          <button class="btn btn-outline-info" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row mt-3 mb-3">
+    <div class="col text-center">
+      <button class="btn btn-outline-dark">
+        <h4><i class="fa fa-filter"></i>Filters</h4>
+      </button>
+    </div>
+  </div>
+  <form method="get">
+    <div class="form-row justify-content-center">
+      <div class="col-12">
+        <div class="input-group">
+          {% render_field filterset.form.new_old_ordering class="form-control"%}
+          <!-- second filter -->
+          {%render_field filterset.form.author__username class="form-control"%}
+
+          <button class="btn btn-outline-info" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- {{filterset.form}} -->
+
+  {%for post in posts%}
+  <div class="row mt-3">
     <div class="col-md-8">
       <div class="card mb-4">
         <div class="card-header">
