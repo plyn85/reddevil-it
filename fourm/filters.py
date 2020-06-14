@@ -40,8 +40,8 @@ class PostFilter(filters.FilterSet):
     new_old_ordering = filters.ChoiceFilter(empty_label="Sort By",
                                             choices=NEW_OLD_CHOICES, method='filter_by_order')
 
-    new_most_pop_ordering = filters.ChoiceFilter(
-        label='Search by Newest/Most popular', choices=NEW_MOST_POP_CHOICES, method='filter_by_new_most_pop')
+    new_most_pop_ordering = filters.ChoiceFilter(empty_label="Sort By",
+                                                 label='Search by Newest/Most popular', choices=NEW_MOST_POP_CHOICES, method='filter_by_new_most_pop')
 
     class Meta:
         model = Post

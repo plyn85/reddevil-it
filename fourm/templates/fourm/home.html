@@ -38,7 +38,9 @@
     <div class="form-row justify-content-center">
       <div class="col-12">
         <div class="input-group">
-          {% render_field filterset.form.new_old_ordering class="form-control"%}
+          <!-- first filter -->
+          {% render_field filterset.form.new_most_pop_ordering class="form-control"%}
+          
           <!-- second filter -->
           {%render_field filterset.form.author__username class="form-control"%}
 
