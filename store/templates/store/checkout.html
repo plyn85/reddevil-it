@@ -61,6 +61,11 @@
           <span>Delivery (EUR)</span>
           <strong>€ {{delivery|floatformat:2}}</strong>
         </li>
+         {% if free_delivery_delta > 0 %}
+          <p class="mb-1 text-danger text-center">
+            You could get free delivery by spending just <strong>€{{ free_delivery_delta }}</strong> more!
+          </p>
+          {% endif %}
         <li class="list-group-item d-flex justify-content-between">
           <span>Members Discount(EUR)</span>
           <strong>(-15%) € {{member_discount|floatformat:2}}</strong>
