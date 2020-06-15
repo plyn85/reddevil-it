@@ -20,8 +20,42 @@ def shop(request):
     return render(request, 'store/shop.html', context)
 
 
-class ProductListView(ListView):
+class FilteredListView(ListView):
+    """added from a tutorial found at https://www.caktusgroup.com/blog/2018/10/18/filtering-and-pagination-django/"""
 
+    filterset_class = None
+
+    def get_queryset(self):
+        # getting the query set
+        queryset = super().get_queryset()
+        # then using the parameters to instantiate the filter set
+        self.filterset = self.filterset_class(
+            self.request.GET, queryset=queryset)
+        # returning the filtered queryset
+        return self.filterset.qs.distinct()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Pass the filterset to the template - it provides the form.
+        context['filterset'] = self.filterset
+        return context
+
+        queryset = super().get_queryset()
+        # then using the parameters to instantiate the filter set
+        self.filterset = self.filterset_class(
+            self.request.GET, queryset=queryset)
+        # returning the filtered queryset
+        return self.filterset.qs.distinct()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Pass the filterset to the template - it provides the form.
+        context['filterset'] = self.filterset
+        return context
+
+
+class ProductListView(FilteredListView):
+    filterset_class = ProductFilter
     model = Product
     # changing the default page where the list views looks for template
     template_name = 'store/shop.html'
