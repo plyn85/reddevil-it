@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import os
 if os.path.exists("env.py"):
     import env
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -141,7 +140,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # redirecting user to home page after login
-LOGIN_REDIRECT_URL = "fourm-home"
+LOGIN_REDIRECT_URL = "profile"
 LOGIN_URL = "login"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -6,6 +6,22 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileForm
 from .models import Profile
 from fourm.models import Post
 from store.models import Order, OrderItem
+from django.contrib.auth.views import LoginView
+import json
+
+
+class MyLoginView(LoginView):
+    """if the users cart is empty returns the user 
+       there the profile page on login if the users has items In the cart returns the user to the cart on login"""
+
+    def get_success_url(self):
+        cart = json.loads(self.request.COOKIES['cart'])
+        if cart:
+            url = self.get_redirect_url()
+            return url or reverse('checkout')
+        if not cart:
+
+            return reverse('profile')
 
 
 def register(request):

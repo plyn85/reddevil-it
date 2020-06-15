@@ -65,6 +65,16 @@
           <span>Members Discount(EUR)</span>
           <strong>(-15%) € {{member_discount|floatformat:2}}</strong>
         </li>
+        {% if not user.is_authenticated %}
+            <label class="form-check-label text-center my-2">
+              <a class="text-info" href="{% url 'register' %}"
+                >Create an account</a
+              >
+              or
+              <a class="text-info" href="{% url 'login' %}">login</a> to save
+             15%!
+            </label>
+            {% endif %}
         <li class="list-group-item d-flex justify-content-between">
           <span>Grand Total(EUR)</span>
           <strong>€ {{grand_total|floatformat:2}}</strong>
