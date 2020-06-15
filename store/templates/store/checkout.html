@@ -73,11 +73,12 @@
         {% if not user.is_authenticated %}
             <label class="form-check-label text-center my-2">
               <a class="text-info" href="{% url 'register' %}"
-                >Create an account</a
+                >
+                Create an account</a
               >
-              or
-              <a class="text-info" href="{% url 'login' %}">login</a> to save
-             15%!
+              <strong class="text-danger">or</strong>
+              <a class="text-info" href="{% url 'login' %}">login</a><strong class="text-danger"> to save
+             15%!</strong>
             </label>
             {% endif %}
         <li class="list-group-item d-flex justify-content-between">

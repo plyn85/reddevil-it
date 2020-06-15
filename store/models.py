@@ -18,6 +18,7 @@ class Product(models.Model):
         return self.name
 
 
+
 class Order(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.SET_NULL,
                                 null=True, blank=True, related_name='orders')
@@ -25,13 +26,15 @@ class Order(models.Model):
     email = models.EmailField(max_length=254, null=False, default="")
     phone_number = models.CharField(
         max_length=20, null=False, blank=False, default="")
-    country = CountryField(blank_label='Country *', null=False, blank=False)
+    country = CountryField(blank_label='Country *',
+                           null=False, blank=False)
     postcode = models.CharField(max_length=20, null=True, blank=True)
     town_or_city = models.CharField(
         max_length=40, null=False, blank=False, default="")
     street_address1 = models.CharField(
         max_length=80, null=False, blank=False, default="")
-    street_address2 = models.CharField(max_length=80, null=True, blank=True)
+    street_address2 = models.CharField(
+        max_length=80, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
     transaction_id = models.CharField(
@@ -48,13 +51,17 @@ class Order(models.Model):
     def get_cart_total(self):
         """Update total each time a item Is added
         """
+        user = self.profile.filter(pk=self.pk)
         self.total = self.orderitems.aggregate(Sum('orderitem_total'))[
             'orderitem_total__sum']or 0
-        if self.total < settings.FREE_DELIVERY_THRESHOLD:
+        if self.total < settings.FREE_DELIVERY_THRESHOLD and user:
             self.delivery_cost = self.total * \
                 settings.STANDARD_DELIVERY_PERCENTAGE / 100
+            self.deilvery_cost = self.total * \
+                settings.MEMBER_DISCOUNT / 100
         else:
             self.delivery_cost = 0
+            self.member_discount = 0
         self.grand_total = self.total + self.delivery_cost
         self.save()
 

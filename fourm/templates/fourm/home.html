@@ -17,43 +17,50 @@
 <div class="container-fluid">
 <!-- adding delivery discount partial partial -->
 {%include '../partials/_carousel.html'%}
-  <div class="row mt-3 mb-3">
-    <div class="col text-center">
-      <button class="btn btn-outline-dark">
-        <h4><i class="fa fa-filter"></i>Filters</h4>
-      </button>
-    </div>
-  </div>
-  <form method="get">
-    <div class="form-row justify-content-center">
-      <div class="col-12 col-md-6">
-        <div class="input-group">
-          {% render_field filterset.form.content class="form-control"%}
-          <button class="btn btn-outline-info" type="submit">
-            <i class="fa fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </form>
-  <form method="get">
-    <div class="form-row justify-content-center mt-3">
-      <div class="col-12">
-        <div class="input-group">
-          <!-- first filter -->
-          {% render_field filterset.form.new_most_pop_ordering class="form-control"%}
-          
-          <!-- second filter -->
-          {%render_field filterset.form.author__username class="form-control"%}
-
-          <button class="btn btn-outline-info" type="submit">
-            <i class="fa fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </form>
-
+  <div class="row justify-content-center my-5">
+  <div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
+                <form method="GET">
+                    <div class="input-group w-100">
+                         {% render_field filterset.form.content class="form-control"%}
+                        <div class="input-group-append">
+                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+              </div>
+  <div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
+                <form method="GET">
+                    <div class="input-group w-100">
+                         {% render_field filterset.form.new_most_pop_ordering class="form-control"%}
+                        <div class="input-group-append">
+                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+             <div class="col-12 col-lg-3  my-auto py-1 py-lg-0">
+                <form method="GET">
+                    <div class="input-group w-100">
+                         {%render_field filterset.form.author__username class="form-control"%}
+                        <div class="input-group-append">
+                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+          </div>
   <!-- taken and altered from https://bbbootstrap.com/snippets/forum-discussion-template-65198141 -->
   {%for post in posts%}
   <div class="row mt-3 justify-content-center">
