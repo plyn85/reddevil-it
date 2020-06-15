@@ -1,6 +1,8 @@
 <!-- extends base html -->
 {%extends 'base.html'%}
 {% load static %}
+<!-- loading crispy forms -->
+{% load widget_tweaks %}
 <!-- adding navbar partial -->
 {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
 
@@ -14,7 +16,36 @@
 <div class="container mt-5 ">
   <!-- adding delivery discount partial partial -->
 {%include '../partials/_carousel.html'%}
-
+<div class="row justify-content-center my-5">
+ <div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
+                <form method="GET">
+                    <div class="input-group w-100">
+                         {% render_field filterset.form.name class="form-control"%}
+                        <div class="input-group-append">
+                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+              </div>
+              <div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
+                <form method="GET">
+                    <div class="input-group w-100">
+                         {% render_field filterset.form.lowest_highest_prices class="form-control"%}
+                        <div class="input-group-append">
+                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+              </div>
+            </div>
     <div class="row justify-content-center mt-5">
       {%for product in products%}
       <div class="col-md-5 mb-4">
