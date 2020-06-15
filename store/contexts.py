@@ -48,23 +48,27 @@ def cart_contents(request):
                         'image': product.image}, 'quantity': cart[item]['quantity'], 'get_total': total,
 
         })
+    free_del_thresh = settings.FREE_DELIVERY_THRESHOLD
+    user = request.user.is_authenticated
+    member_discount_sum = Decimal(settings.MEMBER_DISCOUNT / 100)
+    deilvery_per_cent = Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
 
-    if total < settings.FREE_DELIVERY_THRESHOLD and not request.user.is_authenticated:
-        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
-        free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
+    if total < free_del_thresh and not user:
+        delivery = total * deilvery_per_cent
+        free_delivery_delta = free_del_thresh - total
         member_discount = 0
-    if total > settings.FREE_DELIVERY_THRESHOLD and not request.user.is_authenticated:
+    if total > free_del_thresh and not user:
         delivery = 0
-        free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
+        free_delivery_delta = free_del_thresh - total
         member_discount = 0
-    if request.user.is_authenticated and total < settings.FREE_DELIVERY_THRESHOLD:
-        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
-        free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
-        member_discount = total * Decimal(settings.MEMBER_DISCOUNT / 100)
-    elif request.user.is_authenticated and total > settings.FREE_DELIVERY_THRESHOLD:
+    if user and total < free_del_thresh:
+        delivery = total * deilvery_per_cent
+        free_delivery_delta = free_del_thresh - total
+        member_discount = total * member_discount_sum
+    elif request.user.is_authenticated and total > free_del_thresh:
         delivery = 0
         free_delivery_delta = 0
-        member_discount = total * Decimal(settings.MEMBER_DISCOUNT / 100)
+        member_discount = total * member_discount_sum
 
     # else:
     #     delivery = 0

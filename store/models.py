@@ -45,7 +45,7 @@ class Order(models.Model):
     grand_total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0)
 
-   def get_cart_total(self):
+    def get_cart_total(self):
         """Update total each time a item Is added
         """
         self.total = self.orderitems.aggregate(Sum('orderitem_total'))[
@@ -57,7 +57,7 @@ class Order(models.Model):
             self.delivery_cost = 0
         self.grand_total = self.total + self.delivery_cost
         self.save()
-    
+
     def _generate_transaction_id(self):
         """
         Generate a random, unique order number using UUID
