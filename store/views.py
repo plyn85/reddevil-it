@@ -10,6 +10,7 @@ from . forms import OrderForm
 from django.views.generic import ListView, DetailView
 from users.models import Profile
 from users.forms import ProfileForm
+from .filters import ProductFilter
 
 
 def shop(request):
