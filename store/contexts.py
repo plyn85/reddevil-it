@@ -48,18 +48,35 @@ def cart_contents(request):
                         'image': product.image}, 'quantity': cart[item]['quantity'], 'get_total': total,
 
         })
-    if total < settings.FREE_DELIVERY_THRESHOLD:
+
+    if total < settings.FREE_DELIVERY_THRESHOLD and not request.user.is_authenticated:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
-    else:
+        member_discount = 0
+    if total > settings.FREE_DELIVERY_THRESHOLD and not request.user.is_authenticated:
+        delivery = 0
+        free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
+        member_discount = 0
+    if request.user.is_authenticated and total < settings.FREE_DELIVERY_THRESHOLD:
+        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
+        free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
+        member_discount = total * Decimal(settings.MEMBER_DISCOUNT / 100)
+    elif request.user.is_authenticated and total > settings.FREE_DELIVERY_THRESHOLD:
         delivery = 0
         free_delivery_delta = 0
+        member_discount = total * Decimal(settings.MEMBER_DISCOUNT / 100)
 
-    grand_total = delivery + total
+    # else:
+    #     delivery = 0
+    #     free_delivery_delta = 0
+    #     member_discount = 0
+
+    grand_total = delivery + total - member_discount
 
     context = {"cart_items": cart_items,
                "product_count": product_count, "total": total, 'delivery': delivery,  'free_delivery_delta': free_delivery_delta,
                'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
+               'member_discount': member_discount,
                'grand_total': grand_total,
                'products': products,
                }
