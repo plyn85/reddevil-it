@@ -1,5 +1,6 @@
 
-
+<!-- loading crispy forms -->
+{% load widget_tweaks %}
 <nav class="navbar navbar-expand-lg " id="fixed-top">
   <a class="navbar-brand" href="#"><img src="https://res.cloudinary.com/plyn85/image/upload/c_scale,w_70/v1592322911/fans-forum/Color-of-the-Manchester-United-Logo_wiej43.jpg" alt="manchester united logo"> </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,28 +15,38 @@
       <li class="nav-item">
         <a class="nav-link" href="{%url 'shop'%}">Shop</a>
       </li>
+     
+       
+         {%if user.is_authenticated%}
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Account
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            {% if not user.is_authenticated %}
-          <a class="dropdown-item" href="{%url 'login'%}">Login</a>
-          <a class="dropdown-item" href="{%url 'register'%}">Register</a>
-          {%else%}
           <a class="dropdown-item" href="{%url 'logout'%}">Logout</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{%url 'profile'%}">View Profile</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a class="nav-link" href="{%url 'post'}">Post</a>
+      </li>
+      {%else%}
+       <li class="nav-item">
+    <a class="nav-link" href="{%url 'register'%}">Register</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'login'%}">Login</a>
+        </li> 
+      {%endif%}
+      <li class="nav-item">
+        <a class="nav-link disabled mr-3 mont-font d-none d-md-block" id="website-name">RedevilIt</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <form method="get" action="{% url 'shop'%}" class="form-inline my-2 my-lg-0">
+     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
     </form>
-     {%endif%}
+     
   </div>
 </nav>
