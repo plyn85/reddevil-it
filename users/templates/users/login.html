@@ -5,9 +5,9 @@
 <!-- start block content -->
 {%block content%}
 <!-- start of wrapper div for form -->
-<div class="row justify-content-center">
+<div class="row justify-content-center mt-5">
   <!-- wrapper col for form -->
-  <div class="col-8">
+  <div class="col-md-6">
     <!-- start of form -->
     <form method="POST">
       <!-- token added -->
@@ -15,33 +15,37 @@
       <!-- start of fieldset -->
       <fieldset class="form-group">
         <!-- start legend -->
-        <legend class="border-bottom mb-4">
-          Login
+        <legend class="border-bottom mb-4 text-center">
+          Login To RedevilIt
         </legend>
+        
+      <div class="row justify-content-center mb-3">
+      <h5 class="muted ">
+        Need an account?<a class="ml-2 text-center text-underline" href="{%url 'register'%}">Sign For Redevilit</a>
+      </h5>
+    </div>
         <!-- end legend -->
         <!-- loading form -->
         {{form|crispy}}
 
         <!-- start button wrapper div -->
-        <div class="form-group">
+        <div class="form-group form-row justify-content-center">
           <!-- start button -->
-          <button class="btn btn-outline-info" type="submit">Login</button>
+          <button class="btn btn-outline mont-font col-4" type="submit">Login</button>
           <!-- end button -->
           <!-- password reset link -->
+         
           <small
-            ><a href="{% url 'password_reset'%}">Forgot Password?</a></small
+            ><a href="{% url 'password_reset'%}" class="col ml-3 mt-3">Forgot Password?</a></small
           >
+      
         </div>
         <!-- end button wrapper div -->
       </fieldset>
       <!-- end fieldset -->
     </form>
     <!-- end form -->
-    <div class="border-top pt-3">
-      <small class="muted">
-        Need an account?<a class="ml-2" href="{%url 'register'%}">Sign Up</a>
-      </small>
-    </div>
+   
   </div>
   <!-- end wrapper col for form -->
 </div>
