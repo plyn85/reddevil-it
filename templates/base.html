@@ -128,8 +128,8 @@
       {% block nav %} {% endblock %}
     </header>
     <!-- end header -->
-    <main role="main" class="container">
-      <div class="row" id="flashed-messages">
+    <main role="main" class="container-fluid">
+      {% comment %} <div class="row" id="flashed-messages">
         <div class="col-md-8 mt-5">
           {% if messages %} {% for message in messages %}
           <div class="alert alert-{{ message.tags }}">
@@ -137,7 +137,7 @@
           </div>
           {% endfor %} {% endif %}
         </div>
-      </div>
+      </div> {% endcomment %}
       {% block content %}{% endblock %}
     </main>
 

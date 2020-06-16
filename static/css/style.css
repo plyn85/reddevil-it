@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap:,300,500,600,700,800,900");
-
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap:300,500,600,700,800,900");
 /* main body */
 
 /* scroll behaviour smooth added to give smooth scrolling
@@ -34,25 +34,35 @@ html {
 .mont-font {
   font-family: "Montserrat", sans-serif;
 }
-
+.bebas {
+  font-family: "Bebas Neue", cursive;
+}
 /* navabar  */
 .navbar,
 .dropdown-menu {
   background-color: #c70101;
 }
 
+.cara-text,
 .nav-item a {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   margin-top: 1rem;
   font-family: "Montserrat", sans-serif;
   color: #ffffff;
 }
+.cara-text {
+  font-size: 2rem;
+}
+.cara-main-text {
+  font-size: 3rem;
+  font-weight: 900;
+}
 #website-name {
   font-weight: 600;
   font-style: italic;
-  margin-left: 9rem;
-  font-size: 2.3rem;
+  margin-left: 3.5rem;
+  font-size: 1.5rem;
   color: #ffffff;
 }
 /* end navbar */
@@ -65,4 +75,11 @@ html {
 .checkout-img {
   width: 70px;
   height: 70px;
+}
+/* caresol background Image */
+.carousel-item {
+  height: 100vh;
+  background: no-repeat center center scroll;
+  background-size: cover;
+  position: relative;
 }
