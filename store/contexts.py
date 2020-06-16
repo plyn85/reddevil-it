@@ -7,7 +7,7 @@ from decimal import Decimal
 
 
 def cart_contents(request):
-    products = Product.objects.all()
+    products = Product.objects.all()[:6]
     # if request.user.is_authenticated:
 
     #     profile = request.user.profile

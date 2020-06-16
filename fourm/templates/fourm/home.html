@@ -172,18 +172,14 @@
         </div>
       </div>
       <!-- Slide Two - Set the background image for this slide in the line below -->
-      <div class="carousel-item" style="background-image: url('https://res.cloudinary.com/plyn85/image/upload/v1592332704/fans-forum/W1903679-1_c7tzzd.jpg')">
+      <div class="carousel-item" style="background-image: url('https://res.cloudinary.com/plyn85/image/upload/v1592331287/fans-forum/busby-babes-manchester-united-mural_1an6gcx5pmvm81l8v02tr1iz9j_acey24.jpg')">
         <div class="carousel-caption d-none d-md-block">
           <h2 class="display-4 bebas white cara-main-text">Shop for Shirts</h2>
           <p><strong class="cara-text bebas">Checkout our vintage Shirts</strong></p>
         </div>
       </div>
       <!-- Slide Three - Set the background image for this slide in the line below -->
-      <div class="carousel-item" style="background-image: url('https://res.cloudinary.com/plyn85/image/upload/v1592331287/fans-forum/busby-babes-manchester-united-mural_1an6gcx5pmvm81l8v02tr1iz9j_acey24.jpg')">
-        <div class="carousel-caption d-none d-md-block">
-          <h2 class="display-4 bebas white cara-main-text">Absorbe The History</h2>
-           <p><strong class="cara-text bebas">Take a walk down memory Lane</strong></p>
-        </div>
+    
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -196,4 +192,33 @@
         </a>
   </div>
 <!-- adding delivery discount partial partial -->
-{%include '../partials/_delivery_banner.html'%} {%endif%} {%endblock%}
+{%include '../partials/_delivery_banner.html'%}
+
+<div class="row justify-content-center mt-5">
+      {%for product in products%}
+      <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+         <div class="card h-100 border-0">
+          <a href="{% url 'shop'%}"
+            ><img
+              class="card-img-top"
+              src="{{product.image.url}}"
+              alt="Images of products we are selling"
+          /></a>
+          <div class="card-text text-center mb-2">{{product.name}}</div>
+          <div class="card-text text-center">{{product.description}}</div>
+          <div class="card-body">
+            <h5 class="text-center">€{{product.price}}</h5>
+          </div>
+          <div class="card-footer text-center">
+            <button data-product={{product.id}} data-action='add' class="btn btn-outline-secondary add-btn update-cart">
+              Add to Cart
+            </button>
+            <a class="btn btn-outline-success" href="{% url 'product-detail' product.id %}">View</a>
+          </div>
+        </div>
+     
+      </div>
+      {%endfor%}
+    </div>                  
+
+{%endif%} {%endblock%}

@@ -10,13 +10,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Q
 from .filters import PostFilter
+from store.models import Product
 
 
 def home(request):
     posts = Post.objects.all()
     # posts = my_filter.qs
     context = {
-        # 'post_count': post_count,
         'posts': posts}
     return render(request, "fourm/home.html", context)
 
