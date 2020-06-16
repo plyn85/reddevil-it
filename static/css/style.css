@@ -62,3 +62,8 @@
   border: 1px solid #000;
 }
 /* end stripe css */
+
+/* adding nav backgound color  */
+div#top-nav.row {
+  background-color: #c70101;
+}
