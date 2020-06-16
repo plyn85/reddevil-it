@@ -15,8 +15,10 @@ from .filters import ProductFilter
 
 def shop(request):
 
-    products = Product.objects.all()
-    context = {"products": products}
+    context = {
+        'products': products,
+
+    }
 
     return render(request, 'store/shop.html', context)
 
