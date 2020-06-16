@@ -1,3 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap:,300,500,600,700,800,900");
+
+/* main body */
+
+/* scroll behaviour smooth added to give smooth scrolling
+ effect*/
+body,
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  /* added for ios devices */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* removing all margins and padding from bootsrap rows an cols */
+.container-fluid,
+.container,
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+/* end main body */
+/* navabar  */
+.navbar,
+.dropdown-menu {
+  background-color: #c70101;
+}
+
+.nav-item a {
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  color: #ffffff;
+}
+
 .hide {
   display: none;
 }
@@ -7,8 +43,4 @@
 .checkout-img {
   width: 70px;
   height: 70px;
-}
-
-.fixed-top {
-  background-color: #c70101;
 }
