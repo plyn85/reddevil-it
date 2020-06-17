@@ -30,6 +30,9 @@ html {
 .red {
   color: #c70101;
 }
+.black {
+  color: #000000;
+}
 /* fonts */
 .mont-font {
   font-family: "Montserrat", sans-serif;

@@ -1,45 +1,61 @@
 <!-- extends base html -->
-{%extends 'base.html'%}
+{%extends 'base.html'%}{% load static %}
 <!-- loading crispy forms -->
 {% load crispy_forms_tags %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'users/css/users.css' %}" />
+
+{% endblock %}
 <!-- start block content -->
 {%block content%}
 <!-- start of wrapper div for form -->
-<div class="row justify-content-center">
+<div class="row justify-content-center mt-5">
   <!-- wrapper col for form -->
-  <div class="col-8">
+  <div class="col-8  col-xl-4">
     <!-- start of form -->
     <form method="POST">
       <!-- token added -->
       {% csrf_token%}
+       <!-- row wraps close window Icon -->
+        <div class="row justify-content-end">
+            <!-- start col -->
+            <div class="col-2">
+                <!-- link wraps Icon -->
+                <a href="{% url 'fourm-home' %}"><i class="far fa-window-close fa-3x black"></i
+        ></a>
+                <!-- end link -->
+             </div>
+              </div>
       <!-- start of fieldset -->
       <fieldset class="form-group">
         <!-- start legend -->
-        <legend class="border-bottom mb-4">
-          Join today
-        </legend>
+         <div class="mb-4 text-center mb-3 bebas">
+          <div class="legend">Sign For RedevilIt</div>
+        </div>
         <!-- end legend -->
+        <hr class="user-hr">
+      <div class="row justify-content-center mb-3">
+      <h5 class="mont-font">
+        Already have an account?<a class="ml-2 text-center text-dark text-underline" href="{%url 'login'%}">Sign In</a>
+      </h5>
+    </div>
         <!-- loading form -->
         {{form|crispy}}
 
         <!-- start button wrapper div -->
-        <div class="form-group">
+        <div class="form-group row justify-content-center">
           <!-- start button -->
-          <button class="btn btn-outline-info" type="submit">Sign up</button>
+          <button class="btn mont-font user-btn col-11 col-md-10 col-lg-5" type="submit">Sign For RedivilIt</button>
           <!-- end button -->
+          <!-- password reset link -->
         </div>
         <!-- end button wrapper div -->
+
       </fieldset>
       <!-- end fieldset -->
     </form>
     <!-- end form -->
-    <div class="border-top pt-3">
-      <small class="muted">
-        Already have an account?<a class="ml-2" href="{%url 'login'%}"
-          >Sign In</a
-        >
-      </small>
-    </div>
+  
   </div>
   <!-- end wrapper col for form -->
 </div>
