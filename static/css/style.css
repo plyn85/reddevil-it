@@ -33,6 +33,10 @@ html {
 .black {
   color: #000000;
 }
+
+.bg-black {
+  background-color: #000000;
+}
 /* fonts */
 .mont-font {
   font-family: "Montserrat", sans-serif;
@@ -96,3 +100,38 @@ html {
   font-size: 2rem;
   letter-spacing: 2px;
 }
+/* footer */
+
+.social:hover {
+  color: #c70101;
+}
+.footer ul {
+  list-style-type: none;
+}
+/* added to fix internet explorer issue with bootstrap flex on col class */
+
+.internet-explorer-fix {
+  flex: none;
+  -ms-flex: none;
+}
+
+/* end of internet explorer fix */
+
+.copyright {
+  margin: 0 auto;
+  background-color: #111;
+  padding: 0.75rem 0;
+}
+
+/* end copyright  */
+/* footer buttons */
+.btn-footer {
+  border: 2px solid#c70101;
+  border-radius: 10px;
+}
+.btn-footer:hover {
+  border: none;
+  background-color: #c70101;
+  color: #ffffff;
+}
+/* end footer */
