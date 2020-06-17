@@ -1,20 +1,55 @@
 <!-- extends base html -->
-{%extends 'base.html'%}
+{%extends 'base.html'%}{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'users/css/users.css' %}" />
+{% endblock %}
 <!-- start block content -->
 {%block content%}
-<!-- start of wrapper div-->
-<div class="row justify-content-center">
-  <!-- wrapper col-->
-  <div class="col-8">
-    <h2>You have been logged out</h2>
-    <div class="border-top pt-3">
-      <small class="muted">
-        Want to log back In?<a class="ml-2" href="{%url 'login'%}">Log In</a>
-      </small>
-    </div>
+<!-- start of wrapper div for form -->
+<div class="row justify-content-center mt-5">
+  <!-- wrapper col for form -->
+  <div class="col-md-8 col-xl-5">
+    <!-- start of form -->
+    <form method="GET" action="{%url 'login'%}">
+      <!-- token added -->
+      {% csrf_token%}
+       <!-- row wraps close window Icon -->
+        <div class="row justify-content-end">
+            <!-- start col -->
+            <div class="col-2">
+                <!-- link wraps Icon -->
+                <a href="{% url 'fourm-home' %}"><i class="far fa-window-close fa-3x black"></i
+        ></a>
+                <!-- end link -->
+            </div>
+             </div>
+      <!-- start of fieldset -->
+      <fieldset class="form-group">
+        <!-- start legend -->
+        <div class="mb-4 text-center mb-3 bebas">
+          <div class="legend">You have been logged Out</div>
+        </div>
+        <!-- end legend -->
+         <hr class="user-hr">
+       <div class="col">
+       <p class="text-success text-center mont-font">You have just logged out. Would you like to log back In?</p>
+      </div>
+        <!-- start button wrapper div -->
+        <div class="form-group">
+        <!-- start button wrapper div -->
+        <div class="form-group row justify-content-center">
+          <!-- start button -->
+          <button class="btn mont-font user-btn col-7 col-md-5" type="submit">Return To Login</button>
+          <!-- end button -->
+        </div>
+        <!-- end button wrapper div -->
+      </fieldset>
+      <!-- end fieldset -->
+    </form>
+    <!-- end form -->
   </div>
-  <!-- end wrapper col -->
+  <!-- end wrapper col for form -->
 </div>
-<!-- end form wrapper -->
-{%endblock%}
-<!-- end block content -->
+<!-- end form wrapper div -->
+  {%endblock%}
+  <!-- end block content -->
