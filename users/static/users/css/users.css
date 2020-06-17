@@ -1,0 +1,19 @@
+/* login page */
+
+.legend {
+  font-size: 2rem;
+}
+.user-hr {
+  border: none;
+  height: 2px;
+  background-color: #c70101;
+}
+.user-btn {
+  border: 2px solid#c70101;
+  border-radius: 10px;
+}
+.user-btn:hover {
+  border: none;
+  background-color: black;
+  color: white;
+}
