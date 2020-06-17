@@ -1,6 +1,11 @@
 <!-- extends base html -->
 {%extends 'base.html'%}
 {% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/store.css' %}" />
+
+{% endblock %}
 <!-- loading crispy forms -->
 {% load widget_tweaks %}
 <!-- adding navbar partial -->
@@ -13,10 +18,10 @@
 
 <!-- Page Content -->
 
-<div class="container mt-5 ">
+<div class="container-fluid mt-5 mb-0 shop-page-wrapper">
   <!-- adding delivery discount partial partial -->
 {% comment %} {%include '../partials/_carousel.html'%} {% endcomment %}
-<div class="row my-5">
+<div class="row mt-5">
  <div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
                 <form method="GET">
                     <div class="input-group w-100">
@@ -50,10 +55,12 @@
   {%include '../partials/_products.html'%}
   </div>
   <!-- /.row -->
-</div>
-<!-- /.container -->
 <!-- adding partial pagination buttons -->
 {%include '../partials/_pagination_btns.html'%}
+<!-- adding delivery discount partial partial -->
+{%include '../partials/_footer.html'%}
+</div>
+<!-- /.container -->
 {%endblock%}
 {% block postloadjs%}
 <script src="{% static 'store/js/cart.js' %}"></script>
