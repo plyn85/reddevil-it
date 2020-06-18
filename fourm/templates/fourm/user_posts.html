@@ -1,101 +1,29 @@
 <!-- extends base html -->
-{%extends 'base.html'%}
+{%extends 'base.html'%}{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'fourm/css/fourm.css' %}" />
+
+{% endblock %}
 <!-- start block content -->
-{%block content%}
 <!-- adding navbar partial -->
 {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
 <!-- ending navbar partial -->
-<!-- getting username that Is passed into url -->
-<h1 class="mt-5">Posts by {{post.kwargs.username}}</h1>
-{%for post in posts%}
-<!-- taken and altered from https://bbbootstrap.com/snippets/forum-discussion-template-65198141 -->
-<div class="container-fluid mt-5">
-  <div class="row">
-    <div class="col-md-8">
-      <div class="card mb-4">
-        <div class="card-header">
-          <div class="media flex-wrap w-100 align-items-center">
-            <div class="media-body ml-3">
-              <h4>{{post.author}}</h4>
-              <div class="text-muted small">
-                {{ post.date_posted|date:"F, d, Y "}}
-              </div>
+{%block content%}
+
+<!-- row wraps close window Icon -->
+        <div class="row justify-content-end user-posts-icon">
+            <!-- start col -->
+            <div class="col-2">
+                <!-- link wraps Icon -->
+                <a href="{% url 'fourm-home' %}"><i class="far fa-window-close fa-3x black"></i
+        ></a>
+                <!-- end link -->
             </div>
-            <div class="text-muted small ml-3">
-              <div>
-                Member since <strong>{{user.date_joined|date:"F Y "}}</strong>
-              </div>
-              <div><strong>{{page_obj.paginator.count}}</strong> posts</div>
-            </div>
-          </div>
-        </div>
-        <!-- start card body -->
-        <div class="card-body">
-          <!-- strat paragraph -->
-          <p>
-            <!-- start post title link to post detail -->
-            <a href="{% url 'post-detail' post.id %}">
-              {{post.title}}
-            </a>
-            <!-- end link -->
-          </p>
-          <!-- end paragaph -->
-          <p>
-            {{post.content}}
-          </p>
-        </div>
-        <div
-          class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3"
-        >
-          <p>
-            <a
-              class="like-btn"
-              data-href="{{post.get_like_api_url}}"
-              data-likes="{{post.likes.count}}"
-              href="{{post.get_like_url}}"
-              >{{post.likes.count}}Like</a
-            >
-          </p>
-          <div class="px-4 pt-3">
-            <!-- start button wrapper div -->
-            <div class="px-4 pt-3">
-              <!-- start if statment -->
-              {%if post.author == user%}
-              <!-- start button -->
-              <a
-                href="{% url 'post-update' post.id %}"
-                class="btn btn-outline-info"
-                >Update</a
-              >
-              <!-- end button -->
-              <!-- start button -->
-              <a
-                href="{% url 'post-delete' post.id %}"
-                class="btn btn-outline-info"
-                >Delete</a
-              >
-              <!-- end button -->
-              {%endif%}
-              <!-- endif -->
-              <!-- start button -->
-              <button type="button" class="btn btn-outline-info comments-btn">
-                Comments
-              </button>
-              <!-- end button -->
-            </div>
-            <!-- end buttom wrapper div -->
-          </div>
-        </div>
-        <!-- wrapper div only want comments to ever be hidden on home page -->
-        <div class="hide comments">
-          {%include '../partials/_comments.html'%}
-        </div>
-        <!-- end wrapper div -->
-      </div>
-    </div>
-  </div>
-</div>
-{%endfor%}
+             </div>
+<!-- adding partial pagination buttons -->
+{%include '../partials/_posts.html'%}
+
 <!-- adding partial pagination buttons -->
 {%include '../partials/_pagination_btns.html'%}
 <!-- endblock content -->

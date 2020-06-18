@@ -10,14 +10,22 @@
 }
 .comments-btn {
   border: 2px solid #000000;
-  padding: 3px;
-  border-radius: 5px;
+  padding: 8px;
+  border-radius: 15px;
 }
 /* comments button on hover */
 .comments-btn:hover {
-  padding: 5px;
-  border-radius: 0px;
+  background-color: #ffffff;
+  color: black;
+  border-radius: 10px;
+  border-color: #c70101;
 }
+/* applying margin top to the user post card-users posts page */
+.user-posts-icon {
+  margin-top: 9rem;
+}
+/* styling for comments */
+
 /* media quries */
 /* background image for products section hidden on mobile*/
 
