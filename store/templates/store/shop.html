@@ -13,14 +13,13 @@
 
 <!-- start block content -->
 {%block content%}
+<div class="shop-page-del-banner">
 <!-- adding delivery discount partial partial -->
 {%include '../partials/_delivery_banner.html'%}
-
+</div>
 <!-- Page Content -->
 
 <div class="container-fluid mt-5 mb-0 shop-page-wrapper">
-  <!-- adding delivery discount partial partial -->
-{% comment %} {%include '../partials/_carousel.html'%} {% endcomment %}
 <div class="row mt-5">
  <div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
                 <form method="GET">
@@ -53,14 +52,13 @@
             </div>
                       
   {%include '../partials/_products.html'%}
-  </div>
-  <!-- /.row -->
 <!-- adding partial pagination buttons -->
 {%include '../partials/_pagination_btns.html'%}
+  </div>
+  <!-- /.row -->
 <!-- adding delivery discount partial partial -->
 {%include '../partials/_footer.html'%}
-</div>
-<!-- /.container -->
+
 {%endblock%}
 {% block postloadjs%}
 <script src="{% static 'store/js/cart.js' %}"></script>

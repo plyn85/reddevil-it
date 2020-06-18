@@ -69,56 +69,58 @@
           </div>
   <!-- taken and altered from https://bbbootstrap.com/snippets/forum-discussion-template-65198141 -->
   {%for post in posts%}
-  <div class="row mt-3 justify-content-center">
-    <div class="col-md-8">
+  <div class="row mt-3 ml-lg-3">
+    <div class="col-12  col-lg-8 forum-post-div">
       <div class="card mb-4">
-        <div class="card-header">
+        <div class="card-header forum-post-div-header">
           <div class="media flex-wrap w-100 align-items-center">
-            <div class="media-body ml-3">
-              <a href="{%url 'user-post' post.author.username %}"
+            <div class="media-body row">
+              <a href="{%url 'user-post' post.author.username %}" class="black mont-font col col-md-4"
                 >{{post.author}}</a
               >
-              <div class="text-muted small">
-                {{ post.date_posted|date:"F d Y "}}
+              
+              <div class="black small mont-font mt-1 ml-md-4">
+                <small class="d-none d-md-block">posted:</small>
+                {{ post.date_posted|date:"F d, Y "}}
               </div>
             </div>
 
-            <div class="text-muted small ml-3">
-              <div>
-                Member since
-                <strong>{{user.date_joined|date:"F Y "}}</strong>
+             <div class="black small mont-font mt-1 ml-md-5 d-none d-md-block">
+                <small>joined:</small>
+                {{ user.date_joined|date:"F d, Y "}}
               </div>
 
-              <div></div>
+             
             </div>
           </div>
         </div>
         <!-- start card body -->
         <div class="card-body">
           <!-- strat paragraph -->
-          <p>
+          
             <!-- start post title link to post detail -->
-            <a href="{% url 'post-detail' post.id %}">
+            <p href="{% url 'post-detail' post.id %}" class="mont-font black">
               {{post.title}}
-            </a>
+            </p>
             <!-- end link -->
           </p>
           <!-- end paragaph -->
-          <p>
+          <p class="black">
             {{post.content}}
           </p>
         </div>
         <div
           class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3"
         >
-          <p>
+          <p class="ml-4 mt-2">
+            <small class="mont-font ml-2">Votes:</small>
             <a
-              class="like-btn"
+              class="like-btn black mont-font ml-2"
               data-href="{{post.get_like_api_url}}"
               data-likes="{{post.likes.count}}"
               href="{{post.get_like_url}}"
-              >{{post.likes.count}}Like</a
-            >
+              >upvote<i class="fas fa-thumbs-up"></i></a>
+          
           </p>
 
           <div class="px-4 pt-3">
@@ -129,23 +131,23 @@
               <!-- start button -->
               <a
                 href="{% url 'post-update' post.id %}"
-                class="btn btn-outline-info"
+                class="btn btn-post black mont-font"
                 >Update</a
               >
               <!-- end button -->
               <!-- start button -->
               <a
                 href="{% url 'post-delete' post.id %}"
-                class="btn btn-outline-info"
+                class="btn btn-post black mont-font"
                 >Delete</a
               >
               <!-- end button -->
               {%endif%}
               <!-- endif -->
               <!-- start button -->
-              <button type="button" class="btn btn-outline-info comments-btn">
+              <button type="button" class="btn comments-btn black">
                 Comments
-              </button>
+              </button><i class="fas fa-arrow-down ml-2 pt-2 fa-2x"></i>
               <!-- end button -->
             </div>
             <!-- end buttom wrapper div -->
@@ -205,5 +207,7 @@
 {%include '../partials/_products.html'%}
 </div>
 </div>
+
+{%endif%}
 {%include '../partials/_footer.html'%}
-{%endif%} {%endblock%}
+ {%endblock%}

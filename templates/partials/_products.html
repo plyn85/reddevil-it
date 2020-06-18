@@ -14,10 +14,10 @@
             <h5 class="text-center">€{{product.price}}</h5>
           </div>
           <div class="card-footer text-center">
-            <button data-product={{product.id}} data-action='add' class="btn btn-outline-secondary add-btn update-cart">
-              Add to Cart
+            <button data-product={{product.id}} data-action='add' class="btn btn-footer-prod-cards add-btn update-cart bg-black">
+              <span class="white mont-font">Add to Cart</span>
             </button>
-            <a class="btn btn-outline-success" href="{% url 'product-detail' product.id %}">View</a>
+            <a class="btn btn-footer-prod-cards bg-black" href="{% url 'product-detail' product.id %}"><span class="white mont-font">View</span></a>
           </div>
         </div>
      

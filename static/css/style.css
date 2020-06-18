@@ -37,6 +37,9 @@ html {
 .bg-black {
   background-color: #000000;
 }
+.bg-red {
+  background-color: #c70101;
+}
 /* fonts */
 .mont-font {
   font-family: "Montserrat", sans-serif;
@@ -108,6 +111,16 @@ html {
   font-size: 2rem;
   letter-spacing: 2px;
 }
+/* product card footer buttons  */
+.btn-footer-prod-cards {
+  border: 2px solid#c70101;
+  border-radius: 0.7rem;
+}
+.btn-footer-prod-cards:hover {
+  border: none;
+  background-color: #c70101;
+  color: #ffffff;
+}
 /* footer */
 
 .social:hover {
@@ -127,7 +140,6 @@ html {
 
 .copyright {
   margin: 0 auto;
-  background-color: #111;
   padding: 0.75rem 0;
 }
 

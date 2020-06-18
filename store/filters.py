@@ -6,8 +6,8 @@ from django import forms
 
 class ProductFilter(filters.FilterSet):
     LOWEST_HIGHEST_PRICES = (
-        ('ascending', 'Lowest Price'),
-        ('desending', 'Highest Price'),
+        ('ascending', 'Low to high'),
+        ('desending', 'high to low'),
     )
 
     name = filters.CharFilter(lookup_expr='icontains',

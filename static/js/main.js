@@ -45,11 +45,11 @@ $(document).ready(function () {
           if (data.liked) {
             //add one like
             var newLikes = likeCount + 1;
-            updateText(this_, newLikes, "unlike");
+            updateText(this_, newLikes, "downvote");
           } else {
             // remove one like
             var newLikes = likeCount - 1;
-            updateText(this_, newLikes, "like");
+            updateText(this_, newLikes, "upvote");
           }
         },
         error: function (error) {

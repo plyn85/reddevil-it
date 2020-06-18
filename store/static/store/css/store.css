@@ -99,3 +99,7 @@ select option[value=""] {
     -o-background-size: cover;
   }
 }
+/* del banner */
+.shop-page-del-banner {
+  margin-top: 5rem;
+}

@@ -2,37 +2,28 @@
 {%extends 'base.html'%} {% load static %}
 <!-- adding navbar partial -->
 {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
-
-<!-- start block content -->
 {%block content%}
-<!-- adding delivery discount partial partial -->
-{%include '../partials/_delivery_banner.html'%}
-<div class="row justify-content-center mt-5">
-   <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-         <div class="card h-100 border-0">
-      <a href="#"
-        ><img
-          class="card-img-top"
-          src="{{product.image.url}}"
-          alt="Images of products we are selling"
-      /></a>
-      <div class="card-text text-center mb-2">{{object.name}}</div>
-      <div class="card-text text-center">{{object.description}}</div>
-      <div class="card-body">
-        <h5 class="text-center">€{{object.price}}</h5>
+<div class="row ml-5 mt-5 mb-3">
+      <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-5 prod-wrapper">
+         <div class="card h-80 border-0">
+        <img
+              class="card-img-top"
+              src="{{product.image.url}}"
+              alt="Images of products we are selling"
+          />
+          <div class="card-text text-center mb-2 mont-font">{{object.name}}</div>
+          <div class="card-text text-center bebas">{{object.description}}</div>
+          <div class="card-body">
+            <h5 class="text-center">€{{object.price}}</h5>
+          </div>
+          <div class="card-footer text-center">
+            <button data-product={{product.id}} data-action='add' class="btn btn-footer-prod-cards add-btn update-cart bg-black">
+              <span class="white mont-font">Add to Cart</span>
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="card-footer text-center">
-        <button
-          data-product="{{product.id}}"
-          data-action="add"
-          class="btn btn-outline-secondary add-btn update-cart"
-        >
-          Add to Cart
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+    </div>                  
 
 <!-- /.row -->
 {%endblock%} {% block postloadjs%}
