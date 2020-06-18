@@ -8,11 +8,14 @@
   height: 2px;
   background-color: #c70101;
 }
-.user-btn {
+.user-btn,
+.post-confirm-delete-btn:hover {
   border: 2px solid#c70101;
   border-radius: 10px;
+  color: white;
 }
-.user-btn:hover {
+.user-btn:hover,
+.post-confirm-delete-btn {
   border: none;
   background-color: #000000;
   color: #ffffff;
