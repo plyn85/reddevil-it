@@ -98,6 +98,10 @@ select option[value=""] {
     -moz-background-size: cover;
     -o-background-size: cover;
   }
+  /* target pagination buttons In shop.html */
+  .pag-btns-shop-wrapper {
+    margin-left: 25rem;
+  }
 }
 /* del banner */
 .shop-page-del-banner {

@@ -47,6 +47,20 @@
      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
     </form>
-     
-  </div>
+    </div>
+      <li class="list-inline-item">
+                        <a class="nav-link" href="{% url 'cart' %}">
+                            <div class="text-center">
+                                <div><i class="fas fa-shopping-cart fa-lg white"></i></div>
+                                <p class="my-0 white">
+                                    {% if grand_total %}
+                                       €{{ grand_total|floatformat:2 }}
+                                    {% else %}
+                                        €0.00
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+  
 </nav>
