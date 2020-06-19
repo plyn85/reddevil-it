@@ -103,6 +103,21 @@ select option[value=""] {
     margin-left: 25rem;
   }
 }
+/* adding background image for profile page */
+@media (min-width: 540px) {
+  .profile-section-img-wrapper {
+    background-image: url("https://res.cloudinary.com/plyn85/image/upload/v1592585973/fans-forum/NINTCHDBPICT000435942745_xkpgtj.jpg");
+    background-position-x: 50%;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+  }
+  /* target pagination buttons In shop.html */
+  .pag-btns-shop-wrapper {
+    margin-left: 25rem;
+  }
+}
 /* del banner */
 .shop-page-del-banner {
   margin-top: 5rem;
@@ -111,25 +126,33 @@ select option[value=""] {
 .checkout-container-wrapper {
   margin-top: 6rem;
 }
-/* checkout page btns */
+/* checkout an cart page btns */
+.btn-cart-checkout,
 .payment-btn {
-  border: 2px solid black;
-  padding: 7px;
+  border: 2px solid #00a92c;
+  background-color: #00a92c;
   color: white;
+  padding: 7px;
   border-radius: 5px;
 }
+
 .payment-btn:hover {
-  background-color: white;
+  border: 2px solid #000000;
+  background-color: #ffffff;
   color: black;
 }
 .adjust-cart-btn {
-  border: 2px solid black;
-  border-radius: 5px;
+  border: 2px solid#000000;
   padding: 7px;
-  background-color: white;
+  background-color: #ffffff;
   color: black;
 }
 .adjust-cart-btn:hover {
-  background-color: black;
+  background-color: #000000;
   color: white;
+}
+
+/* stlying profile page  */
+.profile-section-img-wrapper {
+  margin-top: 5rem;
 }

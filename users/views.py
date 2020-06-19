@@ -42,13 +42,15 @@ def register(request):
 def profile(request):
     profile = get_object_or_404(Profile, user=request.user)
     if request.method == "POST":
-        u_form = UserUpdateForm(request.POST, instance=profile)
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        # both forms have to be valid to save the data
+        if u_form.is_valid():
+            u_form.save()
+
+    if request.method == "POST":
         p_form = ProfileForm(
             request.POST, instance=profile)
-        # both forms have to be valid to save the data
-        if u_form.is_valid() and p_form.is_valid():
-
-            u_form.save()
+        if p_form.is_valid():
             p_form.save()
 
             messages.success(
@@ -57,7 +59,7 @@ def profile(request):
 
     else:
         u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileForm(instance=profile)
+        p_form = ProfileForm(instance=request.user.profile)
         orders = profile.orders.all
     context = {
         'u_form': u_form,

@@ -1,5 +1,9 @@
 <!-- extends base html -->
-{%extends 'base.html'%}
+{%extends 'base.html'%}{%load static%}
+<!-- core css -->{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/store.css' %}" /> 
+<link rel="stylesheet" href="{% static 'users/css/users.css' %}" />
+{% endblock %}
 <!-- loading crispy forms -->
 {% load crispy_forms_tags %}
 <!-- adding navbar partial -->
@@ -7,25 +11,51 @@
 <!-- ending navbar partial -->
 <!-- start block content -->
 {%block content%}
+<div class="profile-section-img-wrapper">
 <div class="row justify-content-center">
-  <div class="col-12 col-lg-6 mt-lg-5">
-    <h2 class="account-heading">{{ user.username }}</h2>
-    <p class="text-secondary">{{ user.email }}</p>
+  <div class="col-12 col-lg-7 mt-lg-5 bg-white">
+  <!-- row wraps close window Icon -->
+        <div class="row justify-content-end">
+            <!-- start col -->
+            <div class="col-2">
+                <!-- link wraps Icon -->
+                <a href="{% url 'fourm-home' %}"><i class="far fa-window-close fa-3x black"></i
+        ></a>
+                <!-- end link -->
+            </div>
+             </div>
+    <h2 class="bebas text-center mt-2">{{ user.first_name }} {{ user.last_name }}</h2>
+    <hr class="user-hr">
+    <p class="mont-font text-center">You signed for us on the <span class="font-italic red">{{ user.date_joined|date:"d M Y"}}</span></p>
+    <p class="mont-font text-center">You username is <span class="font-italic red">{{ user.username }}<span></p>
+    <p class="mont-font text-center">You email address is <span class="font-italic red">{{ user.email }}<span></p>
+    </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+    <div class="col-12 col-lg-7 bg-white">
     <!-- start of form -->
     <form method="POST">
       <!-- token added -->
       {% csrf_token%}
       <!-- start of fieldset -->
       <fieldset class="form-group">
-        <!-- start legend -->
-        <legend class="border-bottom mb-4">
-          Update your User Info
-        </legend>
-        <!-- end legend -->
+         <h2 class="bebas text-center mt-2">Update your Info</h2>
+         <hr class="user-hr">
         <!-- loading user/profile updateform -->
         {{u_form|crispy}}
       </fieldset>
-      <!-- end fieldset -->
+         <!-- start button wrapper div -->
+        <div class="form-group row justify-content-center">
+          <!-- start button -->
+          <button class="btn mont-font user-btn col-8 col-md-4 col-xl-5" type="submit">Update</button>
+          <!-- end button -->
+      </div>
+      <!-- end button wrapper div -->
+      </form>
+      </div>
+      </div>
+      </div>
+      {% comment %} <!-- end fieldset -->
       <fieldset class="form-group">
         <legend class="border-bottom mb-4">
           Update your Delivery Info
@@ -41,9 +71,9 @@
       </div>
       <!-- end button wrapper div -->
     </form>
-  </div>
+  </div> {% endcomment %}
 
-  <div class="col-12 col-lg-6 mt-lg-5">
+  {% comment %} <div class="col-12  mt-lg-5">
     <p class="text-muted">Order History</p>
     <div class="order-history table-responsive">
       <table class="table table-sm table-borderless">
@@ -84,6 +114,9 @@
         </tbody>
       </table>
     </div>
-  </div>
-</div>
+  </div> {% endcomment %}
+{% comment %} </div>
+</div> {% endcomment %}
+<!-- adding footer partial -->
+ {%include '../partials/_footer.html'%} 
 {%endblock%}

@@ -74,12 +74,12 @@
 						<a href="{% url 'cart' %}" class="btn adjust-cart-btn rounded-0"> <span class="icon">
               <i class="fas fa-chevron-left"></i>
             </span> <span class="font-weight-bold">Adjust Cart</span> </a>
-						<button id="submit-button" class="btn  rounded-0"> <span class="font-weight-bold mont-font text-capitalize payment-btn bg-black">Complete Payment</span> <span class="icon">
-              <i class="fas fa-lock"></i>
+						<button id="submit-button" class="btn   bg-green white"> <span class="font-weight-bold mont-font text-capitalize payment-btn ">Complete Payment</span> <span class="icon">
+              <i class="fas fa-lock green"></i>
             </span> </button>
 						<p class=" red my-0 mt-3"> <span class="icon">
-              <i class="fas fa-exclamation-circle"></i>
-            </span> <span class="mont-font">Your card will be charged
+              <i class="fas fa-exclamation-circle green"></i>
+            </span> <span class="mont-font green">Your card will be charged
               <strong class="mont-font">€{{ grand_total|floatformat:2 }}</strong></span
             >
           </p>
