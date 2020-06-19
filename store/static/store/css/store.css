@@ -107,3 +107,29 @@ select option[value=""] {
 .shop-page-del-banner {
   margin-top: 5rem;
 }
+/* checkout page */
+.checkout-container-wrapper {
+  margin-top: 6rem;
+}
+/* checkout page btns */
+.payment-btn {
+  border: 2px solid black;
+  padding: 7px;
+  color: white;
+  border-radius: 5px;
+}
+.payment-btn:hover {
+  background-color: white;
+  color: black;
+}
+.adjust-cart-btn {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 7px;
+  background-color: white;
+  color: black;
+}
+.adjust-cart-btn:hover {
+  background-color: black;
+  color: white;
+}
