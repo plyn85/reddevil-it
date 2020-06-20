@@ -131,10 +131,15 @@ html {
 }
 /* over riding stripe and all other forms inputs*/
 /* for stripe */
+/* overriding scss on country dropdown otherwise country value partly blocked */
+select.form-control:not([size]):not([multiple]) {
+  height: calc(2.25rem + 9px);
+}
+
 .StripeElement,
 .form-style-input {
   box-sizing: border-box;
-  height: 40px;
+  height: 50px;
   padding: 10px 12px;
   border: 1px solid black;
   border-radius: 0px;
