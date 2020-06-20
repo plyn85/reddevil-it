@@ -6,6 +6,7 @@ from django_countries.fields import CountryField
 from django.db.models import Sum
 from django.conf import settings
 from decimal import Decimal
+from django.contrib.auth.models import User
 
 
 class Product(models.Model):
@@ -16,7 +17,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-
 
 
 class Order(models.Model):
@@ -51,17 +51,13 @@ class Order(models.Model):
     def get_cart_total(self):
         """Update total each time a item Is added
         """
-        user = self.profile.filter(pk=self.pk)
         self.total = self.orderitems.aggregate(Sum('orderitem_total'))[
             'orderitem_total__sum']or 0
-        if self.total < settings.FREE_DELIVERY_THRESHOLD and user:
+        if self.total < settings.FREE_DELIVERY_THRESHOLD:
             self.delivery_cost = self.total * \
                 settings.STANDARD_DELIVERY_PERCENTAGE / 100
-            self.deilvery_cost = self.total * \
-                settings.MEMBER_DISCOUNT / 100
         else:
             self.delivery_cost = 0
-            self.member_discount = 0
         self.grand_total = self.total + self.delivery_cost
         self.save()
 
