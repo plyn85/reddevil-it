@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
+from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm, SetPasswordForm
 from .models import Profile
 
 
@@ -150,3 +150,28 @@ class UserPasswordResetForm(PasswordResetForm):
         self.fields['email'].label = False
         self.fields['email'].widget.attrs['class'] = 'form-style-input'
         self.fields['email'].widget.attrs['placeholder'] = 'Enter Email *'
+
+
+class UserSetPasswordForm(SetPasswordForm):
+
+    class Meta:
+        model = User
+        fields = ('new_password1', 'new_password2',)
+
+    def __init__(self, *args, **kwargs):
+
+        super().__init__(*args, **kwargs)
+
+        placeholders = {
+            'new_password1': 'New Password',
+            'new_password2': 'Confirm new Password',
+
+        }
+
+        self.fields['new_password1'].widget.attrs['autofocus'] = True
+        for field in self.fields:
+            placeholder = f'{placeholders[field]} *'
+            self.fields[field].help_text = None
+            self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields[field].widget.attrs['class'] = 'form-style-input'
+            self.fields[field].label = False

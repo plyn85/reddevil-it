@@ -1,7 +1,9 @@
 from django.urls import path
 from .views import register, profile, order_history, change_password, MyLoginView
 from django.contrib.auth import views as auth_views
-from .forms import UserLoginForm, UserPasswordResetForm
+from .forms import UserLoginForm, UserSetPasswordForm, UserPasswordResetForm
+
+
 urlpatterns = [
     path('profile/', profile, name="profile"),
     path('register/', register, name="register"),
@@ -12,8 +14,8 @@ urlpatterns = [
                                                                  template_name='users/password_reset.html'), name="password_reset"),
     path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(
         template_name='users/password_reset_done.html'), name="password_reset_done"),
-    path('password_reset_confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
-        template_name='users/password_reset_comfirm.html'), name="password_reset_confirm"),
+    path('password_reset_confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(form_class=UserSetPasswordForm,
+                                                                                                 template_name='users/password_reset_comfirm.html'), name="password_reset_confirm"),
     path('password_reset_complete/', auth_views.PasswordResetCompleteView.as_view(
         template_name='users/password_reset_complete.html'), name="password_reset_complete"),
     path('order_history/<transaction_id>',
