@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Profile
 
 
@@ -23,6 +23,30 @@ class UserRegisterForm(UserCreationForm):
         }
 
         self.fields['first_name'].widget.attrs['autofocus'] = True
+        for field in self.fields:
+            placeholder = f'{placeholders[field]} *'
+            self.fields[field].help_text = None
+            self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields[field].widget.attrs['class'] = 'form-style-input'
+            self.fields[field].label = False
+
+
+class UserLoginForm(AuthenticationForm):
+
+    class Meta:
+        model = User
+        fields = ('username', 'password',)
+
+    def __init__(self, *args, **kwargs):
+
+        super().__init__(*args, **kwargs)
+        placeholders = {
+            'username': 'username',
+            'password': 'password',
+
+        }
+
+        self.fields['username'].widget.attrs['autofocus'] = True
         for field in self.fields:
             placeholder = f'{placeholders[field]} *'
             self.fields[field].help_text = None
