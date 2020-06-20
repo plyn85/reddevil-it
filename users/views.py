@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import PasswordChangeForm
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserUpdateForm, ProfileForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileForm, UserPasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from .models import Profile
 from fourm.models import Post
@@ -76,7 +76,7 @@ def change_password(request):
     profile = get_object_or_404(Profile, user=request.user)
     # password from
     if request.method == 'POST':
-        pass_change_form = PasswordChangeForm(request.user, request.POST)
+        pass_change_form = UserPasswordChangeForm(request.user, request.POST)
         if pass_change_form.is_valid():
             user = pass_change_form.save()
             update_session_auth_hash(request, user)  # Important!
@@ -86,7 +86,7 @@ def change_password(request):
         else:
             messages.error(request, 'Please correct the error below.')
     else:
-        pass_change_form = PasswordChangeForm(request.user)
+        pass_change_form = UserPasswordChangeForm(request.user)
         messages.error(request, 'Please correct the error below.')
 
     return render(request, 'change_password.html', {

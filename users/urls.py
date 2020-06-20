@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import register, profile, order_history, MyLoginView, change_password
+from .views import register, profile, order_history, change_password, MyLoginView
 from django.contrib.auth import views as auth_views
 from .forms import UserLoginForm
 urlpatterns = [
