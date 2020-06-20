@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileForm
+from django.contrib.auth import update_session_auth_hash
 from .models import Profile
 from fourm.models import Post
 from store.models import Order, OrderItem
@@ -11,14 +13,14 @@ import json
 
 
 class MyLoginView(LoginView):
-    """if the users cart is empty returns the user 
+    """if the users cart is empty returns the user
        there the profile page on login if the users has items In the cart returns the user to the cart on login"""
 
     def get_success_url(self):
         cart = json.loads(self.request.COOKIES['cart'])
         if cart:
             url = self.get_redirect_url()
-            return url or reverse('checkout')
+            return url or reverse('shop')
         if not cart:
 
             return reverse('profile')
@@ -41,12 +43,12 @@ def register(request):
 @login_required
 def profile(request):
     profile = get_object_or_404(Profile, user=request.user)
+    # update user form
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        # both forms have to be valid to save the data
         if u_form.is_valid():
             u_form.save()
-
+     # update profile form
     if request.method == "POST":
         p_form = ProfileForm(
             request.POST, instance=profile)
@@ -68,6 +70,28 @@ def profile(request):
 
     }
     return render(request, 'users/profile.html', context)
+
+
+def change_password(request):
+    profile = get_object_or_404(Profile, user=request.user)
+    # password from
+    if request.method == 'POST':
+        pass_change_form = PasswordChangeForm(request.user, request.POST)
+        if pass_change_form.is_valid():
+            user = pass_change_form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(
+                request, 'Your password was successfully updated!')
+            return redirect('profile')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        pass_change_form = PasswordChangeForm(request.user)
+        messages.error(request, 'Please correct the error below.')
+
+    return render(request, 'change_password.html', {
+        'pass_change_form': pass_change_form
+    })
 
 
 def order_history(request, transaction_id):
