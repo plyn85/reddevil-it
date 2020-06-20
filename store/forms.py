@@ -30,7 +30,7 @@ class OrderForm(forms.ModelForm):
             'county': 'County, State or Locality',
 
         }
-    #     taken from https://github.com/ckz8780/boutique_ado_v1/blob/         6b3837fb56fdb60655292badbb2dcf649a074ec7/checkout/forms.py
+        # taken from https: // github.com/ckz8780/boutique_ado_v1/blob / 6b3837fb56fdb60655292badbb2dcf649a074ec7/checkout/forms.py
 
         self.fields['full_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
@@ -39,6 +39,6 @@ class OrderForm(forms.ModelForm):
                     placeholder = f'{placeholders[field]} *'
                 else:
                     placeholder = placeholders[field]
-                    self.fields[field].widget.attrs['placeholder'] = placeholder
-                    self.fields[field].widget.attrs['class'] = 'stripe-style-input'
-                    self.fields[field].label = False
+                self.fields[field].widget.attrs['placeholder'] = placeholder
+                self.fields[field].widget.attrs['class'] = 'stripe-style-input'
+                self.fields[field].label = False

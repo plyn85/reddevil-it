@@ -79,7 +79,7 @@ extends base html -->{%extends 'base.html'%}{%load static%}
 							<td> <a href="{% url 'order_history' order.transaction_id %}" title="{{ order.order_number }}" class="mont-font">
                 {{ order.transaction_id|truncatechars:6 }}
               </a> </td>
-							<td>{{ order.date_ordered }}</td>
+							<td class="mont-font">{{ order.date_ordered }}</td>
 							<td>
 								<ul class="list-unstyled"> {% for item in order.orderitems.all %}
 									<li class="small mont-font"> {% if item.product.has_sizes %} Size {{ item.product.size|upper }} {% endif %}{{ item.product.name }} x{{ item.quantity }} </li> {% endfor %} </ul>

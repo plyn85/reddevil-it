@@ -129,6 +129,70 @@ html {
   background-color: #c70101;
   color: #ffffff;
 }
+/* over riding stripe and all other forms inputs*/
+/* for stripe */
+.StripeElement,
+.form-style-input {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border: 1px solid black;
+  border-radius: 0px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  transition: box-shadow 150ms ease;
+}
+/* for country dropdown menu select, */
+select option {
+  color: #000000;
+}
+
+select:invalid,
+select option[value=""] {
+  margin-bottom: 2px;
+  color: #aab7c4 !important;
+}
+
+.StripeElement--focus,
+.form-style-input:focus,
+.form-style-input:active {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+.form-style-input::-webkit-input-placeholder {
+  color: #aab7c4;
+}
+
+.form-style-input::-moz-placeholder {
+  color: #aab7c4;
+}
+
+.form-style-input:-ms-input-placeholder {
+  color: #aab7c4;
+}
+
+.form-style-input::-ms-input-placeholder {
+  color: #aab7c4;
+}
+
+.form-style-input::placeholder {
+  color: #aab7c4;
+}
+
+.fieldset-label {
+  position: relative;
+  right: 0.5rem;
+}
+
+#payment-form .form-control,
+#card-element {
+  color: #000;
+  border: 1px solid #000;
+}
 /* footer */
 
 .social:hover {
