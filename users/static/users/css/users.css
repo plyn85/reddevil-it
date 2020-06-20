@@ -17,7 +17,6 @@
 }
 .user-btn:hover,
 .post-confirm-delete-btn {
-  border: none;
   background-color: #000000;
 }
 .checkout-success-page-wrapper {

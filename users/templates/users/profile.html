@@ -15,10 +15,11 @@ extends base html -->{%extends 'base.html'%}{%load static%}
 			<p class="mont-font text-center">You signed for us on the <span class="font-italic red">{{ user.date_joined|date:"d M Y"}}</span></p>
 			<p class="mont-font text-center">You username is <span class="font-italic red">{{ user.username }}</span></p>
 			<p class="mont-font text-center">You email address is <span class="font-italic red">{{ user.email }}</span></p>
-		</div>
+		  <p class="mont-font text-center">Need to update your password click here <span class="font-italic red"><a href="{%url 'change_password'%}">Change password</a></span></p>
+		
+    </div>
 	</div>
   <div class="row justify-content-center mt-5">
-  <a href="{%url 'change_password'%}">change password</a>
 		<div class="col-12 col-lg-7 bg-white">
 			<!-- start of user form -->
 			<form method="POST">
