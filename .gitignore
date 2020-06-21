@@ -10,3 +10,4 @@ env.py
 __pycache__
 media
 media/images
+/__pycache__

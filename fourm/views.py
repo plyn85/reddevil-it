@@ -148,7 +148,8 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     # adding post model
     model = Post
     # only taking title and content fields from post model
-    fields = ['title', 'content']
+    form_class = PostForm
+
 # overiding the from valid method here
 
     def form_valid(self, form):
