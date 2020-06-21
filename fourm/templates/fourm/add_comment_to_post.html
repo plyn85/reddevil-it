@@ -14,16 +14,6 @@
    <form method="POST">
       <!-- token added -->
       {% csrf_token%}
-      <!-- row wraps close window Icon -->
-      <div class="row justify-content-end">
-         <!-- start col -->
-         <div class="col-2">
-            <!-- link wraps Icon -->
-            <a href="{% url 'fourm-home' %}"><i class="far fa-window-close fa-3x black"></i
-               ></a>
-            <!-- end link -->
-         </div>
-      </div>
       <!-- start of fieldset -->
       <fieldset class="form-group">
          <!-- start legend -->
@@ -47,7 +37,7 @@
       <!-- end fieldset -->
    </form>
    <!-- end form -->
-   </div>
+  </div>
    <!-- end wrapper col for form -->
 </div>
 <!-- end form wrapper div -->

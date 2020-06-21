@@ -10,4 +10,6 @@ env.py
 __pycache__
 media
 media/images
-/__pycache__
+ /__pycache__
+  __pycache__/
+  *.pyc

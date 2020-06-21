@@ -150,7 +150,9 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     # only taking title and content fields from post model
     form_class = PostForm
 
+
 # overiding the from valid method here
+
 
     def form_valid(self, form):
         # setting author to current logged In user

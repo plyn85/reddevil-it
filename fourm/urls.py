@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView,  PostDeleteView, UserPostListView, add_comment_to_post, PostLikeToggle, PostLikeAPIToggle
+from .views import PostListView, PostCreateView, PostDetailView, PostUpdateView,  PostDeleteView, UserPostListView, PostLikeToggle, PostLikeAPIToggle, add_comment_to_post
 from django_filters.views import FilterView
 from .filters import PostFilter
 from . forms import PostForm
@@ -20,6 +20,6 @@ urlpatterns = [
          name='add_comment_to_post'),
     #     path('comment/<int:pk>/approve/',
     #          comment_approve, name='comment_approve'),
-    #     path('comment/<int:pk>/remove/', comment_remove, name='comment_remove'),
+    # path('comment/<int:pk>/remove/', comment_remove, name='comment_remove'),
 
 ]

@@ -57,3 +57,20 @@ class UpdatePostForm(forms.ModelForm):
             self.fields[field].help_text = None
             self.fields[field].widget.attrs['placeholder'] = placeholders[field]
             self.fields[field].label = False
+
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ('text',)
+
+    def __init__(self, *args, **kwargs):
+
+        super().__init__(*args, **kwargs)
+
+        self.fields['text'].widget.attrs['autofocus'] = True
+        self.fields['text'].widget.attrs['class'] = 'content-form-style-input'
+        self.fields['text'].help_text = None
+        self.fields['text'].widget.attrs['placeholder'] = 'Add your comment here'
+        self.fields['text'].label = False
