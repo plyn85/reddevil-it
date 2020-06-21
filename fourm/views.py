@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
 from .models import Post, Comment
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, RedirectView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
@@ -131,10 +131,10 @@ class PostDetailView(DetailView):
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
-    # adding post model
     model = Post
-    # only taking title and content fields from post model
-    fields = ['title', 'content']
+    # adding post model
+    form_class = PostForm
+
 # overiding the from valid method here
 
     def form_valid(self, form):

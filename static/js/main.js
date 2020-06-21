@@ -4,10 +4,10 @@ $(document).ready(function () {
   setTimeout(function () {
     $("#flashed-message").hide("slow");
   }, 10000);
-  // overriding default carousel speed
-  $(".carousel").carousel({
-    interval: 2500,
-  });
+  // // overriding default carousel speed
+  // $(".carousel").carousel({
+  //   interval: 2500,
+  // });
   /* this will hide an show the comments */
   $(".comments-btn").click(function () {
     $(".comments").toggle();

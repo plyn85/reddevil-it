@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework',
     'widget_tweaks',
-
+    'bootstrap_modal_forms',
 
 
 
