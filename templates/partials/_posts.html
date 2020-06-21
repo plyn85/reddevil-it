@@ -30,9 +30,9 @@
           <!-- strat paragraph -->
           
             <!-- start post title link to post detail -->
-            <p href="{% url 'post-detail' post.id %}" class="mont-font black">
+            <p><a href="{% url 'post-detail' post.id %}" class="mont-font black">
               {{post.title}}
-            </p>
+            </a></p>
             <!-- end link -->
           </p>
           <!-- end paragaph -->
@@ -75,16 +75,17 @@
               <!-- end button -->
               {%endif%}
               <!-- endif -->
+              <form method="get" action="{%url 'post-detail' post.id %}">
               <!-- start button -->
-              <button type="button" class="btn comments-btn black">
-                Comments
-              </button><i class="fas fa-arrow-down ml-2 pt-2 fa-2x"></i>
+              <button type="submit" class="btn  black mt-sm-2 comments-btn">
+              View Comments
+              </button>
               <!-- end button -->
+            </form>
             </div>
             <!-- end buttom wrapper div -->
           </div>
         </div>
-          {%include '../partials/_comments.html'%}
       </div>
     </div>
   </div>

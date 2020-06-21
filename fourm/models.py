@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 # creating post model
 
@@ -36,7 +35,7 @@ class Comment(models.Model):
 
     post = models.ForeignKey(
         'fourm.Post', on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(User,  models.SET_NULL,
+    author = models.ForeignKey(User, models.SET_NULL,
                                blank=True,
                                null=True,)
     text = models.TextField()

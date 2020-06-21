@@ -8,10 +8,10 @@ $(document).ready(function () {
   // $(".carousel").carousel({
   //   interval: 2500,
   // });
-  /* this will hide an show the comments */
-  $(".comments-btn").click(function () {
-    $(".comments").toggle();
-  });
+  // /* this will hide an show the comments */
+  // $(".comments-btn").click(function () {
+  //   $(".comments").toggle();
+  // });
 
   /* adding ajax for like button 
    taken from a tutorial at https://www.youtube.com/watch?v=pkPRtQf6oQ8&t=678s */
