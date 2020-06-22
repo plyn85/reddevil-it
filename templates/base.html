@@ -1,146 +1,86 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-  <head>
-    <script type="text/javascript">
-      let user = "{{request.user}}";
-      /* The following function are copying from
-      https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
-      Its being used to set make csrf token across all pages*/
-      function getToken(name) {
-        var cookieValue = null;
-        if (document.cookie && document.cookie !== "") {
-          var cookies = document.cookie.split(";");
-          for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === name + "=") {
-              cookieValue = decodeURIComponent(
-                cookie.substring(name.length + 1)
-              );
-              break;
-            }
-          }
-        }
-        return cookieValue;
-      }
-      var csrftoken = getToken("csrftoken");
 
-      /* the following was taken from https://tutorialebooks.com/code-snippets/js-cookie-example-2/* Its being used to search for and parse a cookie stored in the browser*/
+<head>
+	<script type="text/javascript">
+	let user = "{{request.user}}";
+	/* The following function are copying from
+	https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
+	Its being used to set make csrf token across all pages*/
+	function getToken(name) {
+		var cookieValue = null;
+		if(document.cookie && document.cookie !== "") {
+			var cookies = document.cookie.split(";");
+			for(var i = 0; i < cookies.length; i++) {
+				var cookie = cookies[i].trim();
+				// Does this cookie string begin with the name we want?
+				if(cookie.substring(0, name.length + 1) === name + "=") {
+					cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+					break;
+				}
+			}
+		}
+		return cookieValue;
+	}
+	var csrftoken = getToken("csrftoken");
+	/* the following was taken from https://tutorialebooks.com/code-snippets/js-cookie-example-2/* Its being used to search for and parse a cookie stored in the browser*/
+	function getCookie(name) {
+		// Split cookie string and get all individual name=value pairs in an array
+		var cookieArr = document.cookie.split(";");
+		// Loop through the array elements
+		for(var i = 0; i < cookieArr.length; i++) {
+			var cookiePair = cookieArr[i].split("=");
+			/* Removing whitespace at the beginning of the cookie name
+			 and compare it with the given string */
+			if(name == cookiePair[0].trim()) {
+				// Decode the cookie value and return
+				return decodeURIComponent(cookiePair[1]);
+			}
+		}
+		// Return null if not found
+		return null;
+	}
+	// converting cart back into a javascript  object
+	let cart = JSON.parse(getCookie("cart"));
+	//  If the browser doesnt contain a cart cookie create one
+	if(cart == undefined) {
+		cart = {};
+		console.log("Cart created");
+		document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+	}
+	console.log("Cart:", cart);
+	</script> {% block meta %}
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> {% endblock %}
+	<!-- core css -->{% block corecss %}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" /> {% endblock %}
+	<!-- extra block css -->{% block extra_css %} {% endblock %}
+	<!-- core js -->{% block corejs %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+	<!-- stripe -->
+	<script src="https://js.stripe.com/v3/"></script> {% endblock %}
+	<!-- title -->{% if title %}
+	<title>RedDevil-it - {{ title }}</title> {% else %}
+	<title>RedDevil-it</title> {% endif %}
+	<!-- end title -->
+</head>
 
-      function getCookie(name) {
-        // Split cookie string and get all individual name=value pairs in an array
-        var cookieArr = document.cookie.split(";");
+<body>
+	<!-- start header -->
+	<header>
+		<!--block nav -->{% block nav %} {% endblock %} </header>
+	<!-- end header -->
+	<main role="main" class="container-fluid main-container"> {% comment %}
+		<div class="row" id="flashed-messages">
+			<div class="col-md-8 mt-5"> {% if messages %} {% for message in messages %}
+				<div class="alert alert-{{ message.tags }}"> {{ message }} </div> {% endfor %} {% endif %} </div>
+		</div> {% endcomment %} {% block content %}{% endblock %} </main> {% block postloadjs%} {%endblock%} </body>
 
-        // Loop through the array elements
-        for (var i = 0; i < cookieArr.length; i++) {
-          var cookiePair = cookieArr[i].split("=");
-
-          /* Removing whitespace at the beginning of the cookie name
-           and compare it with the given string */
-          if (name == cookiePair[0].trim()) {
-            // Decode the cookie value and return
-            return decodeURIComponent(cookiePair[1]);
-          }
-        }
-
-        // Return null if not found
-        return null;
-      }
-
-      // converting cart back into a javascript  object
-      let cart = JSON.parse(getCookie("cart"));
-      //  If the browser doesnt contain a cart cookie create one
-      if (cart == undefined) {
-        cart = {};
-        console.log("Cart created");
-        document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
-      }
-      console.log("Cart:", cart);
-    </script>
-
-    {% block meta %}
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    {% endblock %}
-    <!-- core css -->
-    {% block corecss %}
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/style.css' %}"
-    />
-    {% endblock %}
-
-    <!-- extra block css -->
-    {% block extra_css %} {% endblock %}
-    <!-- core js -->
-    {% block corejs %}
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
-      integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"
-      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-    <script src="{% static 'js/main.js' %}"></script>
-
-    <!-- stripe -->
-    <script src="https://js.stripe.com/v3/"></script>
-    {% endblock %}
-    <!-- title -->
-    {% if title %}
-    <title>RedDevil-it - {{ title }}</title>
-    {% else %}
-    <title>RedDevil-it</title>
-    {% endif %}
-    <!-- end title -->
-  </head>
-  <body>
-    <!-- start header -->
-    <header>
-      <!--block nav -->
-      {% block nav %} {% endblock %}
-    </header>
-    <!-- end header -->
-    <main role="main" class="container-fluid main-container">
-      {% comment %} <div class="row" id="flashed-messages">
-        <div class="col-md-8 mt-5">
-          {% if messages %} {% for message in messages %}
-          <div class="alert alert-{{ message.tags }}">
-            {{ message }}
-          </div>
-          {% endfor %} {% endif %}
-        </div>
-      </div> {% endcomment %}
-      {% block content %}{% endblock %}
-    </main>
-
-    {% block postloadjs%} {%endblock%}
-  </body>
 </html>
