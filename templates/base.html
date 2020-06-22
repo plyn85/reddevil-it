@@ -77,10 +77,31 @@
 	<header>
 		<!--block nav -->{% block nav %} {% endblock %} </header>
 	<!-- end header -->
-	<main role="main" class="container-fluid main-container"> {% comment %}
-		<div class="row" id="flashed-messages">
-			<div class="col-md-8 mt-5"> {% if messages %} {% for message in messages %}
-				<div class="alert alert-{{ message.tags }}"> {{ message }} </div> {% endfor %} {% endif %} </div>
-		</div> {% endcomment %} {% block content %}{% endblock %} </main> {% block postloadjs%} {%endblock%} </body>
+   {% comment %} toasts {% endcomment %}
+   {% if messages %}
+        <div class="message-container">
+            {% for message in messages %}
+                {% with message.level as level %}
+                    {% if level == 40 %}
+                        {% include 'includes/toasts/toast_error.html' %}
+                    {% elif level == 30 %}
+                        {% include 'includes/toasts/toast_warning.html' %}
+                    {% elif level == 25 %}
+                        {% include 'includes/toasts/toast_success.html' %}
+                    {% else %}
+                        {% include 'includes/toasts/toast_info.html' %}
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% comment %} end toasts {% endcomment %}
+	<main role="main" class="container-fluid main-container">  {% block content %}{% endblock %} </main> 
+  {% block postloadjs%} 
+  <script type="text/javascript">
+        $('.toast').toast('show');
+    </script>
+  {%endblock%} 
+  </body>
 
 </html>

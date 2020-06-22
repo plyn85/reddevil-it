@@ -8,20 +8,7 @@ from decimal import Decimal
 
 def cart_contents(request):
     products = Product.objects.all()[:6]
-    # if request.user.is_authenticated:
 
-    #     profile = request.user.profile
-
-    #     order, created = Order.objects.get_or_create(
-    #         profile=profile, complete=False)
-
-    #     cart_items = order.orderitem_set.all()
-
-    #     grand_total = order.get_cart_total
-
-    #     product_count = order.get_cart_items
-
-    # else:
     try:
         cart = json.loads(request.COOKIES['cart'])
         print('CART:', cart)
