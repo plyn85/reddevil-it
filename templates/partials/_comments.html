@@ -1,26 +1,20 @@
-<hr />
 <div class="row">
-  <div class="col">
-    <!-- link to add comment form -->
-    <a
-      class="btn btn-outline-info mb-2 comments-btn black"
-      href="{% url 'add_comment_to_post' pk=post.pk %}"
-      >Add comment</a
+	<div class="col">
+		<!-- link to add comment form --><a class="btn btn-outline-info mb-2 comments-btn black" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a
     >
-  
-    <div>
+      <p class="mont-font ml-1">{{post.comments.count}} {%if post.comments.count == 1%}comment{%else%}Comments{%endif%}</p>
     {% for comment in post.comments.all %}
-   
-    <small><strong class="mont-font col-3">
+    <small><strong class="mont-font col-6">
      by {{ user.get_username }}</strong></small>
-      <small><div class="date mont-font col-3 mr-5">{{ comment.created_date|timesince }} ago</div></small>
+      <small><div class="date mont-font col-6 mr-5">{{ comment.created_date|timesince }} ago</div></small>
       
       <p class="col-6">{{ comment.text|linebreaks }}</p>
    
-   
+   <hr/>
     {% empty %}
     <p class="mont-font">No comments added yet(</p>
     {% endfor %}
     <!-- end for -->
+  
   </div>
 </div>

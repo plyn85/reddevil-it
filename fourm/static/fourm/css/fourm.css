@@ -3,6 +3,9 @@
   border: 2px solid #c70101;
   padding: 0;
 }
+.post-detail-wrapper {
+  margin-top: 6rem;
+}
 /* styling fourm card buttons */
 .btn-post {
   border: 1px solid #c70101;
@@ -10,7 +13,7 @@
 }
 .comments-btn {
   border: 2px solid #000000;
-  padding: 8px;
+  padding: 5px;
   border-radius: 15px;
 }
 /* comments button on hover */
@@ -20,6 +23,7 @@
   border-radius: 10px;
   border-color: #c70101;
 }
+
 /* applying margin top to the user post card-users posts page */
 .user-posts-icon {
   margin-top: 9rem;
@@ -40,22 +44,11 @@
     -o-background-size: cover;
   }
 }
-/* lartgest devices */
+/* largest devices */
 @media (max-width: 1024px) {
   /* removing side border on all but largest devices */
   .forum-post-div {
     border-right: none;
     border-left: none;
-  }
-}
-/* large tablets only */
-@media (min-width: 768px) and (max-width: 1024px) {
-  /* adding side border and centering */
-  .forum-post-div {
-    border-right: 2px solid #c70101;
-    border-left: 2px solid #c70101;
-    border-radius: 0.5rem;
-    padding: 0;
-    margin: 0 auto;
   }
 }

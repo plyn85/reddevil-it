@@ -6,11 +6,11 @@ extends base html -->{%extends 'base.html'%}{%load static%}
 <!-- adding navbar partial -->{%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
 <!-- ending navbar partial -->
 <!-- start block content -->{%block content%}
-<div class="profile-section-img-wrapper pb-5">
+<div class="profile-section-img-wrapper pb-5 bg-off-white">
 	<div class="row justify-content-center">
-		<div class="col-12 col-lg-7 mt-lg-5 bg-white">
+		<div class="col-12 col-lg-7 mt-lg-5 bg-white p-2 border">
 			<!-- home page return partial -->{%include '../partials/_home_page_return.html'%}
-			<h2 class="bebas text-center mt-2">{{ user.first_name }} {{ user.last_name }}</h2>
+			<h2 class="bebas text-center mt-2">Welcome {{ user.first_name }}!</h2>
 			<hr class="user-hr">
 			<p class="mont-font text-center">You signed for us on the <span class="font-italic red">{{ user.date_joined|date:"d M Y"}}</span></p>
 			<p class="mont-font text-center">You username is <span class="font-italic red">{{ user.username }}</span></p>
@@ -20,7 +20,7 @@ extends base html -->{%extends 'base.html'%}{%load static%}
     </div>
 	</div>
   <div class="row justify-content-center mt-5">
-		<div class="col-12 col-lg-7 bg-white">
+		<div class="col-12 col-lg-7 bg-white p-2 border">
 			<!-- start of user form -->
 			<form method="POST">
 				<!-- home page return partial -->{%include '../partials/_home_page_return.html'%}
@@ -41,7 +41,7 @@ extends base html -->{%extends 'base.html'%}{%load static%}
 		</div>
 	</div> {% comment %} row wrappin form {% endcomment %}
 	<div class="row justify-content-center mt-5"> {% comment %} col wrapping form {% endcomment %}
-		<div class="col-12 col-lg-7 bg-white">
+		<div class="col-12 col-lg-7 bg-white p-2 border">
 			<!-- start of profile form -->
 			<form method="POST">
 				<!-- home page return partial -->{%include '../partials/_home_page_return.html'%}
@@ -62,7 +62,7 @@ extends base html -->{%extends 'base.html'%}{%load static%}
 		</div>
 	</div>
 	<div class="row justify-content-center mt-5"> {% comment %} col wrapping table{% endcomment %}
-		<div class="col-12 col-lg-7 bg-white">
+		<div class="col-12 col-lg-7 bg-white p-2 border">
     <!-- home page return partial -->{%include '../partials/_home_page_return.html'%}
 			<h2 class="bebas text-center mt-2">order history</h2>
 			<hr class="user-hr">

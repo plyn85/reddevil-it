@@ -48,6 +48,9 @@ html {
 .bg-white {
   background-color: white;
 }
+.bg-off-white {
+  background-color: #f8f8ff;
+}
 /* fonts */
 .mont-font {
   font-family: "Montserrat", sans-serif;

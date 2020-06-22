@@ -89,7 +89,7 @@ def change_password(request):
         pass_change_form = UserPasswordChangeForm(request.user)
         messages.error(request, 'Please correct the error below.')
 
-    return render(request, 'change_password.html', {
+    return render(request, 'users/change_password.html', {
         'pass_change_form': pass_change_form
     })
 

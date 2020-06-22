@@ -48,7 +48,6 @@ class UserUpdateForm(forms.ModelForm):
 
         }
 
-        self.fields['first_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
             placeholder = f'{placeholders[field]} *'
             self.fields[field].help_text = None
@@ -101,7 +100,6 @@ class ProfileForm(forms.ModelForm):
             'default_county': 'County, State or Locality',
         }
 
-        self.fields['default_phone_number'].widget.attrs['autofocus'] = True
         for field in self.fields:
             if field != 'default_country':
                 if self.fields[field].required:
