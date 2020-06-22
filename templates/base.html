@@ -83,13 +83,13 @@
             {% for message in messages %}
                 {% with message.level as level %}
                     {% if level == 40 %}
-                        {% include 'toasts/toast_error.html' %}
+                        {% include 'partials/toasts/toast_error.html' %}
                     {% elif level == 30 %}
-                        {% include 'toasts/toast_warning.html' %}
+                        {% include 'partials/toasts/toast_warning.html' %}
                     {% elif level == 25 %}
-                        {% include 'toasts/toast_success.html' %}
+                        {% include 'partials/toasts/toast_success.html' %}
                     {% else %}
-                        {% include 'toasts/toast_info.html' %}
+                        {% include 'partials/toasts/toast_info.html' %}
                     {% endif %}
                 {% endwith %}
             {% endfor %}
@@ -97,11 +97,13 @@
     {% endif %}
     {% comment %} end toasts {% endcomment %}
 	<main role="main" class="container-fluid main-container">  {% block content %}{% endblock %} </main> 
-  {% block postloadjs%} 
+     {% block footer %}
+   {% endblock %} 
+   {% block postloadjs %}
    <script type="text/javascript">
         $('.toast').toast('show');
     </script> 
-  {%endblock%}
+  {% endblock %}
   </body>
 
 </html>

@@ -10,7 +10,7 @@
 <!-- adding navbar partial -->
 {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
 
-  <div class="post-detail-wrapper">
+  <div class="post-detail-wrapper mb-3">
   <div class="row ml-lg-3">
     <div class="col-12  col-lg-8 forum-post-div">
       <div class="card mb-4">
@@ -105,3 +105,6 @@
 </div>
 </div>
 {%endblock%}
+{% block footer %}
+ {%include '../partials/_footer.html'%}
+  {% endblock %}

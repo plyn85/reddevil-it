@@ -61,10 +61,12 @@
 {%include '../partials/_pagination_btns.html'%}
   </div>
   <!-- /.row -->
-<!-- adding delivery discount partial partial -->
-{%include '../partials/_footer.html'%}
 
 {%endblock%}
+{% block footer %}
+ {%include '../partials/_footer.html'%}
+  {% endblock %}
 {% block postloadjs%}
+{{block.super}}
 <script src="{% static 'store/js/cart.js' %}"></script>
 {%endblock%}

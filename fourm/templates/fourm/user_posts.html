@@ -10,7 +10,7 @@
 {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
 <!-- ending navbar partial -->
 {%block content%}
-
+<div class="user-posts-wrapper mb-3">
 <!-- row wraps close window Icon -->
         <div class="row justify-content-end user-posts-icon">
             <!-- start col -->
@@ -28,3 +28,7 @@
 {%include '../partials/_pagination_btns.html'%}
 <!-- endblock content -->
 {%endblock%}
+</div>
+{% block footer %}
+ {%include '../partials/_footer.html'%}
+  {% endblock %}

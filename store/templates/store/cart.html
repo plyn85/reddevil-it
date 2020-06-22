@@ -81,6 +81,13 @@
          </span> <span class="text-uppercase mont-font black">Keep Shopping</span> </a> {% endif %} </div>
 		</div>
 	</div>
-</div> {% comment %} adding footer partial {% endcomment %} {%include '../partials/_footer.html'%} {% endblock %} {% block postloadjs%}
+</div> 
+{% endblock %} 
+<!-- adding footer partial -->
+{%block footer%} 
+{%include '../partials/_footer.html'%} 
+{% endblock %}
+{% block postloadjs%}
+{{block.super}}
 <script src="{% static 'store/js/cart.js' %}"></script> 
 {%endblock%}

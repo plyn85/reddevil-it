@@ -116,8 +116,11 @@
 </div>
 
 {%endif%}
-{%include '../partials/_footer.html'%}
- {%endblock%}
+{% endblock %}
+ {% block footer %}
+ {%include '../partials/_footer.html'%}
+  {% endblock %}
  {% block postloadjs%}
+ {{block.super}}
 <script src="{% static 'store/js/cart.js' %}"></script>
 {%endblock%}
