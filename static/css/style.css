@@ -6,12 +6,15 @@
  effect*/
 body,
 html {
+  height: 100%;
   font-size: 16px;
   scroll-behavior: smooth;
   /* added for ios devices */
   -webkit-overflow-scrolling: touch;
 }
-
+body {
+  flex-direction: column;
+}
 /* removing all margins and padding from bootsrap rows an cols */
 .container-fluid,
 .container,
@@ -19,7 +22,9 @@ html {
   margin: 0;
   padding: 0;
 }
-
+.main-container {
+  flex: 1 0 auto;
+}
 /* end main body */
 
 /* reusable */
@@ -208,7 +213,9 @@ select option[value=""] {
   border: 1px solid #000;
 }
 /* footer */
-
+.footer {
+  flex-shrink: 0;
+}
 .social:hover {
   color: #c70101;
 }

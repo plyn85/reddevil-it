@@ -1,66 +1,38 @@
-
-<!-- loading crispy forms -->
-{% load widget_tweaks %}
+<!-- loading crispy forms -->{% load widget_tweaks %}
 <nav class="navbar navbar-expand-lg fixed-top" id="fixed-top">
-  <a class="navbar-brand" href="#"><img src="https://res.cloudinary.com/plyn85/image/upload/c_scale,w_70/v1592322911/fans-forum/Color-of-the-Manchester-United-Logo_wiej43.jpg" alt="manchester united logo"> </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{%url 'fourm-home'%}">Home<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{%url 'shop'%}">Shop</a>
-      </li>
-     
-       
-          {%if user.is_authenticated%}
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	<a class="navbar-brand" href="#"><img src="https://res.cloudinary.com/plyn85/image/upload/c_scale,w_70/v1592322911/fans-forum/Color-of-the-Manchester-United-Logo_wiej43.jpg" alt="manchester united logo"> </a>
+	<!-- nav button -->
+	<button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon">
+      <!-- setting customer navbar toggler icon -->
+      <i class="fas fa-bars fa-2x"></i>
+    </span> </button>
+	<!-- end button -->
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active"> <a class="nav-link" href="{%url 'fourm-home'%}">{%if user.is_authenticated%}Fourm{%else%}Home{%endif%}<span class="sr-only">(current)</span></a> </li>
+			<li class="nav-item"> <a class="nav-link" href="{%url 'shop'%}">Shop</a> </li> {%if user.is_authenticated%}
+			<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Account
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{%url 'logout'%}">Logout</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{%url 'profile'%}">View Profile</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{%url 'post-create'%}">Post</a>
-      </li>
-      {%else%}
-       <li class="nav-item">
-    <a class="nav-link" href="{%url 'register'%}">Register</a>
-        </li> 
-        <li class="nav-item">
-          <a class="nav-link" href="{%url 'login'%}">Login</a>
-        </li> 
-      {%endif%}
-      <li class="nav-item">
-        <a class="nav-link disabled mr-3 mont-font d-none d-md-block" id="website-name">RedevilIt</a>
-      </li>
-    </ul>
-    <form method="get" action="{% url 'shop'%}" class="form-inline my-2 my-lg-0">
-     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-    </form>
-    </div>
-      <li class="list-inline-item">
-                        <a class="nav-link" href="{% url 'cart' %}">
-                            <div class="text-center">
-                                <div><i class="fas fa-shopping-cart fa-lg white"></i></div>
-                                <p class="my-0 white">
-                                    {% if grand_total %}
-                                       €{{ grand_total|floatformat:2 }}
-                                    {% else %}
-                                        €0.00
-                                    {% endif %}
-                                </p>
-                            </div>
-                        </a>
-                    </li>
-  
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown"> <a class="dropdown-item" href="{%url 'logout'%}">Logout</a>
+					<div class="dropdown-divider"></div> <a class="dropdown-item" href="{%url 'profile'%}">View Profile</a> </div>
+			</li>
+			<li class="nav-item"> <a class="nav-link" href="{%url 'post-create'%}">Post</a> </li> {%else%}
+			<li class="nav-item"> <a class="nav-link" href="{%url 'register'%}">Register</a> </li>
+			<li class="nav-item"> <a class="nav-link" href="{%url 'login'%}">Login</a> </li> {%endif%}
+			<li class="nav-item"> <a class="nav-link disabled mr-3 mont-font d-none d-md-block" id="website-name">RedevilIt</a> </li>
+		</ul>
+		<form method="get" action="{% url 'shop'%}" class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+		</form>
+	</div>
+	<li class="list-inline-item">
+		<a class="nav-link" href="{% url 'cart' %}">
+			<div class="text-center">
+				<div><i class="fas fa-shopping-cart fa-lg white"></i></div>
+				<p class="my-0 white"> {% if grand_total %} €{{ grand_total|floatformat:2 }} {% else %} €0.00 {% endif %} </p>
+			</div>
+		</a>
+	</li>
 </nav>
