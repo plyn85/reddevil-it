@@ -11,6 +11,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Q
 from .filters import PostFilter
 from store.models import Product
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 def home(request):
@@ -130,10 +132,11 @@ class PostDetailView(DetailView):
     model = Post
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
+class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Post
     # adding post model
     form_class = PostForm
+    success_message = "Your Post was created successfully"
 
 # overiding the from valid method here
 
@@ -144,15 +147,13 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     # adding post model
     model = Post
     # only taking title and content fields from post model
     form_class = PostForm
-
-
+    success_message = "Your Post was Updated successfully"
 # overiding the from valid method here
-
 
     def form_valid(self, form):
         # setting author to current logged In user
@@ -171,12 +172,12 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     # adding post model
     model = Post
     # adding route to home page after post Is deleted
     success_url = "/"
-
+    success_message = "Your Post was Deleted successfully"
     # adding test function so user can only update there own posts
 
     def test_func(self):
@@ -199,6 +200,7 @@ def add_comment_to_post(request, pk):
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
+            messages.success(request, 'Your comment was added succesfully')
             return redirect('post-detail', pk=post.pk)
     else:
         form = CommentForm()

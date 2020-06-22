@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib.auth import login, authenticate
-
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileForm, UserPasswordChangeForm
@@ -14,15 +14,17 @@ import json
 
 class MyLoginView(LoginView):
     """if the users cart is empty returns the user
-       there the profile page on login if the users has items In the cart returns the user to the cart on login"""
+       there the profile page on login if the users has items In the cart returns the user
+       to the shop on login"""
 
     def get_success_url(self):
         cart = json.loads(self.request.COOKIES['cart'])
         if cart:
+            messages.info(self.request, f'Your cart contains Items!')
             url = self.get_redirect_url()
             return url or reverse('shop')
         if not cart:
-
+            messages.info(self.request, f'Welcome too Your profile page!')
             return reverse('profile')
 
 
@@ -87,7 +89,6 @@ def change_password(request):
             messages.error(request, 'Please correct the error below.')
     else:
         pass_change_form = UserPasswordChangeForm(request.user)
-        messages.error(request, 'Please correct the error below.')
 
     return render(request, 'users/change_password.html', {
         'pass_change_form': pass_change_form

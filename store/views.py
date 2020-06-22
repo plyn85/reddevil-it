@@ -194,37 +194,8 @@ def checkout_success(request, transaction_id):
             user_profile_form.save()
 
     context = {"order": order}
+
     response = render(request, 'store/checkout_success.html', context)
     # remove cart from cookies when checkout success page reached
     response.delete_cookie("cart")
     return response
-
-
-# def updateItem(request):
-#     # getting data sent In from cart.js
-#     data = json.loads(request.body)
-#     # querying the data an getting the values
-#     productId = data['productId']
-#     action = data['action']
-#     print('action:', action)
-#     print('productId:', productId)
-
-#     customer = request.user.profile
-#     product = Product.objects.get(id=productId)
-
-#     order, created = Order.objects.get_or_create(
-#         profile=customer, complete=False)
-
-#     orderItem, created = OrderItem.objects.get_or_create(
-#         order=order, product=product)
-#     if action == 'add':
-#         orderItem.quantity = (orderItem.quantity + 1)
-#     elif action == 'remove':
-#         orderItem.quantity = (orderItem.quantity - 1)
-#     # saving orderitem to cart
-#     orderItem.save()
-#     # delete order item if none remain
-#     if orderItem.quantity <= 0:
-#         orderItem.delete()
-
-#     return JsonResponse('item was added', safe=False)
