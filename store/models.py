@@ -53,6 +53,33 @@ class Product(models.Model):
         default="",
     )
 
+    GIGGS = "Giggs"
+    SCHMEICHEL = "Schmeichel"
+    BECKHAM = 'Beckham'
+    C_RONALDO = 'C Ronaldo'
+    CANTONA = 'Cantona'
+    ROONEY = "Rooney"
+    KEANE = "Keane"
+    SCHOLES = "Scholes"
+
+    PLAYERS_NAMES = [
+        (GIGGS, "Giggs"),
+        (SCHMEICHEL, "Schmeichel"),
+        (BECKHAM, 'Beckham'),
+        (C_RONALDO, 'C Ronaldo'),
+        (CANTONA, 'Cantona'),
+        (ROONEY, "Rooney"),
+        (KEANE, "Keane"),
+        (SCHOLES, "Scholes"),
+
+    ]
+
+    players_names = models.CharField(
+        max_length=254,
+        choices=PLAYERS_NAMES,
+        default="",
+    )
+
     def __str__(self):
         return self.name
 

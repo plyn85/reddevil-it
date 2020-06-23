@@ -21,4 +21,4 @@ class ProductFilter(filters.FilterSet):
 
     class Meta:
         model = Product
-        fields = ['sizes', 'condtion', ]
+        fields = ['sizes', 'condtion', 'players_names']
