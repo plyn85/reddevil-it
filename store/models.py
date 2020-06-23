@@ -14,6 +14,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='images')
+
     SMALL = "S"
     MEDUIM = 'M'
     LARGE = 'L'
@@ -29,6 +30,26 @@ class Product(models.Model):
     sizes = models.CharField(
         max_length=2,
         choices=SIZE_CHOICES,
+        default="",
+    )
+    BRAND_NEW = "brand new"
+    EXCELLENT = "Excellent"
+    MINT = 'Mint'
+    VERY_GOOD = 'Very good'
+    GOOD = 'Good'
+
+    SHIRT_CONDTION = [
+        (BRAND_NEW, 'Brand new'),
+        (EXCELLENT, 'Excellent'),
+        (MINT, 'Mint'),
+        (VERY_GOOD, 'Very good'),
+        (GOOD, 'Good'),
+
+    ]
+
+    condtion = models.CharField(
+        max_length=254,
+        choices=SHIRT_CONDTION,
         default="",
     )
 
