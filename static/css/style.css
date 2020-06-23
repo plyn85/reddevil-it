@@ -252,7 +252,7 @@ select option[value=""] {
 /* end footer */
 
 /* bootstrap toasts */
-
+.cart-toast,
 .message-container {
   position: fixed;
   top: 72px;

@@ -4,7 +4,8 @@ $(document).ready(function () {
     //  setting data-product and data action buttons from ckeckout.html to variables
     let productId = this.dataset.product;
     let action = this.dataset.action;
-
+    if (action == "add") {
+    }
     addCookieItem(productId, action);
   });
   /*cookie created in script tag in base html 
@@ -19,6 +20,7 @@ $(document).ready(function () {
       } else {
         cart[productId]["quantity"] += 1;
       }
+      $(".toast-cart-success").toast();
     }
     /* decrease item by one or if its equal or less then zero remove */
     if (action == "remove") {

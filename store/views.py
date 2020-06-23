@@ -64,7 +64,7 @@ class ProductListView(FilteredListView):
     template_name = 'store/shop.html'
     context_object_name = "products"
     ordering = ['price']
-    paginate_by = 5
+    paginate_by = 6
 
 
 class ProductDetailView(DetailView):
