@@ -64,13 +64,6 @@ class ProductDetailView(DetailView):
 
 def shop(request):
 
-    size_form = ProductForm()
-    context = {
-
-        'size_form': size_form,
-
-    }
-
     return render(request, 'store/shop.html', context)
 
 

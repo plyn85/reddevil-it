@@ -23,19 +23,6 @@
 
 /* end stripe css */
 
-/* adding background image for shop page */
-@media (min-width: 540px) {
-  .shop-page-wrapper {
-    background-image: url("https://res.cloudinary.com/plyn85/image/upload/v1592423046/fans-forum/NINTCHDBPICT000435942745_ewuccx.jpg");
-
-    background-position-x: 50%;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-  }
-}
-
 /* del banner */
 .shop-page-del-banner {
   margin-top: 5rem;
@@ -77,4 +64,17 @@
 /* stlying profile page  */
 .profile-section-img-wrapper {
   margin-top: 5rem;
+}
+/* stlying for product detail page */
+.gallery-wrap .img-big-wrap img {
+  margin-top: 7rem;
+  width: auto;
+  display: inline-block;
+  cursor: zoom-in;
+}
+
+@media (min-width: 540px) {
+  .gallery-wrap .img-big-wrap img {
+    height: 22rem;
+  }
 }

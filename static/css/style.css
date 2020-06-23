@@ -14,6 +14,7 @@ html {
 }
 /* added for footer positioning */
 body {
+  background-color: #f8f8ff;
   flex-direction: column;
 }
 /* removing all margins and padding from bootsrap rows an cols */
@@ -132,12 +133,14 @@ body {
 /* product card footer buttons  */
 .btn-footer-prod-cards {
   border: 2px solid#c70101;
-  border-radius: 0.7rem;
-}
-.btn-footer-prod-cards:hover {
-  border: none;
+  padding: 7px 15px;
   background-color: #c70101;
   color: #ffffff;
+  text-transform: skew(-20deg);
+}
+.btn-footer-prod-cards:hover {
+  background-color: #ffffff;
+  color: #c70101;
 }
 /* over riding stripe and all other forms inputs*/
 /* for stripe */

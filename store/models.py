@@ -7,6 +7,7 @@ from django.db.models import Sum
 from django.conf import settings
 from decimal import Decimal
 from django.contrib.auth.models import User
+import datetime
 
 
 class Product(models.Model):
@@ -14,6 +15,13 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='images')
+
+    YEAR_CHOICES = []
+    for r in range(1980, (datetime.datetime.now().year+1)):
+        YEAR_CHOICES.append((r, r))
+
+    year = models.IntegerField(
+        ('year'), choices=YEAR_CHOICES, default=datetime.datetime.now().year)
 
     SMALL = "S"
     MEDUIM = 'M'
@@ -119,7 +127,7 @@ class Order(models.Model):
         self.total = self.orderitems.aggregate(Sum('orderitem_total'))[
             'orderitem_total__sum']or 0
         if self.total < settings.FREE_DELIVERY_THRESHOLD:
-            self.delivery_cost = self.total * \
+            self.delivery_cost = self.total *\
                 settings.STANDARD_DELIVERY_PERCENTAGE / 100
         else:
             self.delivery_cost = 0

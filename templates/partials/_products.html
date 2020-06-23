@@ -1,25 +1,19 @@
-<div class="row justify-content-center mt-5 mb-3">
+<div class="row mt-5 mb-3 justify-content-center">
       {%for product in products%}
-      <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-5 prod-wrapper">
+      <div class="col-sm-6 col-md-5 col-lg-2 mb-5 prod-wrapper">
          <div class="card h-100 border-0">
-          <a href="{% url 'shop'%}"
+          <a href="{% url 'product-detail' product.id %}"
             ><img
               class="card-img-top"
               src="{{product.image.url}}"
               alt="Images of products we are selling"
           /></a>
-          <div class="card-text text-center mb-2 mont-font">{{product.name}}</div>
-          <div class="card-text text-center bebas">{{product.description}} {{product.sizes}}</div>
-          <div class="card-text text-center bebas">{{product.condtion}}</div>
           <div class="card-text text-center bebas">{{product.players_names}}</div>
-          <div class="card-body">
-            <h5 class="text-center">€{{product.price}}</h5>
-          </div>
+          <div class="card-text text-center mb-2 mont-font">{{product.name}} {{product.year}}</div>
+          <div class="card-text text-center bebas"> {{product.sizes}}</div>
+          <div class="card-text text-center bebas">€{{product.price}}</div>
           <div class="card-footer text-center">
-            <button data-product={{product.id}} data-action='add' class="btn btn-footer-prod-cards add-btn update-cart bg-black">
-              <span class="white mont-font">Add to Cart</span>
-            </button>
-            <a class="btn btn-footer-prod-cards bg-black" href="{% url 'product-detail' product.id %}"><span class="white mont-font">View</span></a>
+            <a class="btn btn-footer-prod-cards" href="{% url 'product-detail' product.id %}"><span class="mont-font">View</span></a>
           </div>
         </div>
      
