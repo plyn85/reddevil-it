@@ -65,16 +65,6 @@
 .profile-section-img-wrapper {
   margin-top: 5rem;
 }
-/* stlying for product detail page */
-.gallery-wrap .img-big-wrap img {
+.product-detail-wrapper {
   margin-top: 7rem;
-  width: auto;
-  display: inline-block;
-  cursor: zoom-in;
-}
-
-@media (min-width: 540px) {
-  .gallery-wrap .img-big-wrap img {
-    height: 22rem;
-  }
 }

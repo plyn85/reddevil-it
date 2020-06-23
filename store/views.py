@@ -54,17 +54,24 @@ class ProductListView(FilteredListView):
     template_name = 'store/shop.html'
     context_object_name = "products"
     ordering = ['price']
-    paginate_by = 6
+    paginate_by = 8
 
 
-class ProductDetailView(DetailView):
-    # adding post model
-    model = Product
+def product_detail(request, product_id):
+    """ A view to show individual product details """
+
+    product = get_object_or_404(Product, pk=product_id)
+
+    context = {
+        'product': product,
+    }
+
+    return render(request, 'store/product_detail.html', context)
 
 
 def shop(request):
-
-    return render(request, 'store/shop.html', context)
+    products = Product.objects.all()
+    return render(request, 'store/shop.html', {"products": products})
 
 
 def cart(request):

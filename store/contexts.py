@@ -7,7 +7,7 @@ from decimal import Decimal
 
 
 def cart_contents(request):
-    products = Product.objects.all()[:6]
+    products = Product.objects.all()[:8]
 
     try:
         cart = json.loads(request.COOKIES['cart'])
@@ -16,7 +16,7 @@ def cart_contents(request):
         cart = {}
 
     cart_items = []
-
+    cart_detail_items = []
     product_count = 0
     total = 0
 
@@ -35,6 +35,7 @@ def cart_contents(request):
                         'image': product.image}, 'quantity': cart[item]['quantity'], 'get_total': total,
 
         })
+
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total

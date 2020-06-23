@@ -20,7 +20,6 @@ $(document).ready(function () {
       } else {
         cart[productId]["quantity"] += 1;
       }
-      $(".toast-cart-success").toast();
     }
     /* decrease item by one or if its equal or less then zero remove */
     if (action == "remove") {
