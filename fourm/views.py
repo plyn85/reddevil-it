@@ -133,8 +133,9 @@ class PostDetailView(DetailView):
 
 
 class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
-    model = Post
     # adding post model
+    model = Post
+    # adding post form
     form_class = PostForm
     success_message = "Your Post was created successfully"
 

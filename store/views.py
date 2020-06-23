@@ -13,16 +13,6 @@ from users.forms import ProfileForm
 from .filters import ProductFilter
 
 
-def shop(request):
-
-    context = {
-        'products': products,
-
-    }
-
-    return render(request, 'store/shop.html', context)
-
-
 class FilteredListView(ListView):
     """added from a tutorial found at https://www.caktusgroup.com/blog/2018/10/18/filtering-and-pagination-django/"""
 
@@ -74,8 +64,12 @@ class ProductDetailView(DetailView):
 
 def shop(request):
 
-    products = Product.objects.all()
-    context = {"products": products}
+    size_form = ProductForm()
+    context = {
+
+        'size_form': size_form,
+
+    }
 
     return render(request, 'store/shop.html', context)
 

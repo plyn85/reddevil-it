@@ -23,7 +23,7 @@
  <div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
                 <form method="GET">
                     <div class="input-group w-100">
-                         {% render_field filterset.form.name class="form-control"%}
+                         {% render_field filterset.form.sizes  class="form-control"%}
                         <div class="input-group-append">
                             <button class="form-control btn btn-black border border-black rounded-0" type="submit">
                                 <span class="icon">
@@ -49,6 +49,9 @@
                 </form>
               </div>
             </div>
+            
+                  
+                            
      <div class="pag-btns-shop-wrapper">
 <!-- adding partial pagination buttons -->
 {%include '../partials/_pagination_btns.html'%}
