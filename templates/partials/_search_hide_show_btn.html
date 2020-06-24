@@ -1,0 +1,28 @@
+
+{% comment %} search btn hide show for fourm an shop pages {% endcomment %}
+<div class="row justify-content-center d-md-none">
+    <div class="col-6">
+        <button class="form-control rounded-0 btn btn-success col-10" id="show-search-mobile-btn">
+            <span class="icon mont-font">
+                Search
+               <i class="fas fa-search"></i>
+                </span>
+                                
+                    </button>
+                </div>
+            <div class="col-6">
+                {% url 'fourm-home' as home_url %}
+                {% url 'shop' as shop_url %}
+                <form method="GET" action="{% if request.get_full_path == home_url %}{%url 'fourm-home'%}{%else%}{%url 'shop'%}{%endif%}">
+                            <button class="form-control btn rounded-0 btn-success" type="submit">
+                                
+                                <span class="icon mont-font">
+                                    Reset
+                                    <i class="fas fa-redo"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+              </div>
+            </div>

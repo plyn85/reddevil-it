@@ -20,18 +20,8 @@
 <!-- Page Content -->
 
 <div class="container-fluid mt-5 mb-0 shop-page-wrapper bg-off-white">
-<div class="row justify-content-center d-md-none">
-    <div class="col-12 d-md-none">
-        <button class="form-control rounded-0 btn btn-success col-10" id="show-search-mobile-btn">
-            <span class="icon mont-font">
-                Search
-               <i class="fas fa-search"></i>
-                </span>
-                                
-                    </button>
-                </div>
-            </div>
-        </div>
+{%include '../partials/_search_hide_show_btn.html'%}
+        
 <div class ="mobile-search-wrapper d-none d-md-block">
 <div class="row justify-content-center">
  <div class="col-12 col-md-6 col-lg-4 my-auto py-1 py-lg-0">
@@ -114,19 +104,6 @@
                             <button class="form-control btn btn-black border border-black rounded-0" type="submit">
                                 <span class="icon">
                                     <i class="fas fa-search"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-              </div>
-            <div class="col-12 col-md-6 col-lg-2 my-auto py-1 py-lg-0">
-                <form method="GET" action="{%url 'shop'%}">
-                            <button class="form-control btn rounded-0 btn-success" type="submit">
-                                
-                                <span class="icon mont-font">
-                                    Reset
-                                    <i class="fas fa-redo"></i>
                                 </span>
                             </button>
                         </div>
