@@ -1,98 +1,29 @@
-<!-- extends base html -->
-{%extends 'base.html'%} {% load static %}
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'store/css/store.css' %}" />
-
-{% endblock %}
-<!-- adding navbar partial -->
-{%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
-{%block content%}
-{% comment %} <div class="row ml-5 mt-5 mb-3">
-      <div class="col-sm-6 col-md-6  col-xl-3 mb-5">
-         <div class="card h-150 border-0">
-        <img
-              class="card-img-top"
-              src="{{product.image.url}}"
-              alt="Images of products we are selling"
-          />
-         
-          </div>
-        </div>
-      </div>
-    </div>                  
- <div class="card-text text-center mb-2 mont-font">{{object.name}}</div>
-          <div class="card-text text-center bebas">{{object.description}}</div>
-          <div class="card-body">
-            <h5 class="text-center">€{{object.price}}</h5>
-          </div>
-          <div class="card-footer text-center">
-            <button data-product={{product.id}} data-action='add' class="btn btn-footer-prod-cards add-btn update-cart bg-black">
-              <span class="mont-font">Add to Cart</span>
-            </button> {% endcomment %}
-
+<!-- extends base html -->{%extends 'base.html'%} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/store.css' %}" /> {% endblock %}
+<!-- adding navbar partial -->{%block nav%} {%include '../partials/_navbar.html'%} {%endblock%} {%block content%}
 <div class="container-fluid product-detail-wrapper">
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-                <div class="image-container my-5">
-                        <a href="{{ product.image.url }}" target="_blank">
-                            <img class="card-img-top img-fluid" src="{{product.image.url}}" alt="{{ product.name }}">
-                        </a>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="product-details-container mb-5 mt-md-5">
-                    <p class="mb-0">{{product.name }}</p>
-                    <p class="lead mb-0 text-left font-weight-bold">${{ product.price }}</p>
-
-                    <p class="mt-3">{{ product.description }}</p>
-                  
-                                <div class="col-12">
-                                    <p><strong>Size: {{product.sizes}}</strong></p>
-                                </div>
-                            
-                                             
-								{% comment %} <div class="form-group mr-5">
-									<div class="input-group">
-										<div class="input-group-prepend">
-											<button class="btn btn-sm btn-black rounded-0 update-cart" data-product="{{item.product.id}}" data-action="remove"> <span>
-                                 <i class="fas fa-minus fa-sm"></i>
-                                 </span> </button>
-										</div>
-										<input class="form-control form-control-sm text-center font-weight-bold black" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99">
-										<div class="input-group-append">
-											<button class="btn btn-sm btn-black rounded-0 update-cart" data-product="{{item.product.id}}" data-action="add"> <span>
-                                 <i class="fas fa-plus fa-sm"></i>
-                                 </span> </button>
-										</div>
-									</div>
-								</div>
-							</form> {% endcomment %}
-                           
-                            <div class="col{% if s %}-12 mt-2{% endif %}">
-                                <a href="{% url 'shop' %}" class="btn btn-outline-black rounded-0 mt-5">
-                                    <span class="icon">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="text-uppercase">Keep Shopping</span>
-                                </a>
-                                <button data-product={{product.id}} data-action='add' class="btn btn-footer-prod-cards add-btn update-cart bg-black">
-              <span class="white mont-font">Add to Cart</span>
-            </button>
-                            </div>
-                           
-                          
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-{%endblock%} 
-	{% block footer %}
- {%include '../partials/_footer.html'%}
-  {% endblock %}
-{% block postloadjs%}
-{{block.super}}
-<script src="{% static 'store/js/cart.js' %}"></script>
-{%endblock%}
+	<div class="row">
+		<div class="col-12 col-md-6 col-lg-5 offset-lg-2">
+			<div class="image-container my-5">
+				<a href="{{ product.image.url }}" target="_blank"> <img class="card-img-top img-fluid" src="{{product.image.url}}" alt="{{ product.name }}"> </a>
+			</div>
+		</div>
+		<div class="col-12 col-md-6 col-lg-4">
+			<div class="product-details-container mb-5 mt-md-5 ml-5">
+				<h3 class="mb-0 bebas">{{product.name }}</h3>
+				<p class="lead mb-0 text-left font-weight-bold mont-font">€{{ product.price }}</p>
+				<button data-product={{product.id}} data-action='add' class="btn btn-footer-prod-cards add-btn update-cart bg-black mt-2 mr-2"> <span class="mont-font">Add to Cart</span> </button>
+				<p class="mt-3 mont-font font-italic">{{ product.description }}</p>
+				<h6 class="mt-3 mont-font text-capitalize">
+                     Worn By {{ product.players_names }} during the {{product.year}} season</h6>
+				<h6 class="mt-3 mont-font text-capitalize">Condtion: {{ product.condtion }}</h6>
+				<h6 class="mr-5 mont-font"><strong>Size: {{product.sizes}}</strong></h6>
+				<a href="{% url 'shop' %}" class="btn btn-cart-checkout rounded-0 btn-lg"> <span class="icon">
+                     <i class="fas fa-chevron-left white"></i>
+                     </span> <span class="text-uppercase mont-font white">Keep Shopping</span> </a>
+				
+			</div>
+		</div>
+	</div>
+</div> {%endblock%} {% block footer %} {%include '../partials/_footer.html'%} {% endblock %} {% block postloadjs%} {{block.super}}
+<script src="{% static 'store/js/cart.js' %}"></script> {%endblock%}
