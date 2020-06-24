@@ -11,6 +11,7 @@ from django.views.generic import ListView, DetailView
 from users.models import Profile
 from users.forms import ProfileForm
 from .filters import ProductFilter
+from django.db.models import Q
 
 
 class FilteredListView(ListView):
@@ -70,8 +71,16 @@ def product_detail(request, product_id):
 
 
 def shop(request):
+
     products = Product.objects.all()
-    return render(request, 'store/shop.html', {"products": products})
+
+    context = {
+        'products': products,
+
+
+    }
+
+    return render(request, 'store/shop.html', )
 
 
 def cart(request):
