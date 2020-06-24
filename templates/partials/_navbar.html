@@ -22,10 +22,6 @@
 			<li class="nav-item"> <a class="nav-link" href="{%url 'login'%}">Login</a> </li> {%endif%}
 			<li class="nav-item"> <a class="nav-link disabled mr-3 mont-font d-none d-lg-block" id="website-name">RedevilIt</a> </li>
 		</ul>
-		<form method="get" action="{% url 'shop'%}" class="form-inline my-2 my-lg-0">
-			{% render_field filterset.form.search_all_products class="form-control"%}
-			<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-		</form>
 	</div>
 	<li class="list-inline-item">
 		<a class="nav-link" href="{% url 'cart' %}">

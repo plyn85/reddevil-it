@@ -12,8 +12,6 @@ class PostFilter(filters.FilterSet):
         model = Post
         fields = [
             'content', ]
-
-    """ taken and altered from a tutorial found at https://www.youtube.com/watch?v=nle3u6Ww6Xktaken """
     # setting choices for new/most popular
     NEW_MOST_POP_CHOICES = (
         ('descending', 'Newest Posts'),
