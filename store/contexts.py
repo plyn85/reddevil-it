@@ -16,26 +16,27 @@ def cart_contents(request):
         cart = {}
 
     cart_items = []
-    cart_detail_items = []
     product_count = 0
     total = 0
 
     # looping trough cart object and returning items plus the quantity of the entire cart
     for item, item_quantity in cart.items():
-        product = Product.objects.get(id=item)
-        item_quantity = cart[item]['quantity']
-        total += item_quantity * product.price
-        print(total)
-        product_count += item_quantity
-        print(product_count)
+        # try block to prevent items in cart that may have been removed from causing error
+        try:
+            product = Product.objects.get(id=item)
+            item_quantity = cart[item]['quantity']
+            # print(item_quantity)
+            total += item_quantity * product.price
+            product_count += item_quantity
+            print(product_count)
+            cart_items.append({
+                'id': product.id,
+                'product': {'id': product.id, 'name': product.name, 'price': product.price,
+                              'image': product.image}, 'quantity': cart[item]['quantity'], 'get_total': total,
 
-        cart_items.append({
-            'id': product.id,
-            'product': {'id': product.id, 'name': product.name, 'price': product.price,
-                        'image': product.image}, 'quantity': cart[item]['quantity'], 'get_total': total,
-
-        })
-
+            })
+        except:
+            pass
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
@@ -48,6 +49,7 @@ def cart_contents(request):
                'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
                'grand_total': grand_total,
                'products': products,
+
                }
 
     return context

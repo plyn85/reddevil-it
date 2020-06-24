@@ -50,9 +50,10 @@
         </div>
     {% endif %}
 	 {% comment %} adding toasts here for cart rendered when updated-cart button clicked in cart.js {% endcomment %}
-   {% comment %} {% include 'partials/toasts/toast_success_cart.html' %} {% endcomment %}
+  
 	{% comment %} end toasts {% endcomment %}
-	<main role="main" class="container-fluid main-container bg-off-white">  {% block content %}{% endblock %} </main> 
+	<main role="main" class="container-fluid main-container bg-off-white">  {% block content %}
+	{% endblock %} </main> 
      {% block footer %}
    {% endblock %} 
    {% block postloadjs %}
