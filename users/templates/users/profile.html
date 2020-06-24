@@ -7,6 +7,10 @@ extends base html -->{%extends 'base.html'%}{%load static%}
 <!-- ending navbar partial -->
 <!-- start block content -->{%block content%}
 <div class="profile-section-img-wrapper pb-5 bg-off-white">
+	<div class="row justify-content-center mt-3 mb-xs-4">
+          <a href="{%url 'shop'%}"><span class="mr-3 text-uppercase mont-font black btn-cart-checkout">Shop now</span> </a>
+          <a href="{%url 'fourm-home'%}"><span class="text-uppercase mont-font ml-3">See fourm</span> </a>
+	</div>
 	<div class="row justify-content-center">
 		<div class="col-12 col-lg-7 mt-lg-5 bg-white p-2 border">
 			<!-- home page return partial -->{%include '../partials/_home_page_return.html'%}
@@ -92,7 +96,7 @@ extends base html -->{%extends 'base.html'%}{%load static%}
 			</div>
 		</div>
 	</div>
-</div>
+</>
 {%endblock%}
 <!-- adding footer partial -->
 {%block footer%} 
