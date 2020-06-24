@@ -18,8 +18,21 @@
 {%include '../partials/_delivery_banner.html'%}
 </div>
 <!-- Page Content -->
-<div class="container-fluid mt-5 mb-0 shop-page-wrapper bg-off-white">
 
+<div class="container-fluid mt-5 mb-0 shop-page-wrapper bg-off-white">
+<div class="row justify-content-center d-md-none">
+    <div class="col-12 d-md-none">
+        <button class="form-control rounded-0 btn btn-success col-10" id="show-search-mobile-btn">
+            <span class="icon mont-font">
+                Search
+               <i class="fas fa-search"></i>
+                </span>
+                                
+                    </button>
+                </div>
+            </div>
+        </div>
+<div class ="mobile-search-wrapper d-none d-md-block">
 <div class="row justify-content-center">
  <div class="col-12 col-md-6 col-lg-4 my-auto py-1 py-lg-0">
                 <form method="GET">
@@ -109,7 +122,7 @@
               </div>
             <div class="col-12 col-md-6 col-lg-2 my-auto py-1 py-lg-0">
                 <form method="GET" action="{%url 'shop'%}">
-                            <button class="form-control btn btn-black border border-black rounded-0 btn-success" type="submit">
+                            <button class="form-control btn rounded-0 btn-success" type="submit">
                                 
                                 <span class="icon mont-font">
                                     Reset
@@ -121,6 +134,7 @@
                 </form>
               </div>
             </div>  
+        </div>  
      <div class="pag-btns-shop-wrapper ml-md-5">
 <!-- adding partial pagination buttons -->
 {%include '../partials/_pagination_btns.html'%}
@@ -132,11 +146,12 @@
 {%include '../partials/_pagination_btns.html'%}
   </div>
   <!-- /.row -->
-
+{%include '../partials/_show_hide_search_script.html'%}
 {%endblock%}
 {% block footer %}
  {%include '../partials/_footer.html'%}
   {% endblock %}
+
 {% block postloadjs%}
 {{block.super}}
 <script src="{% static 'store/js/cart.js' %}"></script>
