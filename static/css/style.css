@@ -95,7 +95,13 @@ body {
   font-size: 1.5rem;
   color: #ffffff;
 }
+
 /* end navbar */
+/* fourm advert */
+.fourm-add-banner {
+  margin-top: 5rem;
+}
+
 .hide {
   display: none;
 }
@@ -269,4 +275,11 @@ select option[value=""] {
 
 .toast-capper {
   height: 2px;
+}
+/* stlying for fourm add banner larger devices */
+@media (min-width: 540px) {
+  .fourm-add-text {
+    font-size: 5rem;
+    letter-spacing: 3px;
+  }
 }

@@ -17,10 +17,12 @@
 <!-- if user -->
 {% if user.is_authenticated %}
 
-<!-- adding delivery discount partial partial -->
-{%include '../partials/_delivery_banner.html'%}
 
 <div class="container-fluid mt-5">
+<!-- adding delivery discount partial partial -->
+<div class="fourm-add-banner">
+{%include '../partials/_fourm_advert.html'%}
+</div>
 {%include '../partials/_search_hide_show_btn.html'%}
 <div class ="mobile-search-wrapper d-none d-md-block">
   <div class="row justify-content-center my-5">
