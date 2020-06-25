@@ -22,3 +22,6 @@
 .checkout-success-page-wrapper {
   margin-top: 5rem;
 }
+#id_sizes select option{
+  value=["hello"]
+}

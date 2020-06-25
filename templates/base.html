@@ -49,19 +49,17 @@
             {% endfor %}
         </div>
     {% endif %}
-	 {% comment %} adding toasts here for cart rendered when updated-cart button clicked in cart.js {% endcomment %}
-  
-	{% comment %} end toasts {% endcomment %}
+	 {% include 'partials/toasts/toast_success_cart.html' %}
 	<main role="main" class="container-fluid main-container bg-off-white">  {% block content %}
 	{% endblock %} </main> 
      {% block footer %}
    {% endblock %} 
    {% block postloadjs %}
    <script type="text/javascript">
-        $('.toast').toast('show');
+        $('.toast-success-cart').toast('show');
    </script> 
   {% endblock %}
-   
+  
   </body>
 
 </html>
