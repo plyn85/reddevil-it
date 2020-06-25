@@ -93,8 +93,8 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL,
-                                null=True, blank=True, related_name='orders')
+    profile = models.ForeignKey(
+        Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders')
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, default="")
     phone_number = models.CharField(
@@ -126,9 +126,11 @@ class Order(models.Model):
         """
         self.total = self.orderitems.aggregate(Sum('orderitem_total'))[
             'orderitem_total__sum']or 0
+
         if self.total < settings.FREE_DELIVERY_THRESHOLD:
-            self.delivery_cost = self.total *\
-                settings.STANDARD_DELIVERY_PERCENTAGE / 100
+            self.delivery_cost = self.total
+            settings.STANDARD_DELIVERY_PERCENTAGE / 100
+
         else:
             self.delivery_cost = 0
         self.grand_total = self.total + self.delivery_cost

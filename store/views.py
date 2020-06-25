@@ -1,8 +1,6 @@
+
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Product, Order, OrderItem
-from django.http import JsonResponse
-import json
-from django.conf import settings
 from django.contrib import messages
 import stripe
 from . contexts import cart_contents
@@ -11,7 +9,10 @@ from django.views.generic import ListView, DetailView
 from users.models import Profile
 from users.forms import ProfileForm
 from .filters import ProductFilter
-from django.db.models import Q
+from django.core.mail import send_mail
+from django.conf import settings
+from django.template.loader import render_to_string
+import json
 
 
 class FilteredListView(ListView):

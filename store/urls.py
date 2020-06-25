@@ -10,7 +10,4 @@ urlpatterns = [
     path('checkout_success/<transaction_id>',
          checkout_success, name='checkout_success'),
 
-
-
-
 ]
