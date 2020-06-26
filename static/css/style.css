@@ -73,6 +73,9 @@ body {
   background-color: #c70101;
 }
 
+.main-header {
+  margin-left: 6rem;
+}
 .cara-text,
 .nav-item a {
   font-size: 1rem;
@@ -95,7 +98,9 @@ body {
   font-size: 1.5rem;
   color: #ffffff;
 }
-
+.nav-toggler {
+  font-size: 2rem;
+}
 /* end navbar */
 /* fourm advert */
 .fourm-add-banner {
@@ -132,7 +137,7 @@ body {
   border-radius: 10px;
 }
 /* deliver banner styling */
-.del-banner {
+.del-banner-font {
   font-size: 2rem;
   letter-spacing: 2px;
 }
@@ -148,13 +153,13 @@ body {
   background-color: #ffffff;
   color: #c70101;
 }
-/* over riding stripe and all other forms inputs*/
-/* for stripe */
 /* overriding scss on country dropdown otherwise country value partly blocked */
 select.form-control:not([size]):not([multiple]) {
   height: calc(2.25rem + 9px);
 }
 
+/* over riding stripe and all other forms inputs*/
+/* for stripe */
 .StripeElement,
 .content-form-style-input,
 .form-style-input {
@@ -223,16 +228,7 @@ select option[value=""] {
   color: #000;
   border: 1px solid #000;
 }
-/* footer */
-.footer {
-  flex-shrink: 0;
-}
-.social:hover {
-  color: #c70101;
-}
-.footer ul {
-  list-style-type: none;
-}
+
 /* added to fix internet explorer issue with bootstrap flex on col class */
 
 .internet-explorer-fix {
@@ -248,6 +244,18 @@ select option[value=""] {
 }
 
 /* end copyright  */
+
+/* footer */
+.footer {
+  flex-shrink: 0;
+}
+.social:hover {
+  color: #c70101;
+}
+.footer ul {
+  list-style-type: none;
+}
+
 /* footer buttons */
 .btn-footer {
   border: 2px solid#c70101;

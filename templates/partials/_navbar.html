@@ -1,10 +1,10 @@
 <!-- loading crispy forms -->{% load widget_tweaks %}
-<nav class="navbar navbar-expand-lg fixed-top" id="fixed-top">
+<nav class="navbar navbar-expand-md fixed-top" id="fixed-top">
 	<a class="navbar-brand" href="#"><img src="https://res.cloudinary.com/plyn85/image/upload/c_scale,w_70/v1592322911/fans-forum/Color-of-the-Manchester-United-Logo_wiej43.jpg" alt="manchester united logo"> </a>
 	<!-- nav button -->
 	<button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon">
       <!-- setting customer navbar toggler icon -->
-      <i class="fas fa-bars fa-2x"></i>
+      <i class="fas fa-bars nav-toggler"></i>
     </span> </button>
 	<!-- end button -->
 	<div class="collapse navbar-collapse" id="navbarNav">
@@ -20,7 +20,7 @@
 			<li class="nav-item"> <a class="nav-link" href="{%url 'post-create'%}">Post</a> </li> {%else%}
 			<li class="nav-item"> <a class="nav-link" href="{%url 'register'%}">Register</a> </li>
 			<li class="nav-item"> <a class="nav-link" href="{%url 'login'%}">Login</a> </li> {%endif%}
-			<li class="nav-item"> <a class="nav-link disabled mr-3 mont-font d-none d-lg-block" id="website-name">RedevilIt</a> </li>
+			<li class="nav-item"> <a class="nav-link disabled mr-3 bebas d-none d-lg-block" id="website-name"><h3 class="main-header">RedevilIt</h3></a> </li>
 		</ul>
 	</div>
 	<li class="list-inline-item">

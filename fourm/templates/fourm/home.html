@@ -72,7 +72,20 @@
            {%include '../partials/_reset_btn.html'%}
           </div>
             </div>
-        
+        <div class="row justify-content-center">
+        <div class="d-none d-md-block col-md-2">
+                <form method="GET" action="{%url 'post-create'%}">
+                            <button class="form-control btn rounded-0 btn-success" type="submit">
+                                
+                                <span class="icon mont-font">
+                                   Post
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+              </div>
+            </div>
  <!-- adding partial pagination buttons -->
  {%include '../partials/_pagination_btns.html'%}
 {%include '../partials/_posts.html'%}
@@ -82,21 +95,20 @@
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner" role="listbox">
       <!-- Slide One - Set the background image for this slide in the line below -->
       <div class="carousel-item active" style="background-image: url('https://res.cloudinary.com/plyn85/image/upload/v1592331103/fans-forum/unnamed_df381k.jpg')">
         <div class="carousel-caption">
-          <h2 class="display-4 bebas white cara-main-text">Speak with The Fans</h2>
-          <p><strong class="cara-text bebas">Join Our Forum</strong></p>
+           <a class="callout-text" href="{%url 'register'%}"><h2 class="display-4 bebas white cara-main-text">Join the fourm</h2>
+          <p><strong class="cara-text bebas">Sign up now</strong></p></a>
         </div>
       </div>
       <!-- Slide Two - Set the background image for this slide in the line below -->
       <div class="carousel-item" style="background-image: url('https://res.cloudinary.com/plyn85/image/upload/v1592331287/fans-forum/busby-babes-manchester-united-mural_1an6gcx5pmvm81l8v02tr1iz9j_acey24.jpg')">
         <div class="carousel-caption">
-          <h2 class="display-4 bebas white cara-main-text">Shop for Shirts</h2>
-          <p><strong class="cara-text bebas">Checkout our vintage Shirts</strong></p>
+          <a class="callout-text" href="{%url 'shop'%}"><h2 class="display-4 bebas white cara-main-text">Shop Now</h2>
+          <p><strong class="cara-text bebas">We sell vintage Shirts</strong></p></a>
         </div>
       </div>
       <!-- Slide Three - Set the background image for this slide in the line below -->
@@ -113,6 +125,7 @@
         </a>
   </>
 <!-- adding delivery discount partial partial -->
+
 {%include '../partials/_delivery_banner.html'%}
 <div class="prod-home-section pb-5">
 <div class="row">

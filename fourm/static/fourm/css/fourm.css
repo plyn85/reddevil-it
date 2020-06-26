@@ -1,3 +1,7 @@
+/* stlying for callout text on home page */
+.callout-text:hover {
+  color: white;
+}
 /* styling for posts, post  boxes */
 .forum-post-div {
   border: 2px solid #c70101;

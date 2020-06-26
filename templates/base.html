@@ -49,14 +49,13 @@
             {% endfor %}
         </div>
     {% endif %}
-	 {% include 'partials/toasts/toast_success_cart.html' %}
 	<main role="main" class="container-fluid main-container bg-off-white">  {% block content %}
 	{% endblock %} </main> 
      {% block footer %}
    {% endblock %} 
    {% block postloadjs %}
    <script type="text/javascript">
-        $('.toast-success-cart').toast('show');
+        $('.toast').toast('show');
    </script> 
   {% endblock %}
   
