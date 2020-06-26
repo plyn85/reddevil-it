@@ -1,146 +1,103 @@
-<!-- extends base html -->
-{%extends 'base.html'%}{% load static %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'fourm/css/fourm.css' %}" />
-
-{% endblock %}
-
-<!-- loading crispy forms -->
-{% load widget_tweaks %}
-<!-- adding navbar partial -->
- {%block nav%} {%include '../partials/_navbar.html'%} {%endblock%} 
+<!-- extends base html -->{%extends 'base.html'%}{% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'fourm/css/fourm.css' %}" /> {% endblock %}
+<!-- loading crispy forms -->{% load widget_tweaks %}
+<!-- adding navbar partial -->{%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
 <!-- start block content -->
-<!-- ending navbar partial -->
-
-{%block content%}
-<!-- if user -->
-{% if user.is_authenticated %}
-
-
+<!-- ending navbar partial -->{%block content%}
+<!-- if user -->{% if user.is_authenticated %}
 <div class="container-fluid mt-5">
-<!-- adding delivery discount partial partial -->
-<div class="fourm-add-banner">
-{%include '../partials/_fourm_advert.html'%}
-</div>
-{%include '../partials/_search_hide_show_btn.html'%}
-<div class ="mobile-search-wrapper d-none d-md-block">
-  <div class="row justify-content-center my-5">
-  <div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
-                <form method="GET">
-                    <div class="input-group w-100">
-                          {% render_field filterset.form.new_most_pop_ordering class="form-control"%}
-                        
-                        <div class="input-group-append">
-                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
-                                <span class="icon">
+	<!-- adding delivery discount partial partial -->
+	<div class="fourm-add-banner"> {%include '../partials/_fourm_advert.html'%} </div> {%include '../partials/_search_hide_show_btn.html'%}
+	<div class="mobile-search-wrapper d-none d-md-block">
+		<!-- row -->
+		<div class="row justify-content-center my-5">
+			<!-- col -->
+			<div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
+				<form method="GET">
+					<div class="input-group w-100"> {% render_field filterset.form.new_most_pop_ordering class="form-control"%}
+						<div class="input-group-append">
+							<button class="form-control btn btn-black border border-black rounded-0" type="submit"> <span class="icon">
                                     <i class="fas fa-search"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-              </div>
-  <div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
-                <form method="GET">
-                    <div class="input-group w-100">
-                         {% render_field filterset.form.content class="form-control"%}
-                        <div class="input-group-append">
-                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
-                                <span class="icon">
+                                </span> </button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- col -->
+			<div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
+				<form method="GET">
+					<div class="input-group w-100"> {% render_field filterset.form.content class="form-control"%}
+						<div class="input-group-append">
+							<button class="form-control btn btn-black border border-black rounded-0" type="submit"> <span class="icon">
                                     <i class="fas fa-search"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-             <div class="col-12 col-lg-3  my-auto py-1 py-lg-0">
-                <form method="GET">
-                    <div class="input-group w-100">
-                         {%render_field filterset.form.author__username class="form-control"%}
-                        <div class="input-group-append">
-                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
-                                <span class="icon">
+                                </span> </button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- end col -->
+			<!-- start col -->
+			<div class="col-12 col-lg-3  my-auto py-1 py-lg-0">
+				<form method="GET">
+					<div class="input-group w-100"> {%render_field filterset.form.author__username class="form-control"%}
+						<div class="input-group-append">
+							<button class="form-control btn btn-black border border-black rounded-0" type="submit"> <span class="icon">
                                     <i class="fas fa-search"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-           {%include '../partials/_reset_btn.html'%}
-          </div>
-            </div>
-        <div class="row justify-content-center">
-        <div class="d-none d-md-block col-md-2">
-                <form method="GET" action="{%url 'post-create'%}">
-                            <button class="form-control btn rounded-0 btn-success" type="submit">
-                                
-                                <span class="icon mont-font">
+                                </span> </button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- end col -->
+			<!-- partial -->{%include '../partials/_reset_btn.html'%} </div>
+	</div>
+	<!-- row -->
+	<div class="row justify-content-center">
+		<!-- col -->
+		<div class="d-none d-md-block col-md-2">
+			<form method="GET" action="{%url 'post-create'%}">
+				<button class="form-control btn rounded-0 btn-success" type="submit"> <span class="icon mont-font">
                                    Post
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-              </div>
-            </div>
- <!-- adding partial pagination buttons -->
- {%include '../partials/_pagination_btns.html'%}
-{%include '../partials/_posts.html'%}
-<!-- adding partial pagination buttons -->
-{%include '../partials/_pagination_btns.html'%} {% else %}
+                                </span> </button>
+			</form>
+		</div>
+		<!-- end col -->
+	</div>
+	<!-- end row -->
+</div>
+<!-- end container -->
+<!-- adding partial pagination buttons -->{%include '../partials/_pagination_btns.html'%} {%include '../partials/_posts.html'%}
+<!-- adding partial pagination buttons -->{%include '../partials/_pagination_btns.html'%} {% else %}
+<!-- home callout section page carasouel -->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-      <!-- Slide One - Set the background image for this slide in the line below -->
-      <div class="carousel-item active" style="background-image: url('https://res.cloudinary.com/plyn85/image/upload/v1592331103/fans-forum/unnamed_df381k.jpg')">
-        <div class="carousel-caption">
-           <a class="callout-text" href="{%url 'register'%}"><h2 class="display-4 bebas white cara-main-text">Join the fourm</h2>
-          <p><strong class="cara-text bebas">Sign up now</strong></p></a>
-        </div>
-      </div>
-      <!-- Slide Two - Set the background image for this slide in the line below -->
-      <div class="carousel-item" style="background-image: url('https://res.cloudinary.com/plyn85/image/upload/v1592331287/fans-forum/busby-babes-manchester-united-mural_1an6gcx5pmvm81l8v02tr1iz9j_acey24.jpg')">
-        <div class="carousel-caption">
-          <a class="callout-text" href="{%url 'shop'%}"><h2 class="display-4 bebas white cara-main-text">Shop Now</h2>
-          <p><strong class="cara-text bebas">We sell vintage Shirts</strong></p></a>
-        </div>
-      </div>
-      <!-- Slide Three - Set the background image for this slide in the line below -->
-    
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-  </>
-<!-- adding delivery discount partial partial -->
-
-{%include '../partials/_delivery_banner.html'%}
+	<ol class="carousel-indicators">
+		<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+		<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+	</ol>
+	<div class="carousel-inner" role="listbox">
+		<!-- Slide One - Set the background image for this slide in the line below -->
+		<div class="carousel-item active" style="background-image: url('https://res.cloudinary.com/plyn85/image/upload/v1592331103/fans-forum/unnamed_df381k.jpg')">
+			<div class="carousel-caption"> <a class="callout-text" href="{%url 'register'%}"><h2 class="display-4 bebas white cara-main-text">Join the fourm</h2>
+          <p><strong class="cara-text bebas">Sign up now</strong></p></a> </div>
+		</div>
+		<!-- Slide Two - Set the background image for this slide in the line below -->
+		<div class="carousel-item" style="background-image: url('https://res.cloudinary.com/plyn85/image/upload/v1592331287/fans-forum/busby-babes-manchester-united-mural_1an6gcx5pmvm81l8v02tr1iz9j_acey24.jpg')">
+			<div class="carousel-caption"> <a class="callout-text" href="{%url 'shop'%}"><h2 class="display-4 bebas white cara-main-text">Shop Now</h2>
+          <p><strong class="cara-text bebas">We sell vintage Shirts</strong></p></a> </div>
+		</div>
+		<!-- Slide Three - Set the background image for this slide in the line below -->
+	</div>
+</div>
+<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
+<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
+<!-- end carasouel -->
+<!-- adding delivery discount partial partial -->{%include '../partials/_delivery_banner.html'%}
 <div class="prod-home-section pb-5">
-<div class="row">
-<!-- adding delivery discount partial partial -->
-{%include '../partials/_products.html'%}
-</div>
-</div>
-
-{%endif%}
-{%include '../partials/_show_hide_search_script.html'%}
-{% endblock %}
- {% block footer %}
- {%include '../partials/_footer.html'%}
-  {% endblock %}
- {% block postloadjs%}
- {{block.super}}
-<script src="{% static 'store/js/cart.js' %}"></script>
-{%endblock%}
+	<div class="row">
+		<!-- adding delivery discount partial partial -->{%include '../partials/_products.html'%} </div>
+</div> {%endif%}
+<!-- end if -->
+<!-- script added to toggle search buttons on mobile -->{%include '../partials/_show_hide_search_script.html'%} {% endblock %}
+<!-- footer -->{% block footer %} {%include '../partials/_footer.html'%} {% endblock %}
+<!-- post load js -->{% block postloadjs%} {{block.super}}
+<script src="{% static 'store/js/cart.js' %}"></script> {%endblock%}

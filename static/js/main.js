@@ -1,18 +1,6 @@
 $(document).ready(function () {
   /* added so flashed messages disappear after ten seconds */
 
-  setTimeout(function () {
-    $("#flashed-message").hide("slow");
-  }, 10000);
-  // // overriding default carousel speed
-  // $(".carousel").carousel({
-  //   interval: 2500,
-  // });
-  // /* this will hide an show the comments */
-  // $(".comments-btn").click(function () {
-  //   $(".comments").toggle();
-  // });
-
   /* adding ajax for like button 
    taken from a tutorial at https://www.youtube.com/watch?v=pkPRtQf6oQ8&t=678s */
 
@@ -59,4 +47,10 @@ $(document).ready(function () {
       });
     }
   });
+  function addOption() {
+    optionText = "Ultimate";
+    optionValue = "ultimate";
+
+    $("#id_sizes").append(new Option(optionText, optionValue));
+  }
 });

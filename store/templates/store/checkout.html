@@ -27,7 +27,7 @@
 					<li class="list-group-item d-flex justify-content-between mont-font"> <span>Total</span> <strong>€ {{total|floatformat:2}}</strong> </li>
 					<li class="list-group-item d-flex justify-content-between mont-font"> <span>Delivery</span> <strong>€ {{delivery|floatformat:2}}</strong> </li> {% if free_delivery_delta > 0 %}
 					<p class="mb-1 red text-center mont-font"> You could get free delivery by spending just <strong>€{{ free_delivery_delta }}</strong> more! </p> {% endif %}
-					<li class="list-group-item d-flex justify-content-between mont-font"> <span>Members Discount</span> <strong>(-15%) € {{member_discount|floatformat:2}}</strong> </li> {% if not user.is_authenticated %}
+				{% if not user.is_authenticated %}
 					<label class="form-check-label text-center my-2 mont-font"> <a class="red" href="{% url 'register' %}">
                 Create an account</a
               >
@@ -51,9 +51,7 @@
 					<fieldset class="rounded px-3 mb-5">
 						<h4 class="text-capitalize bebas"> Delivery info </h4> 
             <hr class="user-hr">{{order_form.country|as_crispy_field}} {{order_form.postcode|as_crispy_field}} {{order_form.town_or_city|as_crispy_field}} {{order_form.street_address1|as_crispy_field}} {{order_form.street_address2|as_crispy_field}} {{order_form.county|as_crispy_field}}
-						<div class="form-check form-check-inline float-right mr-0"> {% if user.is_authenticated %}
-							<label class="form-check-label black mont-font" for="id-save-info">Save this delivery information to my profile</label>
-							<input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked /> {% else %}
+						<div class="form-check form-check-inline float-right mr-0"> {% if not user.is_authenticated %}}
 							<label class="form-check-label mont-font black" for="id-save-info"> <a class="red" href="{% url 'register' %}">Create an account</a
               >
               or

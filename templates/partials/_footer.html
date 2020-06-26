@@ -37,14 +37,15 @@
 	            <a href="mailto:plyn99@gmail.com"><i  class="fas fa-envelope-square fa-3x social white"></i></a>
 </div>
 			</div>
+			{% if not user.is_authenticated %}
 			<div class="row justify-content-center">
 			
                 <a href="{%url 'register'%}" type="submit" class="col-6 col-lg-3 mr-2 mr-md-3 btn btn-footer mt-3 mt-md-4 mont-font white">Register</a>
             
-            
             <a href="{%url 'login'%}" class="col-6 col-lg-3 btn btn-footer mt-3 mt-md-4 mont-font white" >Login</a>
 			</div>
 		</div>
+		{%endif%}
 		<!-- Copyright -->
 		<section class="copyright">
 			<div class="container">
