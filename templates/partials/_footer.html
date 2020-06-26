@@ -1,7 +1,10 @@
+<!-- partial for footer -->
 <footer class="pt-3 container-fluid footer bg-black">
 	<!-- row wraps entire footer section -->
 	<div class="row">
+		<!-- col -->
 		<div class="col-12  col-md-6  mt-2  mb-4">
+			<!-- unordered list dispalys address and phone number for footer-->
 			<ul class="f-address">
 				<li>
 					<div class="row">
@@ -22,40 +25,38 @@
 					</div>
 				</li>
 			</ul>
+			<!-- end unordered list -->
 		</div>
+		<!-- end col -->
+		<!-- start col -->
 		<div class="col-12 col-md-6 mt-md-2">
 			<div class="col text-center">
 				<h5 class="mb-4 ml-md-3 font-weight-bold mont-font white">Social</h5> </div>
-			
 			<div class="col-12 mt-md-5">
-				
-			<div class="text-center center-block">
-           
-                <a href="https://www.facebook.com/patrick.lynch.505"><i  class="fab fa-facebook-square fa-3x social white"></i></a>
-	            <a href="https://github.com/"><i class="fab fa-github-square fa-3x social white"></i></a>
-	            <a href="https://www.youtube.com/channel/UC6yW44UGJJBvYTlfC7CRg2Q"><i class="fab fa-youtube-square fa-3x social white"></i></a>
-	            <a href="mailto:plyn99@gmail.com"><i  class="fas fa-envelope-square fa-3x social white"></i></a>
-</div>
+				<div class="text-center center-block"> <a href="https://www.facebook.com/patrick.lynch.505"><i  class="fab fa-facebook-square fa-3x social white"></i></a> <a href="https://github.com/"><i class="fab fa-github-square fa-3x social white"></i></a> <a href="https://www.youtube.com/channel/UC6yW44UGJJBvYTlfC7CRg2Q"><i class="fab fa-youtube-square fa-3x social white"></i></a> <a href="mailto:plyn99@gmail.com"><i  class="fas fa-envelope-square fa-3x social white"></i></a> </div>
 			</div>
-			{% if not user.is_authenticated %}
-			<div class="row justify-content-center">
-			
-                <a href="{%url 'register'%}" type="submit" class="col-6 col-lg-3 mr-2 mr-md-3 btn btn-footer mt-3 mt-md-4 mont-font white">Register</a>
-            
-            <a href="{%url 'login'%}" class="col-6 col-lg-3 btn btn-footer mt-3 mt-md-4 mont-font white" >Login</a>
-			</div>
-		</div>
-		{%endif%}
+			<!-- only show buttns to non logged in user -->{% if not user.is_authenticated %}
+			<div class="row justify-content-center"> <a href="{%url 'register'%}" class="col-6 col-lg-3 mr-2 mr-md-3 btn btn-footer mt-3 mt-md-4 mont-font white">Register</a> <a href="{%url 'login'%}" class="col-6 col-lg-3 btn btn-footer mt-3 mt-md-4 mont-font white">Login</a> </div>
+		</div> {%endif%}
+		<!-- end if -->
 		<!-- Copyright -->
 		<section class="copyright">
+			<!-- container -->
 			<div class="container">
+				<!-- row -->
 				<div class="row">
-					<div class="col-12  internet-explorer-fix">
+					<!-- col -->
+					<div class="col-12 internet-explorer-fix">
 						<h5 class="text-center internet-explorer-fix mont-font white">
                                 &copy; 2019 RedevilIt . All Rights Reserved.
-                            </h5> </div>
+							</h5> </div>
+					<!-- end col -->
 				</div>
+				<!-- end row -->
 			</div>
+			<!-- end conatiner -->
 		</section>
 	</div>
+	<!-- end row -->
 </footer>
+<!-- end footer -->

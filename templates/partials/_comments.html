@@ -1,20 +1,30 @@
+<!-- patrial for comments added In the post detail page -->
+<!-- row -->
 <div class="row">
+	<!-- col -->
 	<div class="col">
 		<!-- link to add comment form --><a class="btn btn-outline-info mb-2 comments-btn black" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a
     >
-      <p class="mont-font ml-1">{{post.comments.count}} {%if post.comments.count == 1%}comment{%else%}Comments{%endif%}</p>
-    {% for comment in post.comments.all %}
-    <small><strong class="mont-font col-6">
+    <!-- amout of comments added -->
+      <p class="mont-font ml-1">{{post.comments.count}} 
+        <!-- if statmant added  for grammar -->
+        {%if post.comments.count == 1%}comment{%else%}Comments{%endif%}</p>
+       <!-- looping trough all the comments -->
+        {% for comment in post.comments.all %}
+    <!-- adding the user and the date(time since) and the comment below -->
+        <small><strong class="mont-font col-6">
      by {{ user.get_username }}</strong></small>
-      <small><div class="date mont-font col-6 mr-5">{{ comment.created_date|timesince }} ago</div></small>
+      <div class="date mont-font col-6 mr-5"><small>{{ comment.created_date|timesince }} ago</small></div>
       
       <p class="col-6">{{ comment.text|linebreaks }}</p>
    
    <hr/>
+   <!-- /if comments are empty -->
     {% empty %}
     <p class="mont-font">No comments added yet(</p>
     {% endfor %}
     <!-- end for -->
-  
   </div>
+  <!-- end col -->
 </div>
+<!-- end row -->

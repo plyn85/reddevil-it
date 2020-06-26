@@ -3,8 +3,7 @@
 <html>
 
 <head>
-{% include 'partials/cookies_script.html' %}
-	 {% block meta %}
+	<!-- cookies an crf tokken partial added here -->{% include 'partials/cookies_script.html' %} {% block meta %}
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> {% endblock %}
@@ -16,7 +15,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script src="{% static 'js/main.js' %}"></script>
 	<!-- stripe -->
 	<script src="https://js.stripe.com/v3/"></script> {% endblock %}
@@ -31,34 +30,29 @@
 	<header>
 		<!--block nav -->{% block nav %} {% endblock %} </header>
 	<!-- end header -->
-   {% comment %} toasts {% endcomment %}
-   {% if messages %}
-        <div class="message-container">
-            {% for message in messages %}
-                {% with message.level as level %}
-                    {% if level == 40 %}
-                        {% include 'partials/toasts/toast_error.html' %}
-                    {% elif level == 30 %}
-                        {% include 'partials/toasts/toast_warning.html' %}
-                    {% elif level == 25 %}
-                        {% include 'partials/toasts/toast_success.html' %}
-                    {% else %}
-                        {% include 'partials/toasts/toast_info.html' %}
-                    {% endif %}
-                {% endwith %}
-            {% endfor %}
-        </div>
-    {% endif %}
-	<main role="main" class="container-fluid main-container bg-off-white">  {% block content %}
-	{% endblock %} </main> 
-     {% block footer %}
-   {% endblock %} 
-   {% block postloadjs %}
-   <script type="text/javascript">
-        $('.toast').toast('show');
-   </script> 
-  {% endblock %}
-  
-  </body>
+	<!-- toasts -->
+	<!-- if a message exists -->{% if messages %}
+	<!-- message container -->
+	<div class="message-container">
+		<!-- loop trough the messages -->{% for message in messages %}
+		<!--which message is dispalyed depending on the message level
+                    the message  equals(see django docs https://docs.djangoproject.com/en/3.0/ref/contrib/messages/) -->{% with message.level as level %} {% if level == 40 %} {% include 'partials/toasts/toast_error.html' %} {% elif level == 30 %} {% include 'partials/toasts/toast_warning.html' %} {% elif level == 25 %} {% include 'partials/toasts/toast_success.html' %} {% else %} {% include 'partials/toasts/toast_info.html' %} {% endif %}
+		<!-- end if -->{% endwith %}
+		<!-- end with -->{% endfor %}
+		<!-- end for -->
+	</div>
+	<!-- end message container -->{% endif %}
+	<!-- end if -->
+	<!-- main content container -->
+	<main role="main" class="container-fluid main-container bg-off-white"> {% block content %} {% endblock %} </main>
+	<!-- end main content container -->
+	<!-- block footer -->{% block footer %} {% endblock %}
+	<!-- end block footer -->
+	<!-- post load js block toasts used on all deives with messages above -->{% block postloadjs %}
+	<script type="text/javascript">
+	$('.toast').toast('show');
+	</script> {% endblock %}
+	<!-- end js block -->
+</body>
 
 </html>

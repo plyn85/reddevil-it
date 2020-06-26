@@ -1,8 +1,14 @@
-<!-- taken and altered from https://bbbootstrap.com/snippets/forum-discussion-template-65198141 -->{%for post in posts%}
+<!-- taken and altered from https://bbbootstrap.com/snippets/forum-discussion-template-65198141 -->
+<!-- looping trough posts -->{%for post in posts%}
+<!-- row -->
 <div class="row mt-3 ml-lg-3">
+	<!-- col -->
 	<div class="col-12  col-lg-9 forum-post-div">
+		<!-- card -->
 		<div class="card mb-4">
+			<!-- card header -->
 			<div class="card-header forum-post-div-header">
+				<!-- post author, date posted, date user joined, displayed below -->
 				<div class="media flex-wrap w-100 align-items-center">
 					<div class="media-body row"> <a href="{%url 'user-post' post.author.username %}" class="black mont-font col col-md-4">{{post.author}}</a
               >
@@ -24,22 +30,27 @@
         </div>
         <!-- start card body -->
         <div class="card-body">
-          <!-- strat paragraph -->
+          <!-- post title and content displayed below -->
           
             <!-- start post title link to post detail -->
             <p><a href="{% url 'post-detail' post.id %}" class="mont-font black">
               {{post.title}}
             </a></p>
 						<!-- end link -->
-						<!-- end paragaph -->
 						<p class="black"> {{post.content}} </p>
 					</div>
+					<!-- end card body -->
+					<!-- upvote button, update, delete,comment count,add comment and view comments all displayed In cart footer -->
 					<div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
+						<!-- upvote button -->
 						<p class="ml-4 mt-2"> <small class="mont-font ml-2">Votes:</small> <a class="like-btn black mont-font ml-2" data-href="{{post.get_like_api_url}}" data-likes="{{post.likes.count}}" href="{{post.get_like_url}}">upvote<i class="fas fa-thumbs-up"></i></a> </p>
+						<!-- end upvote button -->
+						<!-- wrapper div -->
 						<div class="px-4 pt-3">
+							<!-- update an delete buttons -->
 							<!-- start button wrapper div -->
 							<div class="px-6 pt-3">
-								<!-- start if statment -->{%if post.author == user%}
+								<!-- update and delete buttons can only be viewed by the post owner -->{%if post.author == user%}
 								<!-- start button --><a href="{% url 'post-update' post.id %}" class="btn btn-post black mont-font">Update</a
               >
               <!-- end button -->
@@ -52,10 +63,16 @@
               <!-- end button -->
               {%endif%}
               <!-- endif -->
-             <div class="row"> 
-               <div class="col-12{%if post.comments.count == 0%} col-md-6{%else%}col-3{%endif%} mt-3 mont-font">{{post.comments.count}} {%if post.comments.count == 1%}comment{%else%}Comments{%endif%}</div>
-              
+             <!-- row for comments count add comments ans view comment buttons -->
+             <!-- start row -->
+              <div class="row"> 
+                <!-- start col -->
+               <!-- template logic added for grammer and stlying-->
+                <div class="col-12{%if post.comments.count == 0%} col-md-6{%else%}col-3{%endif%} mt-3 mont-font">{{post.comments.count}} {%if post.comments.count == 1%}comment{%else%}Comments{%endif%}</div>
+              <!-- if the comments count those not equal zero show view comments btn -->
               {%if post.comments.count != 0%}
+              <!-- col -->
+              <!-- wrapper div -->
               <div class="col-md-4">
               <form method="get" action="{%url 'post-detail' post.id %}">
               <!-- start button -->
@@ -64,18 +81,27 @@
               </button>
               <!-- end button -->
             </form>
+            <!-- end form -->
              </div>
+             <!-- end div -->
             {%endif%}
+            <!-- end if -->
+            <!-- col -->
             <div class="col-12 col-md-4 mt-2">
             	<!-- link to add comment form --><a class="btn  comments-btn black mont-font" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a
     >          </div>
+    <!-- end col -->
             </div>
+            <!-- end col -->
             </div>
-            <!-- end buttom wrapper div -->
+            <!-- end button wrapper div -->
           </div>
+          <!-- end wrapper div -->
         </div>
+        <!-- end card footer -->
       </div>
+      <!-- end col wraps entire posts section -->
     </div>
-  </div>
+    <!-- end row -->
 {%endfor%}
-</div>
+<!-- end posts for loop -->

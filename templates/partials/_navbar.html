@@ -1,6 +1,7 @@
-<!-- loading crispy forms -->{% load widget_tweaks %}
+<!-- loading widget tweaks forms -->{% load widget_tweaks %}
+<!-- start nav -->
 <nav class="navbar navbar-expand-md fixed-top" id="fixed-top">
-	<a class="navbar-brand" href="#"><img src="https://res.cloudinary.com/plyn85/image/upload/c_scale,w_70/v1592322911/fans-forum/Color-of-the-Manchester-United-Logo_wiej43.jpg" alt="manchester united logo"> </a>
+	<a class="navbar-brand" href="{%url 'fourm-home'%}"><img src="https://res.cloudinary.com/plyn85/image/upload/c_scale,w_70/v1592322911/fans-forum/Color-of-the-Manchester-United-Logo_wiej43.jpg" alt="manchester united logo"> </a>
 	<!-- nav button -->
 	<button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon">
       <!-- setting customer navbar toggler icon -->
@@ -8,27 +9,46 @@
     </span> </button>
 	<!-- end button -->
 	<div class="collapse navbar-collapse" id="navbarNav">
+		<!-- unordered list for nav items -->
 		<ul class="navbar-nav mr-auto">
+			<!-- change home to fourm to home when user logged In -->
 			<li class="nav-item active"> <a class="nav-link" href="{%url 'fourm-home'%}">{%if user.is_authenticated%}Fourm{%else%}Home{%endif%}<span class="sr-only">(current)</span></a> </li>
-			<li class="nav-item"> <a class="nav-link" href="{%url 'shop'%}">Shop</a> </li> {%if user.is_authenticated%}
+			<li class="nav-item"> <a class="nav-link" href="{%url 'shop'%}">Shop</a> </li>
+			<!-- drop down for log In and account buttons for logged In user -->{%if user.is_authenticated%}
 			<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Account
         </a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown"> <a class="dropdown-item" href="{%url 'logout'%}">Logout</a>
 					<div class="dropdown-divider"></div> <a class="dropdown-item" href="{%url 'profile'%}">View Profile</a> </div>
 			</li>
-			<li class="nav-item"> <a class="nav-link" href="{%url 'post-create'%}">Post</a> </li> {%else%}
+			<li class="nav-item"> <a class="nav-link" href="{%url 'post-create'%}">Post</a> </li>
+			<!-- register and logged in button for non logged In user -->{%else%}
 			<li class="nav-item"> <a class="nav-link" href="{%url 'register'%}">Register</a> </li>
 			<li class="nav-item"> <a class="nav-link" href="{%url 'login'%}">Login</a> </li> {%endif%}
 			<li class="nav-item"> <a class="nav-link disabled mr-3 bebas d-none d-lg-block" id="website-name"><h3 class="main-header">RedevilIt</h3></a> </li>
 		</ul>
+		<!--end unordered List -->
 	</div>
-	<li class="list-inline-item">
-		<a class="nav-link" href="{% url 'cart' %}">
-			<div class="text-center">
-				<div><i class="fas fa-shopping-cart fa-lg white"></i></div>
-				<p class="my-0 white"> {% if grand_total %} €{{ grand_total|floatformat:2 }} {% else %} €0.00 {% endif %} </p>
-			</div>
-		</a>
-	</li>
+	<!-- cart displays for all users -->
+	<!--unordered list -->
+	<ul>
+		<!-- list item-->
+		<li class="list-inline-item">
+			<!-- link -->
+			<a class="nav-link" href="{% url 'cart' %}">
+				<div class="text-center">
+					<div><i class="fas fa-shopping-cart fa-lg white"></i></div>
+					<p class="my-0 white">
+						<!-- if grand total exists display grand total if not display 0 -->{% if grand_total %} €{{ grand_total|floatformat:2 }} {% else %} €0.00 {% endif %}
+						<!-- end if -->
+					</p>
+				</div>
+				<!-- end div -->
+			</a>
+			<!-- end link -->
+		</li>
+		<!-- end list item-->
+	</ul>
+	<!-- end unordered list -->
 </nav>
+<!-- end nav -->

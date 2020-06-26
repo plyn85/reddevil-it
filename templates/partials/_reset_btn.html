@@ -1,15 +1,14 @@
- <div class="col-6 col-md-2">
-                {% url 'fourm-home' as home_url %}
-                {% url 'shop' as shop_url %}
-                <form method="GET" action="{% if request.get_full_path == home_url %}{%url 'fourm-home'%}{%else%}{%url 'shop'%}{%endif%}">
-                            <button class="form-control btn rounded-0 btn-success" type="submit">
-                                
-                                <span class="icon mont-font">
+<!-- reset button displayed on shop and fourm pages-->
+<!-- col -->
+<div class="col-6 col-md-2">
+	<!-- setting url variables  -->{% url 'fourm-home' as home_url %} {% url 'shop' as shop_url %}
+	<!-- resrt button will refresh the, fourm home page or the products page depending on what page the user Is on -->
+	<form method="GET" action="{% if request.get_full_path == home_url %}{%url 'fourm-home'%}{%else%}{%url 'shop'%}{%endif%}">
+		<button class="form-control btn rounded-0 btn-success" type="submit"> <span class="icon mont-font">
                                     Reset
                                     <i class="fas fa-redo"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-              </div>
+                                </span> </button>
+	</form>
+	<!-- end form -->
+</div>
+<!-- end col -->
