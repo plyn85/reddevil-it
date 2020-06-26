@@ -1,34 +1,18 @@
-<!-- extends base html -->
-{%extends 'base.html'%}{% load static %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'fourm/css/fourm.css' %}" />
-
-{% endblock %}
+<!-- extends base html -->{%extends 'base.html'%}{% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'fourm/css/fourm.css' %}" /> {% endblock %}
 <!-- start block content -->
-<!-- adding navbar partial -->
-{%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
-<!-- ending navbar partial -->
-{%block content%}
+<!-- adding navbar partial -->{%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
+<!-- ending navbar partial -->{%block content%}
 <div class="user-posts-wrapper mb-3">
-<!-- row wraps close window Icon -->
-        <div class="row justify-content-end user-posts-icon">
-            <!-- start col -->
-            <div class="col-2">
-                <!-- link wraps Icon -->
-                <a href="{% url 'fourm-home' %}"><i class="far fa-window-close fa-3x black"></i
+	<!-- row wraps close window Icon -->
+	<div class="row justify-content-end user-posts-icon">
+		<!-- start col -->
+		<div class="col-2">
+			<!-- link wraps Icon --><a href="{% url 'fourm-home' %}"><i class="far fa-window-close fa-3x black"></i
         ></a>
-                <!-- end link -->
-            </div>
-             </div>
-<!-- adding partial pagination buttons -->
-{%include '../partials/_posts.html'%}
-
-<!-- adding partial pagination buttons -->
-{%include '../partials/_pagination_btns.html'%}
-<!-- endblock content -->
-{%endblock%}
-</div>
-{% block footer %}
- {%include '../partials/_footer.html'%}
-  {% endblock %}
+			<!-- end link -->
+		</div>
+	</div>
+	<!-- adding partial pagination buttons -->{%include '../partials/_posts.html'%}
+	<!-- adding partial pagination buttons -->{%include '../partials/_pagination_btns.html'%}
+	<!-- endblock content -->{%endblock%} </div>

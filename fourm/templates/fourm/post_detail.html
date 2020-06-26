@@ -1,33 +1,31 @@
-<!-- extends base html -->
-{%extends 'base.html'%}{% load static %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'fourm/css/fourm.css' %}" />
-
-{% endblock %}
-<!-- adding navbar partial -->
-{%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
-<!-- start block content -->
-{%block content%}
-
-  <div class="post-detail-wrapper mb-3">
-  <div class="row ml-lg-3">
-    <div class="col-12  col-lg-8 forum-post-div">
-      <div class="card mb-4">
-            <div class="row justify-content-end d-lg-none">
-            <!-- start col -->
-            <div class="col-2">
-                <!-- link wraps Icon -->
-                <a href="{% url 'fourm-home' %}"><i class="far fa-window-close fa-3x black"></i
+<!-- extends base html -->{%extends 'base.html'%}{% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'fourm/css/fourm.css' %}" /> {% endblock %}
+<!-- adding navbar partial -->{%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
+<!-- start block content -->{%block content%}
+<!-- wrapper -->
+<div class="post-detail-wrapper mb-3">
+	<!-- row -->
+	<div class="row ml-lg-3">
+		<!-- col -->
+		<div class="col-12  col-lg-8 forum-post-div">
+			<!-- card -->
+			<div class="card mb-4">
+				<!-- row -->
+				<div class="row justify-content-end d-lg-none">
+					<!-- start col -->
+					<div class="col-2">
+						<!-- link wraps Icon --><a href="{% url 'fourm-home' %}"><i class="far fa-window-close fa-3x black"></i
         ></a>
-                <!-- end link -->
-            </div>
-             </div>
-        <div class="card-header forum-post-div-header">
-          <div class="media flex-wrap w-100 align-items-center">
-            <div class="media-body row">
-              <a href="{%url 'user-post' object.author.username %}" class="black mont-font col col-md-4"
-                >{{object.author}}</a
+						<!-- end link -->
+					</div>
+					<!-- end col -->
+				</div>
+				<!-- end row -->
+				<!-- card header -->
+				<div class="card-header forum-post-div-header">
+					<div class="media flex-wrap w-100 align-items-center">
+						<!-- row -->
+						<div class="media-body row"> <a href="{%url 'user-post' object.author.username %}" class="black mont-font col col-md-4">{{object.author}}</a
               >
               
               <div class="black small mont-font  ml-md-4">
@@ -35,7 +33,7 @@
                 {{ object.date_posted|date:"F d, Y "}}
               </div>
             </div>
-
+           <!-- end row -->
              <div class="black small mont-font  ml-md-5 d-none d-md-block">
                 <small>joined:</small>
                 {{ user.date_joined|date:"F d, Y "}}
@@ -43,8 +41,11 @@
 
              
             </div>
+            <!-- end row -->
           </div>
+          <!-- end card header -->
         </div>
+        <!-- end wrapper -->
         <!-- start card body -->
         <div class="card-body">
           <!-- strat paragraph -->
@@ -53,13 +54,13 @@
             <p href="{% url 'post-detail' post.id %}" class="mont-font black">
               {{object.title}}
             </p>
-            <!-- end link -->
-          </p>
           <!-- end paragaph -->
           <p class="black">
             {{object.content}}
           </p>
         </div>
+        <!-- end card body -->
+        <!-- card footer -->
         <div
           class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3"
         >
@@ -70,20 +71,12 @@
               data-href="{{object.get_like_api_url}}"
               data-likes="{{object.likes.count}}"
               href="{{object.get_like_url}}"
-              >upvote<i class="fas fa-thumbs-up"></i></a>
-          
-          </p>
-
-          <div class="px-4 pt-3">
-            <!-- start button wrapper div -->
-            <div class="px-4 pt-3">
-              <!-- start if statment -->
-              {%if object.author == user%}
-              <!-- start button -->
-              <a
-               href="{% url 'post-update' object.id%}"
-                class="btn btn-post black mont-font"
-                >Update</a
+              >upvote<i class="fas fa-thumbs-up"></i></a> </p>
+							<div class="px-4 pt-3">
+								<!-- start button wrapper div -->
+								<div class="px-4 pt-3">
+									<!-- start if statment -->{%if object.author == user%}
+									<!-- start button --><a href="{% url 'post-update' object.id%}" class="btn btn-post black mont-font">Update</a
               >
               <!-- end button -->
               <!-- start button -->
@@ -99,11 +92,15 @@
             <!-- end buttom wrapper div -->
           </div>
         </div>
+        <!-- comments partial added -->
      {%include '../partials/_comments.html'%}
+    
     </div>
+    <!-- end card footer -->
   </div>
+  <!-- end card -->
 </div>
-</div>
+<!-- end wrapper -->
 {%endblock%}
 {% block footer %}
  {%include '../partials/_footer.html'%}
