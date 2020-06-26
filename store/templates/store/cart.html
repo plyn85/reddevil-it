@@ -3,15 +3,27 @@
 <link rel="stylesheet" href="{% static 'users/css/users.css' %}" /> {% endblock %}
 <!-- adding navbar partial -->{%block nav%} {%include '../partials/_navbar.html'%} {%endblock%}
 <!-- start block content -->{% block content %}
+<!-- /container -->
 <div class="container mb-2">
+	<!-- row -->
 	<div class="row mt-5">
+		<!-- col -->
 		<div class="col">
 			<hr>
 			<h2 class="logo-font mb-2 text-center mt-5 bebas">Shopping Cart</h2>
 			<hr class="user-hr"> </div>
+			<!-- end col -->
 	</div>
+	<!-- end row -->
+	
+	<!-- row -->
 	<div class="row">
-		<div class="col"> {% if cart_items %}
+		<!-- col -->
+		<div class="col"> 
+			<!-- if  cart Items exist-->
+			{% if cart_items %}
+			<!-- table dispalys product Info ,Price, Quantity and subtotal,
+			 of Item and cart total, deilvery cost, grand total-->
 			<div class="table-responsive rounded">
 				<table class="table table-sm table-borderless">
 					<thead class="text-black mont-font
@@ -23,7 +35,9 @@
 							<th scope="col">Qty</th>
 							<th scope="col">Subtotal</th>
 						</tr>
-					</thead> {% for item in cart_items %}
+					</thead> 
+					<!-- loop through cart Items -->
+					{% for item in cart_items %}
 					<tr>
 						<td class="p-3 w-25"> <img class="img-fluid rounded" src="{{ item.product.image.url }}"> </td>
 						<td class="py-3">
@@ -33,6 +47,7 @@
 							<p class="my-0 mont-font">€{{ item.product.price }}</p>
 						</td>
 						<td class="py-3 w-25">
+							<!-- quantity btns form -->
 							<form>
 								<div class="form-group mr-5">
 									<div class="input-group">
@@ -50,6 +65,7 @@
 									</div>
 								</div>
 							</form>
+							<!-- end form -->
 						</td>
 						<td class="py-3">
 							<p class="my-0 mont-font">€{{ item.get_total|floatformat:2 }}</p>
@@ -60,7 +76,9 @@
 							<h6><strong class="mont-font">Cart Total: €{{ total|floatformat:2 }}</strong></h6>
 							<h6 class="mont-font">Delivery: €{{ delivery|floatformat:2 }}</h6>
 							<h4 class="mt-4 mont-font"><strong>Grand Total: €{{ grand_total|floatformat:2 }}</strong></h4> {% if free_delivery_delta > 0 %}
-							<p class="mb-1 text-danger mont-font"> You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more! </p> {% endif %} </td>
+							<p class="mb-1 text-danger mont-font"> You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more! </p> 
+							<!-- end cart for loop -->
+							{% endif %} </td>
 					</tr>
 					<tr>
 						<td colspan="5" class="text-right">
@@ -73,15 +91,28 @@
 						</td>
 					</tr>
 				</table>
-			</div> {% else %}
+				<!-- end table -->
+			</div> 
+			<!-- else if cart is empty -->
+			{% else %}
 			<div class="row">
 				<p class="lead mb-5 mont-font col-12 text-center">Your cart is empty.</p>
 				<a href="{% url 'shop' %}" class="btn btn-cart-shop rounded-0 btn-lg col-12 text-center"> <span class="icon">
          <i class="fas fa-chevron-left black"></i>
-         </span> <span class="text-uppercase mont-font black">Keep Shopping</span> </a> {% endif %} </div>
+		 </span> <span class="text-uppercase mont-font black">Keep Shopping</span> </a> 
+		 <!-- end cart if statment -->
+		 {% endif %} 
 		</div>
+		<!-- end row -->
+		
 	</div>
+	<!-- end col -->
+	</div>
+	<!-- end row -->
 </div> 
+<!-- end conatiner -->
+
+<!-- adding cart js -->
 {% endblock %} 
 {% block postloadjs%}
 {{block.super}}

@@ -1,14 +1,20 @@
 <!-- extends base html -->{%extends 'base.html'%} {% load static %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'store/css/store.css' %}" /> {% endblock %}
 <!-- adding navbar partial -->{%block nav%} {%include '../partials/_navbar.html'%} {%endblock%} {%block content%}
+<!-- conatnier -->
 <div class="container-fluid product-detail-wrapper">
+	<!-- row -->
 	<div class="row">
+		<!-- col -->
 		<div class="col-12 col-md-6 col-lg-5 offset-lg-2">
+			<!-- omg container -->
 			<div class="image-container my-5">
 				<a href="{{ product.image.url }}" target="_blank"> <img class="card-img-top img-fluid" src="{{product.image.url}}" alt="{{ product.name }}"> </a>
 			</div>
 		</div>
+		<!-- col -->
 		<div class="col-12 col-md-6 col-lg-4">
+			<!-- product detai container -->
 			<div class="product-details-container mb-5 mt-md-5 ml-5">
 				<h3 class="mb-0 bebas">{{product.name }}</h3>
 				<p class="lead mb-0 text-left font-weight-bold mont-font">€{{ product.price }}</p>
@@ -21,9 +27,11 @@
 				<a href="{% url 'shop' %}" class="btn btn-cart-checkout rounded-0 btn-lg"> <span class="icon">
                      <i class="fas fa-chevron-left white"></i>
                      </span> <span class="text-uppercase mont-font white">Keep Shopping</span> </a>
-				
 			</div>
 		</div>
 	</div>
-</div> {%endblock%} {% block footer %} {%include '../partials/_footer.html'%} {% endblock %} {% block postloadjs%} {{block.super}}
+</div> {%endblock%}
+<!-- end block -->
+<!-- adding footer -->{% block footer %} {%include '../partials/_footer.html'%} {% endblock %} {% block postloadjs%}
+<!-- adding cart js -->{{block.super}}
 <script src="{% static 'store/js/cart.js' %}"></script> {%endblock%}

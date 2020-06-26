@@ -1,56 +1,58 @@
 <!-- extends base html -->{%extends 'base.html'%} {% load static %}
 <!-- core css -->{% block extra_css %}
-<link rel="stylesheet" href="{% static 'store/css/store.css' %}" /> 
-<link rel="stylesheet" href="{% static 'users/css/users.css' %}" />
-{% endblock %}
+<link rel="stylesheet" href="{% static 'store/css/store.css' %}" />
+<link rel="stylesheet" href="{% static 'users/css/users.css' %}" /> {% endblock %}
 <!-- start block content -->
 <!-- loading crispy forms -->{% load crispy_forms_tags %}
 <!-- adding navbar partial -->{%block nav%} {%include '../partials/_navbar.html'%} {%endblock%} {%block content%}
 <!-- taken from https://glitch.com/edit/#!/bootstrap-4-example-checkout?path=index.html%3A223%3A0 -->
+<!-- conatiner -wrapper -->
 <div class="checkout-container-wrapper">
+	<!-- container -->
 	<div class="container mt-5">
+		<!-- row -->
 		<div class="row">
+			<!-- col -->
 			<div class="col-lg-6 order-lg-2 mb-4">
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
+					<!-- order summary header -->
         <span class="bebas text-capitalize">Order summary</span>
         <span class="badge badge-secondary badge-pill mr-2 bg-black white mont-font">{{product_count}}</span>
       </h4>
 				<hr class="user-hr">
+				<!-- unorderd list looping through the shopping  cart here -->
 				<ul class="list-group mb-3"> {%for item in cart_items %}
 					<li class="list-group-item d-flex justify-content-between lh-condensed">
 						<div>
-							<div class="my-0"> <img class="img-fluid checkout-img" src="{{item.product.image.url}}" />
+							<!-- adding img of product an product name an quantity in div -->
+							<div class="my-0"> <img class="img-fluid checkout-img" src="{{item.product.image.url}}" alt={{product.name}}>
 								<h6 class="mt-4 ml-2 mont-font">
                 {{item.product.name}}
-              </h6> <span class="ml-2 mont-font">Qty: {{item.quantity}}</span> </div>
-						</div> </li> {%endfor%}
+			  </h6> <span class="ml-2 mont-font">Qty: {{item.quantity}}</span> </div>
+							<!-- end div -->
+						</div>
+					</li> {%endfor%}
+					<!-- end cart for loop -->
+					<!-- displays total,grand total and amount to spend for free delivery if it applies -->
 					<li class="list-group-item d-flex justify-content-between mont-font"> <span>Total</span> <strong>€ {{total|floatformat:2}}</strong> </li>
 					<li class="list-group-item d-flex justify-content-between mont-font"> <span>Delivery</span> <strong>€ {{delivery|floatformat:2}}</strong> </li> {% if free_delivery_delta > 0 %}
 					<p class="mb-1 red text-center mont-font"> You could get free delivery by spending just <strong>€{{ free_delivery_delta }}</strong> more! </p> {% endif %}
-				{% if not user.is_authenticated %}
-					<label class="form-check-label text-center my-2 mont-font"> <a class="red" href="{% url 'register' %}">
-                Create an account</a
-              >
-              <strong class="black">or</strong>
-              <a class="red" href="{% url 'login' %}">login</a><strong class="black"> to save
-             15%!</strong> </label> {% endif %}
 					<li class="list-group-item d-flex justify-content-between mont-font"> <span>Grand Total</span> <strong>€ {{grand_total|floatformat:2}}</strong> </li>
 				</ul>
 			</div>
-			<!-- div wrapping payment form -->
+			<!-- div wrapping stripe payment form -->
 			<div class="col-lg-6">
 				<!-- payment form -->
 				<form action="{% url 'checkout' %}" method="POST" id="payment-form"> {% csrf_token %}
-					<!-- starat detials fieldset -->
+					<!-- start detials fieldset -->
 					<fieldset class="rounded px-3 mb-5">
-						<h4 class="text-capitalize bebas"> Details </h4> 
-            <hr class="user-hr">
-            {{order_form.full_name|as_crispy_field}} {{order_form.email|as_crispy_field}} {{order_form.phone_number|as_crispy_field}} </fieldset>
+						<h4 class="text-capitalize bebas"> Details </h4>
+						<hr class="user-hr"> {{order_form.full_name|as_crispy_field}} {{order_form.email|as_crispy_field}} {{order_form.phone_number|as_crispy_field}} </fieldset>
 					<!-- end fieldset -->
 					<!-- start shipping fieldset -->
 					<fieldset class="rounded px-3 mb-5">
-						<h4 class="text-capitalize bebas"> Delivery info </h4> 
-            <hr class="user-hr">{{order_form.country|as_crispy_field}} {{order_form.postcode|as_crispy_field}} {{order_form.town_or_city|as_crispy_field}} {{order_form.street_address1|as_crispy_field}} {{order_form.street_address2|as_crispy_field}} {{order_form.county|as_crispy_field}}
+						<h4 class="text-capitalize bebas"> Delivery info </h4>
+						<hr class="user-hr">{{order_form.country|as_crispy_field}} {{order_form.postcode|as_crispy_field}} {{order_form.town_or_city|as_crispy_field}} {{order_form.street_address1|as_crispy_field}} {{order_form.street_address2|as_crispy_field}} {{order_form.county|as_crispy_field}}
 						<div class="form-check form-check-inline float-right mr-0"> {% if not user.is_authenticated %}}
 							<label class="form-check-label mont-font black" for="id-save-info"> <a class="red" href="{% url 'register' %}">Create an account</a
               >
@@ -60,9 +62,9 @@
 					<!-- end fieldset -->
 					<!-- start stripe field set -->
 					<fieldset class="rounded px-3 mb-2">
-							<h4 class="text-capitalize bebas"> Payment</h4> 
-            <hr class="user-hr">
-            <div id="card-element">
+						<h4 class="text-capitalize bebas"> Payment</h4>
+						<hr class="user-hr">
+						<div id="card-element">
 							<!-- Elements will create input elements here -->
 						</div>
 						<!-- We'll put the error messages in this element -->
@@ -82,24 +84,25 @@
             >
           </p>
         </div>
-      </form>
-    </div>
+	  </form>
+	  <!-- end payment form -->
+	</div>
+	<!-- end payment form wrapper -->
   </div>
+  <!-- end row  -->
 </div>
+<!-- end container  -->
 </div>
+<!-- end wa -->
+<!-- loading over lay activated after payment -->
 <div id="loading-overlay">
   <h1 class="text-light logo-font loading-spinner">
     <span class="icon">
       <i class="fas fa-3x fa-sync-alt fa-spin"></i>
     </span> </h1>
-					</div> {%endblock%} 
-					
-					
-					{% block footer %}
- {%include '../partials/_footer.html'%}
-  {% endblock %}
-					
-					{% block postloadjs%}
+					</div> {%endblock%}
+					<!-- adding footer -->{% block footer %} {%include '../partials/_footer.html'%} {% endblock %}
+					<!-- adding js for stripe and cart -->{% block postloadjs%}
 					<!-- super block -->{{block.super}}
 					<!-- stripe public key -->{{ stripe_public_key|json_script:"id_stripe_public_key"}}
 					<!-- stripe secret key -->{{ client_secret|json_script:"id_client_secret"}}
