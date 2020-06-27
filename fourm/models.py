@@ -1,10 +1,10 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.urls import reverse
 from django.urls import reverse_lazy
-# creating post model
 
+
+# creating post model
 
 class Post(models.Model):
 
@@ -12,13 +12,16 @@ class Post(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    likes = models.ManyToManyField(User, blank=True, related_name="post_likes")
+    likes = models.ManyToManyField(User, blank=True,
+                                   related_name='post_likes')
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
+
         # returning user to post detail page after they have made a post
+
         return reverse_lazy('post-detail', kwargs={'pk': self.pk})
 
     # returning user to post detail page after they have Liked a post
@@ -31,19 +34,18 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    """ from a tutorial found at https://tutorial-extensions.djangogirls.org/en/homework_create_more_models/ """
 
-    post = models.ForeignKey(
-        'fourm.Post', on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(User, models.SET_NULL,
-                               blank=True,
-                               null=True,)
+    post = models.ForeignKey('fourm.Post', on_delete=models.CASCADE,
+                             related_name='comments')
+    author = models.ForeignKey(User, models.SET_NULL, blank=True,
+                               null=True)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['-created_date', ]
+
+        ordering = ['-created_date']
 
     def approve(self):
         self.approved_comment = True

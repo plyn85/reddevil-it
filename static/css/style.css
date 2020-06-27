@@ -174,7 +174,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 /* overriding height set on post_form content box set above */
 .content-form-style-input {
-  height: 0.4375rem;
+  height: 7rem;
 }
 
 /* for country dropdown menu select, */

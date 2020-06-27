@@ -1,30 +1,55 @@
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
-from .models import Post, Comment
-from .forms import CommentForm, PostForm
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, RedirectView
+from . models import Post
+from . forms import CommentForm, PostForm
+from django.views.generic import ListView, DetailView, CreateView, \
+    UpdateView, DeleteView, RedirectView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, \
+    UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count, Q
-from .filters import PostFilter
+from . filters import PostFilter
 from store.models import Product
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
 
 def home(request):
-    posts = Post.objects.all()
-    # posts = my_filter.qs
-    context = {
-        'posts': posts}
-    return render(request, "fourm/home.html", context)
+    """ function renders home view """
+
+    return render(request, 'fourm/home.html', context)
+
+
+@login_required
+def add_comment_to_post(request, pk):
+    """from a tutorial at https://tutorial-extensions.djangogirls.org/en/
+homework_create_more_models/ if its a post method saves the comment
+form with post attached an returns user to post detail page if its a 
+get request rensers comment form on add_comment_to_post page"""
+
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            messages.success(request,
+                             'Your comment was added succesfully')
+            return redirect('post-detail', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'fourm/add_comment_to_post.html',
+                  {'form': form})
 
 
 class FilteredListView(ListView):
-    """added from a tutorial found at https://www.caktusgroup.com/blog/2018/10/18/filtering-and-pagination-django/"""
+
+    """added from a tutorial found at https://www.caktusgroup.com/blog/
+    2018/10/18/filtering-and-pagination-django/ used to allow djagno-filters 
+    to be used with class based views used on  the PostList view below """
 
     filterset_class = None
 
@@ -39,12 +64,18 @@ class FilteredListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Pass the filterset to the template - it provides the form.
+        # Pass the filterset to the template - it provides the form
         context['filterset'] = self.filterset
         return context
 
 
 class PostListView(FilteredListView):
+
+    """ renders all posts on the fourm home page using post model in 
+    reverse order by date posted paginted so 5 posts shown at a 
+    time, filterlistview passed in from above to allow django
+    filetrs postfilter to be filterset class passed into the 
+    fourm home page  """
 
     # filterset_class = CommentsFilter
     filterset_class = PostFilter
@@ -58,7 +89,8 @@ class PostListView(FilteredListView):
 
 
 class PostLikeToggle(RedirectView):
-    """ from a tutorial at https://www.youtube.com/watch?v=pkPRtQf6oQ8&t=678s This view gets the object adds the like and returns back to the detail view"""
+
+    """ from a tutorial at https://www.youtube.com/watch?v=pkPRtQf6oQ8&t=678s This view gets the object adds the like and returns back to the detail view used on the post_detail """
 
     def get_redirect_url(self, *args, **kwargs):
         # getting the post object of each post
@@ -79,10 +111,9 @@ class PostLikeToggle(RedirectView):
 
 
 class PostLikeAPIToggle(APIView):
-    """ from a tutorial at https://www.youtube.com/watch?v=pkPRtQf6oQ8&t=678s """
 
-    authentication_classes = [authentication.SessionAuthentication]
-    permission_classes = [permissions.IsAuthenticated]
+    """from a tutorial at https://www.youtube.com/watch?v=pkPRtQf6oQ8&t=678s 
+    genric api view used from django rest framework to handle upvote down vote functionallity"""
 
     def get(self, request, *args, **kwargs):
         # getting post object
@@ -112,6 +143,10 @@ class PostLikeAPIToggle(APIView):
 
 
 class UserPostListView(ListView):
+
+    """user  post list view displays all posts form a user
+       with only posts showing per page pagination used """
+
     # adding post model
     model = Post
     # changing the default page where the list views looks for template
@@ -128,11 +163,19 @@ class UserPostListView(ListView):
 
 
 class PostDetailView(DetailView):
+
+    """post detail view displays each post in a detail view"""
+
     # adding post model
     model = Post
 
 
-class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+class PostCreateView(SuccessMessageMixin, LoginRequiredMixin,
+    CreateView):
+
+    """ post create view displays post form where the user can create 
+        a post """
+
     # adding post model
     model = Post
     # adding post form
@@ -148,7 +191,12 @@ class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin,
+    UserPassesTestMixin, UpdateView):
+
+    """ view allows the user to update a post they already 
+        created"""
+
     # adding post model
     model = Post
     # only taking title and content fields from post model
@@ -173,7 +221,11 @@ class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixi
         return False
 
 
-class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin,
+    UserPassesTestMixin, DeleteView):
+
+    """ view allows user to delete the own posts"""
+
     # adding post model
     model = Post
     # adding route to home page after post Is deleted
@@ -188,38 +240,3 @@ class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixi
         if self.request.user == post.author:
             return True
         return False
-
-
-@login_required
-def add_comment_to_post(request, pk):
-    """ from a tutorial at https://tutorial-extensions.djangogirls.org/en/homework_create_more_models/ """
-
-    post = get_object_or_404(Post, pk=pk)
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.post = post
-            comment.save()
-            messages.success(request, 'Your comment was added succesfully')
-            return redirect('post-detail', pk=post.pk)
-    else:
-        form = CommentForm()
-    return render(request, 'fourm/add_comment_to_post.html', {'form': form})
-
-# @login_required
-# def comment_approve(request, pk):
-#     comment = get_object_or_404(Comment, pk=pk)
-#     comment.approve()
-#     return redirect('post-detail', pk=comment.post.pk)
-
-
-# @login_required
-# def comment_remove(request, pk):
-#     comment = get_object_or_404(Comment, pk=pk)
-#     comment.delete()
-#     return redirect('post-detail', pk=comment.post.pk)
-
-
-# def approved_comments(self):
-#     return self.comments.filter(approved_comment=True)

@@ -1,12 +1,13 @@
 import django_filters as filters
 from django_filters import CharFilter
-from .models import Post, Comment
+from .models import Post
 from users.models import User
 from django.db.models import Q
 from django import forms
 
 
 class PostFilter(filters.FilterSet):
+    """ filters for all dropdown menus on shop page """
 
     class Meta:
         model = Post
