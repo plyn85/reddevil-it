@@ -7,6 +7,11 @@ from decimal import Decimal
 
 
 def cart_contents(request):
+    """cart contents context cart and delivery infomation avaiable 
+    across all pages. Get the json cart converts to a python object
+    loops trough the cart appending to the cart items list if the
+    total is less less then the deilvery treshold the deilvery cost 
+    is summed and added"""
     products = Product.objects.all()[:8]
 
     try:
@@ -28,12 +33,10 @@ def cart_contents(request):
             # print(item_quantity)
             total += item_quantity * product.price
             product_count += item_quantity
-            print(product_count)
             cart_items.append({
                 'id': product.id,
                 'product': {'id': product.id, 'name': product.name, 'price': product.price,
                               'image': product.image}, 'quantity': cart[item]['quantity'], 'get_total': total,
-
             })
         except:
             pass

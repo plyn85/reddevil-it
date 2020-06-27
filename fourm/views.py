@@ -48,7 +48,7 @@ get request rensers comment form on add_comment_to_post page"""
 class FilteredListView(ListView):
 
     """added from a tutorial found at https://www.caktusgroup.com/blog/
-    2018/10/18/filtering-and-pagination-django/ used to allow djagno-filters 
+    2018/10/18/filtering-and-pagination-django/ used to allow django-filters 
     to be used with class based views used on  the PostList view below """
 
     filterset_class = None
@@ -74,7 +74,7 @@ class PostListView(FilteredListView):
     """ renders all posts on the fourm home page using post model in 
     reverse order by date posted paginted so 5 posts shown at a 
     time, filterlistview passed in from above to allow django
-    filetrs postfilter to be filterset class passed into the 
+    filters postfilter to be filterset class passed into the 
     fourm home page  """
 
     # filterset_class = CommentsFilter

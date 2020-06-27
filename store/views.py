@@ -16,7 +16,10 @@ import json
 
 
 class FilteredListView(ListView):
-    """added from a tutorial found at https://www.caktusgroup.com/blog/2018/10/18/filtering-and-pagination-django/"""
+    """added from a tutorial found at https://www.caktusgroup.com/blog/
+    2018/10/18/filtering-and-pagination-django/ used to allow django-filters 
+    to be used with class based views used on  the ProductList view below """
+
 
     filterset_class = None
 
@@ -50,6 +53,11 @@ class FilteredListView(ListView):
 
 
 class ProductListView(FilteredListView):
+    """ renders all products on the shop page using products model in 
+    ordered by price posted paginted so 8 products shown at a 
+    time, filterlistview passed in from above to allow django
+    filters products filter to be filterset class passed into the 
+    shop page  """
     filterset_class = ProductFilter
     model = Product
     # changing the default page where the list views looks for template
@@ -72,8 +80,7 @@ def product_detail(request, product_id):
 
 
 def shop(request):
-
-    products = Product.objects.all()
+    """ view renders the shop page """
 
     context = {
         'products': products,
@@ -85,11 +92,18 @@ def shop(request):
 
 
 def cart(request):
+    """ view renders the cart page """
 
     return render(request, 'store/cart.html')
 
 
 def checkout(request):
+    """ view handles checkout an payment using stripe
+    if its as post request orderform data an orderitems are 
+    saved to the database. The user is then redirected to 
+    the checkout success page. If its a get request the 
+    order form is rendered with an attempt made to prefill 
+    the form with any existing user information """
 
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -133,7 +147,7 @@ def checkout(request):
             messages.warning(
                 request, "There's nothing in your cart at the moment")
             return redirect(reverse('shop'))
-
+        # total taken from cart contents method context here
         cart_total = cart_contents(request)
         total = cart_total["grand_total"]
         stripe_total = total
@@ -175,6 +189,12 @@ def checkout(request):
 
 
 def checkout_success(request, transaction_id):
+    """ transaction id passed from checkout view here used 
+    to get the order if its a logged In user the order Is attached to the 
+    profile and saved. The users order Infomation is then passed
+    into the profile form and saved finally the cookie which contained 
+    the cart is deleted """
+   
 
     order = get_object_or_404(Order, transaction_id=transaction_id)
 

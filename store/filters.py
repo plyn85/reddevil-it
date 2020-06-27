@@ -6,6 +6,10 @@ from django.db.models import Q
 
 
 class ProductFilter(filters.FilterSet):
+    """ filter for products used on the product model 
+    and render on the products page filter methods for highest and lowest
+    prices and for player names, descrption, name and consdtion of product
+    """
 
     class Meta:
         model = Product
