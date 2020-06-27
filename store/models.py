@@ -23,16 +23,12 @@ class Product(models.Model):
     year = models.IntegerField(
         ('year'), choices=YEAR_CHOICES, default=datetime.datetime.now().year)
 
-    SMALL = "S"
-    MEDUIM = 'M'
-    LARGE = 'L'
-    EXTRA_LARGE = 'XL'
 
     SIZE_CHOICES = [
-        (SMALL, 'SM'),
-        (MEDUIM, 'M'),
-        (LARGE, 'L'),
-        (EXTRA_LARGE, 'XL'),
+        ("S", 'SM'),
+        ('M', 'M'),
+        ('L', 'L'),
+        ('XL', 'XL'),
     ]
 
     sizes = models.CharField(
@@ -40,18 +36,14 @@ class Product(models.Model):
         choices=SIZE_CHOICES,
         default="",
     )
-    BRAND_NEW = "brand new"
-    EXCELLENT = "Excellent"
-    MINT = 'Mint'
-    VERY_GOOD = 'Very good'
-    GOOD = 'Good'
+    
 
     SHIRT_CONDTION = [
-        (BRAND_NEW, 'Brand new'),
-        (EXCELLENT, 'Excellent'),
-        (MINT, 'Mint'),
-        (VERY_GOOD, 'Very good'),
-        (GOOD, 'Good'),
+        ("brand new", 'Brand new'),
+        ("Excellent", 'Excellent'),
+        ('Mint', 'Mint'),
+        ('Very good', 'Very good'),
+        ('Good', 'Good'),
 
     ]
 
@@ -61,24 +53,16 @@ class Product(models.Model):
         default="",
     )
 
-    GIGGS = "Giggs"
-    SCHMEICHEL = "Schmeichel"
-    BECKHAM = 'Beckham'
-    C_RONALDO = 'C Ronaldo'
-    CANTONA = 'Cantona'
-    ROONEY = "Rooney"
-    KEANE = "Keane"
-    SCHOLES = "Scholes"
 
     PLAYERS_NAMES = [
-        (GIGGS, "Giggs"),
-        (SCHMEICHEL, "Schmeichel"),
-        (BECKHAM, 'Beckham'),
-        (C_RONALDO, 'C Ronaldo'),
-        (CANTONA, 'Cantona'),
-        (ROONEY, "Rooney"),
-        (KEANE, "Keane"),
-        (SCHOLES, "Scholes"),
+        ("Giggs", "Giggs"),
+        ("Schmeichel", "Schmeichel"),
+        ('Beckham', 'Beckham'),
+        ('C Ronaldo', 'C Ronaldo'),
+        ('Cantona', 'Cantona'),
+        ("Rooney", "Rooney"),
+        ("Keane", "Keane"),
+        ("Scholes", "Scholes"),
 
     ]
 
