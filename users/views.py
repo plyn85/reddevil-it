@@ -14,9 +14,9 @@ import json
 
 class MyLoginView(LoginView):
     """if the users cart is empty returns the user
-       there the profile page on login if the users has items In the cart returns the user
-       to the shop on login"""
+       there the profile page on login if the users has items In the cart returns the user to the shop on login"""
 
+       
     def get_success_url(self):
         cart = json.loads(self.request.COOKIES['cart'])
         if cart:
@@ -29,6 +29,10 @@ class MyLoginView(LoginView):
 
 
 def register(request):
+    """ If a post request is made and the form is valid the user 
+    is brought to the login page. If Its a get request form is rendered 
+    and the register page"""
+    
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -44,12 +48,21 @@ def register(request):
 
 @login_required
 def profile(request):
+    """profile veiw handels two forms which update the users
+    personal and deliver infomation both redirect to proifle
+    page after successful post request a get request renders 
+    the two forms along with the users order history"""
+    
     profile = get_object_or_404(Profile, user=request.user)
     # update user form
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=request.user)
         if u_form.is_valid():
             u_form.save()
+            
+            messages.success(
+                request, f'{request.user.username} Your account has been Updated!')
+            return redirect('profile')
      # update profile form
     if request.method == "POST":
         p_form = ProfileForm(
@@ -75,6 +88,11 @@ def profile(request):
 
 
 def change_password(request):
+    """ view allows the user to change there current password
+    if a successful post request is made there password is changed 
+    and they are returned to there profile page If a get request is 
+    made the password change form is rendered and change password page"""
+    
     profile = get_object_or_404(Profile, user=request.user)
     # password from
     if request.method == 'POST':
@@ -96,6 +114,10 @@ def change_password(request):
 
 
 def order_history(request, transaction_id):
+    """ order history view passes the order to the checkout success 
+    page. If tghe user has come from there profile page gives user 
+    abilty to return there by passing from profile as true """
+    
     order = get_object_or_404(Order, transaction_id=transaction_id)
     template = 'store/checkout_success.html'
     context = {

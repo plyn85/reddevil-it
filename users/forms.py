@@ -6,6 +6,8 @@ from .models import Profile
 
 
 class UserRegisterForm(UserCreationForm):
+    """ user register form defaults overridden custom placeholders
+    added and help text an labels removed"""
 
     email = forms.EmailField()
 
@@ -33,6 +35,9 @@ class UserRegisterForm(UserCreationForm):
 
 
 class UserUpdateForm(forms.ModelForm):
+    """ update user form defaults overridden custom placeholders
+    added and help text an labels removed"""
+
 
     class Meta:
         model = User
@@ -57,6 +62,9 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class UserLoginForm(AuthenticationForm):
+    """ user login form defaults overridden custom placeholders
+    added and help text an labels removed"""
+
 
     class Meta:
         model = User
@@ -81,6 +89,10 @@ class UserLoginForm(AuthenticationForm):
 
 
 class ProfileForm(forms.ModelForm):
+    """ profile form defaults overridden custom placeholders
+    added and help text an labels removed"""
+
+    
     class Meta:
         model = Profile
         exclude = ('user',)
@@ -112,6 +124,10 @@ class ProfileForm(forms.ModelForm):
 
 
 class UserPasswordChangeForm(PasswordChangeForm):
+    """ passwordchange form defaults overridden custom placeholders
+    added and help text an labels removed"""
+
+     
     class Meta:
         model = User
         fields = ('old_password', 'new_password1', 'new_password2')
@@ -136,6 +152,9 @@ class UserPasswordChangeForm(PasswordChangeForm):
 
 
 class UserPasswordResetForm(PasswordResetForm):
+    """ user passwordreset form defaults overridden custom placeholder
+    added and help text an labels removed """
+
 
     class Meta:
         model = User
@@ -151,6 +170,9 @@ class UserPasswordResetForm(PasswordResetForm):
 
 
 class UserSetPasswordForm(SetPasswordForm):
+    """ set password form defaults overridden custom placeholders
+    added and help text an labels removed"""
+
 
     class Meta:
         model = User
