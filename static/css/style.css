@@ -1,293 +1,84 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap:,300,500,600,700,800,900");
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap:300,500,600,700,800,900");
-/* main body */
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: 
+*/
 
-/* scroll behaviour smooth added to give smooth scrolling
- effect*/
-body,
-html {
-  height: 100%;
-  font-size: 16px;
-  scroll-behavior: smooth;
-  /* added for ios devices */
-  -webkit-overflow-scrolling: touch;
-}
-/* added for footer positioning */
-body {
-  background-color: #f8f8ff;
-  flex-direction: column;
-}
-/* removing all margins and padding from bootsrap rows an cols */
-.container-fluid,
-.container,
-.row {
-  margin: 0;
-  padding: 0;
-}
-/* added for footer positioning */
-.main-container {
-  flex: 1 0 auto;
-}
-/* end main body */
+/* stlying for callout text on home page */
 
-/* reusable */
-/* colors */
-.white {
-  color: #ffffff;
-}
-.red {
-  color: #c70101;
-}
-.black {
-  color: #000000;
-}
-.green {
-  color: #00a92c;
-}
-.bg-black {
-  background-color: #000000;
-}
-.bg-red {
-  background-color: #c70101;
-}
-.bg-green {
-  color: #00a92c;
-}
-.bg-white {
-  background-color: white;
-}
-.bg-off-white {
-  background-color: #f8f8ff;
-}
-/* fonts */
-.mont-font {
-  font-family: "Montserrat", sans-serif;
-}
-.bebas {
-  font-family: "Bebas Neue", cursive;
+.callout-text:hover {
+	color: white;
 }
 
-/* navabar  */
-.navbar,
-.dropdown-menu {
-  background-color: #c70101;
+
+/* styling for posts, post  boxes */
+
+.forum-post-div {
+	border: 0.125rem solid #c70101;
+	padding: 0;
 }
 
-.main-header {
-  margin-left: 6rem;
-}
-.cara-text,
-.nav-item a {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-top: 1rem;
-  font-family: "Montserrat", sans-serif;
-  color: #ffffff;
-}
-.cara-text {
-  font-size: 2rem;
-}
-.cara-main-text {
-  font-size: 3rem;
-  font-weight: 900;
-}
-#website-name {
-  font-weight: 600;
-  font-style: italic;
-  margin-left: 3.5rem;
-  font-size: 1.5rem;
-  color: #ffffff;
-}
-.nav-toggler {
-  font-size: 2rem;
-}
-/* end navbar */
-/* fourm advert */
-.fourm-add-banner {
-  margin-top: 5rem;
+.post-detail-wrapper {
+	margin-top: 6rem;
 }
 
-.hide {
-  display: none;
-}
-.prod-cara-img {
-  margin-left: 170px;
-}
-.checkout-img {
-  width: 70px;
-  height: 70px;
-}
-/* styling the products cards */
-.prod-wrapper {
-  border: 3px solid black;
-  padding: 0;
-  margin: 3px;
-  border-radius: 0.5rem;
+
+/* styling fourm card buttons */
+
+.btn-post {
+	border: 0.0625rem solid #c70101;
+	padding: 0;
 }
 
-/* caresol background Image */
-.carousel-item {
-  height: 100vh;
-  background: no-repeat center center scroll;
-  background-size: cover;
-  position: relative;
-}
-/* styling for cards  */
-.card-img-top {
-  border-radius: 10px;
-}
-/* deliver banner styling */
-.del-banner-font {
-  font-size: 2rem;
-  letter-spacing: 2px;
-}
-/* product card footer buttons  */
-.btn-footer-prod-cards {
-  border: 2px solid#c70101;
-  padding: 7px 15px;
-  background-color: #c70101;
-  color: #ffffff;
-  text-transform: skew(-20deg);
-}
-.btn-footer-prod-cards:hover {
-  background-color: #ffffff;
-  color: #c70101;
-}
-/* overriding scss on country dropdown otherwise country value partly blocked */
-select.form-control:not([size]):not([multiple]) {
-  height: calc(2.25rem + 9px);
+.comments-btn {
+	border: 0.125rem solid #000000;
+	padding: 0.125rem;
+	border-radius: 0.9375rem;
 }
 
-/* over riding stripe and all other forms inputs*/
-/* for stripe */
-.StripeElement,
-.content-form-style-input,
-.form-style-input {
-  box-sizing: border-box;
-  height: 50px;
-  padding: 10px 12px;
-  border: 1px solid black;
-  border-radius: 0px;
-  background-color: white;
-  box-shadow: 0 1px 3px 0 #e6ebf1;
-  transition: box-shadow 150ms ease;
-}
-/* overriding height set on post_form content box set above */
-.content-form-style-input {
-  height: 7rem;
+
+/* comments button on hover */
+
+.comments-btn:hover {
+	background-color: #ffffff;
+	color:#000000;
+	border-radius: 0.625rem;
+	border-color: #c70101;
 }
 
-/* for country dropdown menu select, */
-select option {
-  color: #000000;
+
+/* applying margin top to the user post card-users posts page */
+
+.user-posts-icon {
+	margin-top:0.5625rem;
 }
 
-select:invalid,
-select option[value=""] {
-  margin-bottom: 2px;
-  color: #aab7c4 !important;
-}
 
-.StripeElement--focus,
-.form-style-input:focus,
-.form-style-input:active {
-  box-shadow: 0 1px 3px 0 #cfd7df;
-}
 
-.StripeElement--webkit-autofill {
-  background-color: #fefde5 !important;
-}
+/* media queries */
 
-.form-style-input::-webkit-input-placeholder {
-  color: #aab7c4;
-}
 
-.form-style-input::-moz-placeholder {
-  color: #aab7c4;
-}
+/* background image for products section hidden on mobile*/
 
-.form-style-input:-ms-input-placeholder {
-  color: #aab7c4;
-}
-
-.form-style-input::-ms-input-placeholder {
-  color: #aab7c4;
-}
-
-.form-style-input::placeholder {
-  color: #aab7c4;
-}
-
-.fieldset-label {
-  position: relative;
-  right: 0.5rem;
-}
-
-#payment-form .form-control,
-#card-element {
-  color: #000;
-  border: 1px solid #000;
-}
-
-/* added to fix internet explorer issue with bootstrap flex on col class */
-
-.internet-explorer-fix {
-  flex: none;
-  -ms-flex: none;
-}
-
-/* end of internet explorer fix */
-
-.copyright {
-  margin: 0 auto;
-  padding: 0.75rem 0;
-}
-
-/* end copyright  */
-
-/* footer */
-.footer {
-  flex-shrink: 0;
-}
-.social:hover {
-  color: #c70101;
-}
-.footer ul {
-  list-style-type: none;
-}
-
-/* footer buttons */
-.btn-footer {
-  border: 2px solid#c70101;
-  border-radius: 10px;
-}
-.btn-footer:hover {
-  border: none;
-  background-color: #c70101;
-  color: #ffffff;
-}
-/* end footer */
-
-/* bootstrap toasts */
-.cart-toast,
-.message-container {
-  position: fixed;
-  top: 72px;
-  right: 15px;
-  z-index: 99999999999;
-}
-
-.custom-toast {
-  overflow: visible;
-}
-
-.toast-capper {
-  height: 2px;
-}
-/* stlying for fourm add banner larger devices */
 @media (min-width: 540px) {
-  .fourm-add-text {
-    font-size: 5rem;
-    letter-spacing: 3px;
-  }
+	.prod-home-section {
+		background-image: url("https://res.cloudinary.com/plyn85/image/upload/v1592414252/fans-forum/NINTCHDBPICT000572000381_keczfo.jpg");
+		background-position-x: 50%;
+		background-size: cover;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+	}
+}
+
+
+/* largest devices */
+
+@media (max-width: 1024px) {
+	/* removing side border on all but largest devices */
+	.forum-post-div {
+		border-right: none;
+		border-left: none;
+	}
 }
