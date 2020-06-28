@@ -6,7 +6,7 @@
 <div class="shop-page-del-banner">
 	<!-- adding delivery discount partial partial -->{%include '../partials/_delivery_banner.html'%} </div>
 <!-- Page Content -->
-<class="container-fluid mt-5 mb-0 shop-page-wrapper bg-off-white">
+<div class="container-fluid mt-5 mb-0 shop-page-wrapper bg-off-white">
 	<!-- filter button can only be viewed on mobile -->{%include '../partials/_search_hide_show_btn.html'%}
 	<!-- wrapper for search bar search bars  are hidden on smaller devices but a search button allows them to be toggled open and closed ,search button only shown on smaller devices -->
 	<div class="mobile-search-wrapper d-none d-md-block">
@@ -122,24 +122,15 @@
 	</div>
 	<!-- end row -->
 	<div class="ml-md-5">
-		<!-- adding partial pagination buttons -->{%include '../partials/_pagination_btns.html'%} </div> 
-		
-		{%include '../partials/_products.html'%}
+		<!-- adding partial pagination buttons -->{%include '../partials/_pagination_btns.html'%} </div> {%include '../partials/_products.html'%}
 	<div class="pag-btns-shop-wrapper ml-md-5">
 		<!-- adding partial pagination buttons -->{%include '../partials/_pagination_btns.html'%} </div>
-</div>
- {%endblock%}
+</div> {%endblock%}
 <!-- endblock -->
-
-<!-- start footer -->{% block footer %}
-{%include '../partials/_footer.html'%}
-{% endblock %}
+<!-- start footer -->{% block footer %} {%include '../partials/_footer.html'%} {% endblock %}
 <!-- end footer -->
 <!-- start js -->{% block postloadjs%} {{block.super}}
-<script src="{% static 'store/js/cart.js' %}"></script> 
-<!--js partial for button toggle -->
-{%include '../partials/_show_hide_search_script.html'%}
-<!--js partial for failed search -->
-{%include '../partials/_failed_search.html'%}
-{%endblock%}
+<script src="{% static 'store/js/cart.js' %}"></script>
+<!--js partial for button toggle -->{%include '../partials/_show_hide_search_script.html'%}
+<!--js partial for failed search -->{%include '../partials/_failed_search.html'%} {%endblock%}
 <!-- end js -->

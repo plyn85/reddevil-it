@@ -1,5 +1,8 @@
 <script type = "text/javascript">
-    /*If the users search returns no results add a fixed bottom to the footer on devices above 540px only adds a message to reset an keeps the search bars and there reset button open as they are initally hidden on mobile*/
+    /*If the users search returns no results adds a fixed bottom 
+    to the footer on tablets otherwise its removed, adds a message to 
+    reset search and keeps the search bars and there reset 
+    button open as they are initally hidden on mobile*/
 
     // setting variables
 emptyContainer = $(".empty-container")
@@ -8,15 +11,17 @@ footer = $(".footer")
 function checkContent() {
     if (emptyContainer.height() <= 0) {
         function checkWidth() {
-            if ($(window).width() > 540) {
+            if ($(window).width() > 540 && $(window).width() <= 1024) {
                 footer.addClass("fixed-bottom")
 
+            }else{
+            footer.addClass("d-none")
             }
 
         }
         checkWidth()
         window.onresize = checkWidth
-        emptyContainer.append("<h4 class ='mont-font text-center'>Your search returned no results Please reset and try again! </h4>")
+        emptyContainer.append("<h4 class ='mont-font text-center'>Your search returned no results Please reset or try another! </h4>")
         $(".mobile-search-wrapper").addClass("d-block")
 
     }
