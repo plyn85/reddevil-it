@@ -67,7 +67,7 @@ class ProductFilter(filters.FilterSet):
 
     ]
 
-    condtion = filters.ChoiceFilter(empty_label="By Condtion",
+    condtion = filters.ChoiceFilter(empty_label="Condtion",
                                                  choices= SHIRT_CONDTION,)    
 
     #  filter for player names      

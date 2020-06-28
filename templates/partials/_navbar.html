@@ -5,7 +5,7 @@
 	<!-- nav button -->
 	<button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon">
       <!-- setting customer navbar toggler icon -->
-      <i class="fas fa-bars nav-toggler"></i>
+      <i class="fas fa-bars nav-toggler white"></i>
     </span> </button>
 	<!-- end button -->
 	<div class="collapse navbar-collapse" id="navbarNav">
@@ -36,9 +36,9 @@
 		<li class="list-inline-item">
 			<!-- link -->
 			<a class="nav-link" href="{% url 'cart' %}">
-				<div class="text-center">
+				<div class="text-center mt-2 mr-2">
 					<div><i class="fas fa-shopping-cart fa-lg white"></i></div>
-					<p class="my-0 white">
+					<p class="my-0 white mont-font">
 						<!-- if grand total exists display grand total if not display 0 -->{% if grand_total %} €{{ grand_total|floatformat:2 }} {% else %} €0.00 {% endif %}
 						<!-- end if -->
 					</p>

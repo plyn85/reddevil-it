@@ -142,7 +142,7 @@ body {
 }
 /* deliver banner styling */
 .del-banner-font {
-  font-size: 2rem;
+  font-size: 3rem;
   letter-spacing: 0.125rem;
 }
 /* product card footer buttons  */
@@ -289,9 +289,10 @@ select option[value=""] {
   height: 0.125rem;
 }
 /* stlying for fourm add banner larger devices */
-@media (min-width: 540px) {
-  .fourm-add-text {
-    font-size: 5rem;
+@media (max-width: 540px) {
+  .del-banner-font {
+    padding-top:1.2rem;
+    font-size: 2rem
    
   }
 }
