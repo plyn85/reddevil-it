@@ -1,0 +1,22 @@
+<script type = "text/javascript">
+    /*If the users search returns no results hides the footer adds a message to reset an keeps the search bars and there reset button open  as they are initally hidden on mobile*/
+    
+    
+    
+    function checkContent() {
+        emptyContainer = $(".empty-container")
+        footer = $(".footer")
+        if (emptyContainer.height() <= 0) {
+            footer.addClass("d-none")
+            emptyContainer.append("<h4 class ='mont-font text-center'>Your search returned no results Please reset and try again! </h4>")
+            $(".mobile-search-wrapper").addClass("d-block")
+
+        }
+
+    }
+checkContent();
+window.onresize = checkContent;
+
+
+
+</script>

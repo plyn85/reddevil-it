@@ -51,7 +51,7 @@
 			<div class="col-12 col-lg-3  my-auto py-1 py-lg-0">
 				<!-- form -->
 				<form method="GET">
-					<!-- input renders form from django filters which filters author and username fields of the post model -->
+					<!-- input renders form from django filters which filters author by name fields of the post model -->
 					<div class="input-group w-100"> {%render_field filterset.form.author__username class="form-control"%}
 						<div class="input-group-append">
 							<button class="form-control btn btn-black border border-black rounded-0" type="submit"> <span class="icon">
@@ -114,8 +114,13 @@
 		<!-- adding delivery discount partial partial -->{%include '../partials/_products.html'%} </div>
 </div> {%endif%}
 <!-- end if -->
-<!-- script added to toggle search buttons on mobile -->{%include '../partials/_show_hide_search_script.html'%} {% endblock %}
-<!-- footer -->{% block footer %} {%include '../partials/_footer.html'%} {% endblock %}
+ {% endblock %}
+<!-- footer -->{% block footer %} {%include '../partials/_footer.html'%} 
+{% endblock %}
+<!-- end block -->
 <!-- post load js -->{% block postloadjs%} {{block.super}}
 <script src="{% static 'store/js/cart.js' %}"></script>
-<!-- partial which contains like/vote btn ajax -->{%include '../partials/_vote_btn_script.html'%} {%endblock%}
+<!-- partial which contains like/vote btn ajax -->{%include '../partials/_vote_btn_script.html'%} 
+<!-- script added to toggle search buttons on mobile -->
+{%include '../partials/_show_hide_search_script.html'%}
+{%endblock%}

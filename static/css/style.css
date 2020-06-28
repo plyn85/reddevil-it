@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap:,300,500,600,700,800,900");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap:300,500,600,700,800,900");
 /* main body */
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+}
 
 /* scroll behaviour smooth added to give smooth scrolling
  effect*/
