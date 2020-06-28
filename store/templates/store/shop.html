@@ -6,11 +6,17 @@
 <div class="shop-page-del-banner">
 	<!-- adding delivery discount partial partial -->{%include '../partials/_delivery_banner.html'%} </div>
 <!-- Page Content -->
-<div class="container-fluid mt-5 mb-0 shop-page-wrapper bg-off-white"> {%include '../partials/_search_hide_show_btn.html'%}
+<div class="container-fluid mt-5 mb-0 shop-page-wrapper bg-off-white">
+	<!-- filter button can only be viewed on mobile -->{%include '../partials/_search_hide_show_btn.html'%}
+	<!-- wrapper for search bar search bars  are hidden on smaller devices but a search button allows them to be toggled open and closed ,search button only shown on smaller devices -->
 	<div class="mobile-search-wrapper d-none d-md-block">
+		<!-- start row -->
 		<div class="row justify-content-center">
+			<!-- start col -->
 			<div class="col-12 col-md-6 col-lg-4 my-auto py-1 py-lg-0">
+				<!-- start form -->
 				<form method="GET">
+					<!-- input renders form from django filters which filters, name,descption,players names and condtion fields of the products model -->
 					<div class="input-group w-100"> {% render_field filterset.form.search_all_products class="form-control"%}
 						<div class="input-group-append">
 							<button class="form-control btn btn-black border border-black rounded-0" type="submit"> <span class="icon">
@@ -18,12 +24,20 @@
                                 </span> </button>
 						</div>
 					</div>
+					<!-- end input -->
 				</form>
+				<!-- end form -->
 			</div>
+			<!-- end col  -->
 		</div>
+		<!-- end row -->
+		<!--  row -->
 		<div class="row mt-md-5">
+			<!-- col -->
 			<div class="col-12 col-md-6 col-lg-2 my-auto py-1 py-lg-0">
+				<!-- form -->
 				<form method="GET">
+					<!-- input renders form from django filters which filters sizes field of the products model -->
 					<div class="input-group w-100"> {% render_field filterset.form.sizes class="form-control"%}
 						<div class="input-group-append">
 							<button class="form-control btn btn-black border border-black rounded-0" type="submit"> <span class="icon">
@@ -31,10 +45,16 @@
                                 </span> </button>
 						</div>
 					</div>
+					<!-- end input -->
 				</form>
+				<!-- end form -->
 			</div>
+			<!-- end col -->
+			<!-- col -->
 			<div class="col-12 col-md-6 col-lg-2 my-auto py-1 py-lg-0">
+				<!-- form -->
 				<form method="GET">
+					<!-- input renders form from django filters which filters price by highest and lowest prices field of the products model -->
 					<div class="input-group w-100"> {% render_field filterset.form.lowest_highest_prices class="form-control"%}
 						<div class="input-group-append">
 							<button class="form-control btn btn-black border border-black rounded-0" type="submit"> <span class="icon">
@@ -42,10 +62,16 @@
                                 </span> </button>
 						</div>
 					</div>
+					<!-- end input -->
 				</form>
+				<!-- form -->
 			</div>
+			<!-- end col -->
+			<!-- col -->
 			<div class="col-12 col-md-6 col-lg-2 my-auto py-1 py-lg-0">
+				<!-- form -->
 				<form method="GET">
+					<!-- input renders form from django filters which filters price by condtion field of the products model -->
 					<div class="input-group w-100"> {% render_field filterset.form.condtion class="form-control"%}
 						<div class="input-group-append">
 							<button class="form-control btn btn-black border border-black rounded-0" type="submit"> <span class="icon">
@@ -53,10 +79,16 @@
                                 </span> </button>
 						</div>
 					</div>
+					<!-- end input -->
 				</form>
+				<!-- end form -->
 			</div>
+			<!-- end col -->
+			<!-- col -->
 			<div class="col-12 col-md-6 col-lg-2 my-auto py-1 py-lg-0">
+				<!-- form -->
 				<form method="GET">
+					<!-- input renders form from django filters which filters price by player name field of the products model -->
 					<div class="input-group w-100"> {% render_field filterset.form.players_names class="form-control"%}
 						<div class="input-group-append">
 							<button class="form-control btn btn-black border border-black rounded-0" type="submit"> <span class="icon">
@@ -64,10 +96,16 @@
                                 </span> </button>
 						</div>
 					</div>
+					<!-- end input -->
 				</form>
+				<!-- end form -->
 			</div>
+			<!-- end col -->
+			<!-- col -->
 			<div class="col-12 col-md-6 col-lg-2 my-auto py-1 py-lg-0">
+				<!-- form -->
 				<form method="GET">
+					<!-- input renders form from django filters which filters price by player name year of the products model -->
 					<div class="input-group w-100"> {% render_field filterset.form.year class="form-control"%}
 						<div class="input-group-append">
 							<button class="form-control btn btn-black border border-black rounded-0" type="submit"> <span class="icon">
@@ -75,12 +113,23 @@
                                 </span> </button>
 						</div>
 					</div>
+					<!-- end input -->
 				</form>
-			</div> {%include '../partials/_reset_btn.html'%} </div>
+				<!-- end form -->
+			</div>
+			<!-- end col -->
+			<!-- including reset filter button as a partial -->{%include '../partials/_reset_btn.html'%} </div>
 	</div>
+	<!-- end row -->
 	<div class="pag-btns-shop-wrapper ml-md-5">
 		<!-- adding partial pagination buttons -->{%include '../partials/_pagination_btns.html'%} </div> {%include '../partials/_products.html'%}
 	<div class="pag-btns-shop-wrapper ml-md-5">
 		<!-- adding partial pagination buttons -->{%include '../partials/_pagination_btns.html'%} </div>
-</div> {%include '../partials/_show_hide_search_script.html'%} {%endblock%} {% block footer %} {%include '../partials/_footer.html'%} {% endblock %} {% block postloadjs%} {{block.super}}
+</div>
+<!-- partial for button toggle -->{%include '../partials/_show_hide_search_script.html'%} {%endblock%}
+<!-- endblock -->
+<!-- start footer -->{% block footer %} {%include '../partials/_footer.html'%} {% endblock %}
+<!-- end footer -->
+<!-- start js -->{% block postloadjs%} {{block.super}}
 <script src="{% static 'store/js/cart.js' %}"></script> {%endblock%}
+<!-- end js -->

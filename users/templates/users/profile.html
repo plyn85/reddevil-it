@@ -7,10 +7,7 @@
 <!-- ending navbar partial -->
 <!-- start block content -->{%block content%}
 <div class="profile-section-img-wrapper pb-5 bg-off-white">
-	<div class="row justify-content-center profile-btn-wrapper mb-xs-4">
-          <a href="{%url 'shop'%}"><span class="mr-3 text-uppercase mont-font black btn-cart-checkout">Shop now</span> </a>
-          <a href="{%url 'fourm-home'%}"><span class="text-uppercase btn-cart-checkout mont-font ml-3">See fourm</span> </a>
-	</div>
+	<div class="row justify-content-center profile-btn-wrapper mb-xs-4"> <a href="{%url 'shop'%}"><span class="mr-3 text-uppercase mont-font black btn-cart-checkout">Shop now</span> </a> <a href="{%url 'fourm-home'%}"><span class="text-uppercase btn-cart-checkout mont-font ml-3">See fourm</span> </a> </div>
 	<div class="row justify-content-center">
 		<div class="col-12 col-lg-7 mt-lg-5 bg-white p-2 border">
 			<!-- home page return partial -->{%include '../partials/_home_page_return.html'%}
@@ -19,11 +16,10 @@
 			<p class="mont-font text-center">You signed for us on the <span class="font-italic red">{{ user.date_joined|date:"d M Y"}}</span></p>
 			<p class="mont-font text-center">You username is <span class="font-italic red">{{ user.username }}</span></p>
 			<p class="mont-font text-center">You email address is <span class="font-italic red">{{ user.email }}</span></p>
-		  <p class="mont-font text-center">Need to update your password click here <span class="font-italic red"><a href="{%url 'change_password'%}">Change password</a></span></p>
-		
-    </div>
+			<p class="mont-font text-center">Need to update your password click here <span class="font-italic red"><a href="{%url 'change_password'%}">Change password</a></span></p>
+		</div>
 	</div>
-  <div class="row justify-content-center mt-5">
+	<div class="row justify-content-center mt-5">
 		<div class="col-12 col-lg-7 bg-white p-2 border">
 			<!-- start of user form -->
 			<form method="POST">
@@ -43,12 +39,10 @@
 				<!-- end button wrapper div -->
 			</form>
 		</div>
-	</div> 
-	
-	 <!-- row wrappin form  -->
-	 
-	<div class="row justify-content-center mt-5"> 
-		 <!-- col wrapping form  -->
+	</div>
+	<!-- row wrappin form  -->
+	<div class="row justify-content-center mt-5">
+		<!-- col wrapping form  -->
 		<div class="col-12 col-lg-7 bg-white p-2 border">
 			<!-- start of profile form -->
 			<form method="POST">
@@ -73,11 +67,11 @@
 	</div>
 	<!-- end row -->
 	<!-- row -->
-	<div class="row justify-content-center mt-5">  
+	<div class="row justify-content-center mt-5">
 		<!-- col -->
 		<div class="col-12 col-lg-7 bg-white p-2 border">
-	<!-- home page return partial -->{%include '../partials/_home_page_return.html'%}
-	<!-- header -->
+			<!-- home page return partial -->{%include '../partials/_home_page_return.html'%}
+			<!-- header -->
 			<h2 class="bebas text-center mt-2">order history</h2>
 			<hr class="user-hr">
 			<!-- order history table -->
@@ -91,19 +85,16 @@
 							<th class="mont-font">Order Total</th>
 						</tr>
 					</thead>
-					<tbody> 
-						<!-- loops trough orders -->
-						{% for order in orders %}
+					<tbody>
+						<!-- loops trough orders -->{% for order in orders %}
 						<tr>
 							<td> <a href="{% url 'order_history' order.transaction_id %}" title="{{ order.order_number }}" class="mont-font">
                 {{ order.transaction_id|truncatechars:6 }}
               </a> </td>
 							<td class="mont-font">{{ order.date_ordered }}</td>
 							<td class="mont-font">€{{ order.total }}</td>
-						</tr> 
-						
-						{% endfor %} 
-					<!-- end for loop -->
+						</tr> {% endfor %}
+						<!-- end for loop -->
 					</tbody>
 				</table>
 				<!-- end table -->
@@ -112,10 +103,6 @@
 		</div>
 		<!-- end row -->
 	</div>
-	<!-- end profile section wrapper -->
-{%endblock%}
-<!-- end block -->
-<!-- adding footer partial -->
-{%block footer%} 
-{%include '../partials/_footer.html'%} 
-{% endblock %}
+	<!-- end profile section wrapper -->{%endblock%}
+	<!-- end block -->
+	<!-- adding footer partial -->{%block footer%} {%include '../partials/_footer.html'%} {% endblock %}
