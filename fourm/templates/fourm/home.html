@@ -100,4 +100,7 @@
 <!-- script added to toggle search buttons on mobile -->{%include '../partials/_show_hide_search_script.html'%} {% endblock %}
 <!-- footer -->{% block footer %} {%include '../partials/_footer.html'%} {% endblock %}
 <!-- post load js -->{% block postloadjs%} {{block.super}}
-<script src="{% static 'store/js/cart.js' %}"></script> {%endblock%}
+<script src="{% static 'store/js/cart.js' %}"></script> 
+<!-- partial which contains like/vote btn ajax -->
+{%include '../partials/_vote_btn_script.html'%}
+{%endblock%}

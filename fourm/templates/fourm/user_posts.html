@@ -15,4 +15,5 @@
 	</div>
 	<!-- adding partial pagination buttons -->{%include '../partials/_posts.html'%}
 	<!-- adding partial pagination buttons -->{%include '../partials/_pagination_btns.html'%}
-	<!-- endblock content -->{%endblock%} </div>
+	<!-- endblock content -->{%endblock%} </div> {% block postloadjs%} {{block.super}}
+<!-- partial which contains like/vote btn ajax -->{%include '../partials/_vote_btn_script.html'%} {%endblock%}

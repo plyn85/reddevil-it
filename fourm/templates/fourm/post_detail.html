@@ -99,3 +99,8 @@
 {% block footer %}
  {%include '../partials/_footer.html'%}
   {% endblock %}
+
+  {% block postloadjs%} {{block.super}}
+  <!-- partial which contains like/vote btn ajax -->
+  {%include '../partials/_vote_btn_script.html'%}
+  {%endblock%} 

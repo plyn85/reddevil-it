@@ -1,0 +1,32 @@
+/*  function added here then passed into success function update text when upvote/downvote button clicked */
+
+<script class ="text/javascript">
+$(".like-btn").click(function (e) {
+  // prevent default behaviour of the button
+  e.preventDefault();
+  // this is the .like-btn class
+  var this_ = $(this);
+  // adding get_like_api_url to variable
+  var likeUrl = this_.attr("data-href");
+  
+  if (likeUrl) {
+    $.ajax({
+      url: likeUrl,
+      method: "GET",
+      data: {},
+      success: function (data) {
+        if (data.liked) {
+          //add one like
+          likeCount + 1;
+        } else {
+          // remove one like
+          likeCount - 1;
+        }
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+   }location.reload()
+});
+</script>
