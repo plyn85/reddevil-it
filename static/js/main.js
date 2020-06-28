@@ -6,11 +6,11 @@ $(document).ready(function () {
 
   /*  function added here then passed into success function update text when like/unlike button clicked */
 
-  function updateText(btn, newCount, verb) {
-    btn.text(newCount + " " + verb);
-    // this prevents num of likes displaying as a negitive value
-    btn.attr("data-likes", newCount);
-  }
+  // function updateText(btn, newCount, verb) {
+  //   btn.text(newCount + " " + verb);
+  //   // this prevents num of likes displaying as a negitive value
+  //   btn.attr("data-likes", newCount);
+  // }
 
   $(".like-btn").click(function (e) {
     // prevent default behaviour of the button
@@ -45,12 +45,6 @@ $(document).ready(function () {
           console.log("error");
         },
       });
-    }
+     }location.reload()
   });
-  function addOption() {
-    optionText = "Ultimate";
-    optionValue = "ultimate";
-
-    $("#id_sizes").append(new Option(optionText, optionValue));
-  }
 });

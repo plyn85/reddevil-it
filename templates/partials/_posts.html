@@ -40,10 +40,10 @@
 						<p class="black"> {{post.content}} </p>
 					</div>
 					<!-- end card body -->
-					<!-- upvote button, update, delete,comment count,add comment and view comments all displayed In cart footer -->
+					<!-- upvote button, update, delete,comment count,add comment and view comments all displayed In card footer -->
 					<div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
 						<!-- upvote button -->
-						<p class="ml-4 mt-2"> <small class="mont-font ml-2">Votes:</small> <a class="like-btn black mont-font ml-2" data-href="{{post.get_like_api_url}}" data-likes="{{post.likes.count}}" href="{{post.get_like_url}}">upvote<i class="fas fa-thumbs-up"></i></a> </p>
+						<p class="ml-4 mt-2"> <small class="mont-font ml-2">Votes: {{post.likes.count}}</small>{%if request.user in post.likes.all%} <a class="like-btn black mont-font ml-2" data-href="{{post.get_like_api_url}}" data-likes="{{post.likes.count}}" href="{{post.get_like_url}}">downvote<i class="fas fa-thumbs-down"></i></a>{%else%}<a class="like-btn black mont-font ml-2" data-href="{{post.get_like_api_url}}" data-likes="{{post.likes.count}}" href="{{post.get_like_url}}">upvote<i class="fas fa-thumbs-up"></i></a>{%endif%}</p>
 						<!-- end upvote button -->
 						<!-- wrapper div -->
 						<div class="px-4 pt-3">
