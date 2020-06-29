@@ -37,8 +37,6 @@ class Comment(models.Model):
 
     post = models.ForeignKey('fourm.Post', on_delete=models.CASCADE,
                              related_name='comments')
-    author = models.ForeignKey(User, models.SET_NULL, blank=True,
-                               null=True)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)
