@@ -221,16 +221,23 @@ def checkout_success(request, transaction_id):
     
     context = {"order": order}
     
-    html_message = render_to_string('store/checkout_success.html')
+    # Send the user a confirmation email
     
+    email = order.email
+    subject = render_to_string(
+            'email_confirm/email_confirm_subject.txt',)
+    body = render_to_string(
+            'email_confirm/email_confirm.txt',
+            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+
     send_mail(
-        "Thank You For Shopping at Nutristore",
-        f"Here is the message.",
-        "plyn99@gmail.com",
-        ["plyn99@gmail.com"],
-        fail_silently=False,
-        html_message=html_message,
-    )
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,
+            [order.email],
+            fail_silently=False,
+            )
+
     
     response = render(request, 'store/checkout_success.html', context)
     # remove cart from cookies when checkout success page reached

@@ -3,11 +3,11 @@
 <div class="col-6 col-md-2">
 	<!-- setting url variables  -->{% url 'fourm-home' as home_url %} {% url 'shop' as shop_url %}
 	<!-- reset button will refresh the, fourm home page or the products page depending on what page the user Is on -->
-	<form method="GET" action="">
-		<a href="{%url 'shop'%}" class="form-control btn rounded-0 btn-success"id="reset-btn"> <span class="icon mont-font">
+	<form method="GET" action="{%url 'shop'%}">
+		<button class="form-control btn rounded-0 btn-success" type="submit"> <span class="icon mont-font">
                                     Reset
                                     <i class="fas fa-redo"></i>
-                                </span> </a>
+                                </span> </button>
 	</form>
 	<!-- end form -->
 </div>
