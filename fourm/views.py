@@ -113,7 +113,7 @@ class PostLikeToggle(RedirectView):
 class PostLikeAPIToggle(APIView):
 
     """from a tutorial at https://www.youtube.com/watch?v=pkPRtQf6oQ8&t=678s 
-    genric api view used from django rest framework to handle upvote down vote functionallity"""
+    genric api view used from django rest framework to handle like down vote functionallity"""
 
     def get(self, request, *args, **kwargs):
         # getting post object

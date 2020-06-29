@@ -226,6 +226,7 @@ def checkout_success(request, transaction_id):
     email = order.email
     subject = render_to_string(
             'email_confirm/email_confirm_subject.txt',)
+            
     body = render_to_string(
             'email_confirm/email_confirm.txt',
             {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
