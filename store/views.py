@@ -197,7 +197,6 @@ def checkout_success(request, transaction_id):
    
 
     order = get_object_or_404(Order, transaction_id=transaction_id)
-
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
         # Attach the user's profile to the order
@@ -217,9 +216,28 @@ def checkout_success(request, transaction_id):
         if user_profile_form.is_valid():
             user_profile_form.save()
 
-    context = {"order": order}
 
+    
+    
+    context = {"order": order}
+    
+    html_message = render_to_string('store/checkout_success.html')
+    
+    send_mail(
+        "Thank You For Shopping at Nutristore",
+        f"Here is the message.",
+        "plyn99@gmail.com",
+        ["plyn99@gmail.com"],
+        fail_silently=False,
+        html_message=html_message,
+    )
+    
     response = render(request, 'store/checkout_success.html', context)
     # remove cart from cookies when checkout success page reached
     response.delete_cookie("cart")
     return response
+
+
+    
+    
+    
