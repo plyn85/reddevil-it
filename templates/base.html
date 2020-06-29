@@ -42,10 +42,6 @@
 	</div>
 	<!-- end message container -->{% endif %}
 	<!-- end if -->
-	<!-- <div class="message-container">
-	{% include 'partials/toasts/toast_success_cart.html' %}
-    {% include 'partials/toasts/toast_success_cart_removed.html' %}
-    </div> -->
 	<!-- main content container -->
 	<main role="main" class="container-fluid main-container bg-off-white"> {% block content %} {% endblock %} </main>
 	<!-- end main content container -->
@@ -58,6 +54,7 @@
 		</script>
 	{% endblock %}
 	<!-- end js block -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js" integrity="sha256-sfG8c9ILUB8EXQ5muswfjZsKICbRIJUG/kBogvvV5sY=" crossorigin="anonymous"></script>
 </body>
 
 </html>

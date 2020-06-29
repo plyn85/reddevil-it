@@ -23,7 +23,7 @@ $(".update-cart").click(function () {
 function addCookieItem(productId, action) {
   console.log("not logged In");
   if (action == "add") {
-    alert("an item has been added to your cart")
+    alert("You added one Item to your cart!");
     if (cart[productId] == undefined) {
       cart[productId] = { quantity: 1 };
     } else {
@@ -34,7 +34,7 @@ function addCookieItem(productId, action) {
   /* decrease item by one or if its equal or 
   less then zero remove */
   if (action == "remove") {
-    alert("an item has been removed from your cart")
+    alert("You deleted  one Item to your cart!");
     cart[productId]["quantity"] -= 1;
     if (cart[productId]["quantity"] <= 0) {
       console.log("item deleted");
@@ -45,6 +45,5 @@ function addCookieItem(productId, action) {
    document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
    location.reload();
 }
-
 
 })
