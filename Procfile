@@ -1,1 +1,1 @@
-web: gunicorn redevilit.wsgi:application 
+web: gunicorn config.wsgi:application 
