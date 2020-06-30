@@ -1,5 +1,11 @@
 import os
 
+if os.path.exists("env.py"):	
+    import env	
+
+import django_heroku	
+import dj_database_url
+
 if os.environ.get('DEVELOPMENT'):
     development = True
 else:
@@ -26,7 +32,7 @@ if development:
 else:
     DEBUG = False 
 
-ALLOWED_HOSTS = ["127.0.0.1","reddevil-it-herokuapp.com"]
+ALLOWED_HOSTS = ["127.0.0.1","redevilit.herokuapp.com"]
 
 
 # Application definition
