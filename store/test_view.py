@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Product
+from .models import Product,Order
 
 class TestViews(TestCase):
     
@@ -30,8 +30,13 @@ class TestViews(TestCase):
 
     def test_checkout(self):
         response = self.client.post("checkout/",{'full_name':"test",'email':'test','phone_number':'test','country':'test','postcode':'test','town_or_city':'test', 'street_address1':'test','street_address2':'test','county':'test',})
-        self.assertRedirect =(response,"checkout_success")       
+        self.assertRedirect =(response,"store/checkout_success.html")       
 
-        response = self.client.get("/checkout/")
+    def test_checkout_success(self):
+        
+        order = Order.objects.create(transaction_id="1223344556677",full_name="test",
+        email="@test",phone_number="0000",country="test",postcode="test",street_address1="test",street_address2="test",total="90",grand_total="90")
+        response = self.client.get(f"/checkout_success/{order.transaction_id}")
         self.assertEqual =(response.status_code,200)
-        self.assertTemplateUsed(response,'store/checkout.html')   
+        self.assertTemplateUsed(response,'store/checkout_success.html')     
+

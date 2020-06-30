@@ -31,11 +31,11 @@ class OrderAdmin(admin.ModelAdmin):
     fields = ("profile", 'transaction_id', 'date_ordered', 'full_name',
               'email', 'phone_number', 'country',
               'postcode', 'town_or_city', 'street_address1',
-              'street_address2', 'county', 'delivery_cost', "member_discount",
+              'street_address2', 'county', 'delivery_cost',
               'total', 'grand_total',
               )
 
-    list_display = ('transaction_id', 'date_ordered', 'full_name', "profile", 'total', 'delivery_cost', "member_discount", 'grand_total',
+    list_display = ('transaction_id', 'date_ordered', 'full_name', "profile", 'total', 'delivery_cost', 'grand_total',
                     )
 
     ordering = ('-date_ordered',)
