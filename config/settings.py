@@ -1,15 +1,15 @@
 import os
-if os.path.exists("env.py"):
-    import env
 
-import django_heroku
-import dj_database_url
-
-if os.path.exists('DEVELOPMENT'):
+if os.environ.get('DEVELOPMENT'):
     development = True
 else:
     development = False
 
+import dj_database_url
+
+
+if os.path.exists("env.py"):
+    import env
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -18,12 +18,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =  os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if development:
+   DEBUG = True
+else:
+    DEBUG = False 
 
-ALLOWED_HOSTS = [os.environ.get('HOSTNAME','redevilit.herokuapp.com')]
+ALLOWED_HOSTS = ["127.0.0.1","herokuapp.com"]
 
 
 # Application definition
@@ -43,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'widget_tweaks',
     'bootstrap_modal_forms',
+    'storages',
 
 
 
@@ -84,11 +88,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
 if development:
-        DATABASES = {
+    DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
         }
     }
 else:
@@ -157,5 +162,10 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
 STRIPE_WH_KEY = os.environ.get('STRIPE_WH_SECRET')
 
+# aws
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 
-django_heroku.settings(locals())
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
