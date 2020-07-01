@@ -8,8 +8,7 @@ env
 db.sqlite3 
 env.py
 __pycache__
-media
-media/images
+
  /__pycache__
   __pycache__/
   *.pyc
