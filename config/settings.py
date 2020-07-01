@@ -142,10 +142,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = (
-    os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-)
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -173,5 +172,16 @@ STRIPE_WH_KEY = os.environ.get('STRIPE_WH_SECRET')
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+AWS_CUSTOM_DOMAIN = F'{AWS_STORAGE_BUCKET_NAME}.s3.amazon.com'
 AWS_DEFAULT_ACL = None
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+if 'USE_AWS' in os.environ:
+   # static and media files
+   STATIC_FILES_STORAGE = 'custom_storages.staticStorage'
+   STATICFILES_LOCATION = 'static'
+   DEFAULT_FILESTORAGE = 'custom_storages.MediaStorage'
+   MEDIAFILES_LOCATION = 'media'
+
+ # Override static and media URLs in production
+   STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+   MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
