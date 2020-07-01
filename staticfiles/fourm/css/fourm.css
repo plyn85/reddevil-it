@@ -1,0 +1,83 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: 
+*/
+
+/* stlying for callout text on home page */
+
+.callout-text:hover {
+	color:#ffffff;
+}
+
+
+/* styling for posts, post  boxes */
+
+.forum-post-div {
+	border: 0.25rem solid #c70101;
+	padding: 0;
+}
+
+.post-detail-wrapper {
+	margin-top: 6rem;
+}
+
+
+/* styling fourm card buttons */
+
+.btn-post {
+	border: 0.0625rem solid #c70101;
+	padding: 0;
+}
+
+.comments-btn {
+	border: 0.125rem solid #000000;
+	padding: 0.125rem;
+	border-radius: 1rem;
+}
+
+
+/* comments button on hover */
+
+.comments-btn:hover {
+	background-color: #ffffff;
+	color:#000000;
+	border-radius: 0.6rem;
+	border-color: #c70101;
+}
+
+
+/* applying margin top to the user post card-users posts page */
+
+.user-posts-icon {
+	margin-top: 9rem;
+}
+
+
+/* media queries */
+
+
+/* background image for products section hidden on mobile*/
+
+@media (min-width: 540px) {
+	.prod-home-section {
+		background-image: url("https://res.cloudinary.com/plyn85/image/upload/v1592414252/fans-forum/NINTCHDBPICT000572000381_keczfo.jpg");
+		background-position-x: 50%;
+		background-size: cover;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+	}
+}
+
+
+/* largest devices */
+
+@media (max-width: 1024px) {
+	/* removing side border on all but largest devices */
+	.forum-post-div {
+		border-right: none;
+		border-left: none;
+	}
+}

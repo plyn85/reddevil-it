@@ -1,0 +1,43 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: 
+*/
+
+/* login page */
+
+.legend {
+	font-size: 2rem;
+}
+/* custom hr used troughout the website */
+.user-hr {
+	border: none;
+	height: 0.125rem;
+}
+.user-hr,
+.user-btn,
+.post-confirm-delete-btn:hover{
+	background-color: #c70101;
+}
+
+/* stlying for btns user btn class used troughout the website */
+.user-btn,
+.post-confirm-delete-btn:hover {
+	border: 0.125rem solid#000000;
+	border-radius: 0.625rem;
+	color: #ffffff;
+}
+
+.user-btn:hover,
+.post-confirm-delete-btn {
+	background-color: #000000;
+}
+
+.checkout-success-page-wrapper {
+	margin-top: 5rem;
+}
+
+.profile-btn-wrapper {
+	margin: 10rem 0 2rem 0;
+}
