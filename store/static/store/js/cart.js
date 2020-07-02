@@ -42,7 +42,7 @@ function addCookieItem(productId, action) {
     }
   }
 
-   document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+   document.cookie = "cart=" + JSON.stringify(cart) + ";path=/";
    location.reload();
 }
 

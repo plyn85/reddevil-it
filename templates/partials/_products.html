@@ -2,7 +2,7 @@
 <div class="row mt-5 mb-3 justify-content-center empty-container">
 	<!-- products loop -->{%for product in products%}
 	<!-- col -->
-	<div class="col-sm-6 col-md-5 col-lg-2 mb-5 prod-wrapper">
+	<div class="col-sm-6 col-md-5 col-lg-2 mb-5 prod-wrapper internet-explorer-fix">
 		<!-- card -->
 		<div class="card h-100 border-0">
 			<a href="{% url 'product-detail' product.id %}"><img class="card-img-top" src="{{product.image.url}}" alt="Images of products we are selling" /></a>
