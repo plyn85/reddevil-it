@@ -238,7 +238,7 @@ def checkout_success(request, transaction_id):
             body,
             settings.DEFAULT_FROM_EMAIL,
             [order.email],
-            fail_silently=False,
+            fail_silently=True,
             )
 
     
