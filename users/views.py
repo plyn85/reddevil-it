@@ -18,12 +18,16 @@ class MyLoginView(LoginView):
 
        
     def get_success_url(self):
-        cart = json.loads(self.request.COOKIES['cart'])
-        if cart:
-            messages.info(self.request, f'Your cart contains Items!')
-            url = self.get_redirect_url()
-            return url or reverse('shop')
-        if not cart:
+        
+        try:
+            cart = json.loads(self.request.COOKIES['cart'])
+            if cart:
+                messages.info(self.request, f'Your cart contains Items!')
+                url = self.get_redirect_url()
+                return url or reverse('shop')
+        except:
+            cart ={}
+    
             messages.info(self.request, f'Welcome too Your profile page!')
             return reverse('profile')
 
