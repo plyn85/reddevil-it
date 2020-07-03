@@ -15,8 +15,8 @@ class PostFilter(filters.FilterSet):
             'content', ]
     # setting choices for new/most popular
     NEW_MOST_POP_CHOICES = (
-        ('descending', 'Newest Posts'),
-        ('likes', 'Most popular Posts'),
+        ('descending', 'Oldest Posts'),
+        ('likes', 'Newest Posts'),
     )
 
     content = filters.CharFilter(lookup_expr='icontains',
@@ -29,8 +29,8 @@ class PostFilter(filters.FilterSet):
                                               attrs={'placeholder': 'Search Users'}),)
 
     new_most_pop_ordering = filters.ChoiceFilter(empty_label="Sort By",
-                                                 label='Search by Newest/Most popular', choices=NEW_MOST_POP_CHOICES, method='filter_by_new_most_pop')
+                                                  choices=NEW_MOST_POP_CHOICES, method='filter_by_new_most_pop')
 
     def filter_by_new_most_pop(self, queryset, name, value):
-        expression = 'date_posted' if value == 'descending' else '-likes'
+        expression = 'date_posted' if value == 'descending' else '-date_posted'
         return queryset.order_by(expression)
