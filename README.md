@@ -387,7 +387,7 @@ Such as the access to delete or edit buttons on other users posts.
 
 
 My app is fully responsive across a range of devices. This was achieved using the bootstrap grid. 
-The responsiveness and correct displaying of all elements has been tested on a number of devices, browsers, and resolutions. Chrome, Firefox, Opera, Safari, Edge, and IE all display without issue.
+The responsiveness and correct displaying of all elements has been tested on a number of devices, browsers, and resolutions. Chrome, Firefox, Opera, Safari, Edge all display without issue. IE11 caused some Issues which are outlined below.
 
 Chrome dev tools were used to simulate multiple devices and widths, and no issues were encountered.
 
@@ -403,9 +403,10 @@ tested with no issues found.
  ## Bugs 
 
 
-###  Internet Explorer Issue 
- 
-When veiwing the callout section In both edge and Internet explorer the  callout section text was barely visible. This was a problem I enconterd In milestone one and I used the same fix I used then In my current application. Its a problem  In which the col class from bootstrap was causing the text to condense. It was resolved by adding 
+###  Internet Explorer issues
+
+ I ran into some major Issues with Internet explorers. The first Issue was the product's cards not displaying correctly on the homepage. The code below worked locally and the issue was to do with the col-2 class. I could see this In the chrome dev tools. If I turned off the width on the col-2 class the displayed fine . I Tried to replicate this bit and failed to get it to work on the live version.
+
 
     .internet-exploer-fix {
     -webkit-box-flex: 0;
@@ -414,7 +415,17 @@ When veiwing the callout section In both edge and Internet explorer the  callout
     -moz-box-flex: none;
     }
       
-## fixes 
+The second Issue was too do with stripe and the 
+     
+    card.mount() 
+    elements.create()
+
+I could see In the IE11 dev tools the stripe element class was being added to the card element div. This causes no place for a user to put payment Information. If the payment button was clicked It still went to a checkout success page. It an issue I ran out of time to fix an will return to It In the future.  
+
+
+
+
+ 
 
 ## Deployment 
 I deployed this application by:
