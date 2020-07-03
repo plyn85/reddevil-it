@@ -3,14 +3,20 @@
 <link rel="stylesheet" href="{% static 'store/css/store.css' %}" />
 <link rel="stylesheet" href="{% static 'users/css/users.css' %}" /> {% endblock %}
 <!-- start block content -->
-<!-- loading crispy forms -->{% load crispy_forms_tags %}
-<!-- adding navbar partial -->{%block nav%} {%include '../partials/_navbar.html'%} {%endblock%} {%block content%}
+<!-- loading crispy forms -->{% load crispy_forms_tags %} {%block content%}
+<!-- container -->
+<!-- row -->
+<div class="row">
+	<!-- col -->
+	<div class="col-sm-7"> <a href="{% url 'fourm-home'%}" id="website-name"><h3 class="main-header red">RedevilIt</h3></a> </div>
+	<!-- end col -->
+</div>
+<!-- end row -->
 <!-- taken from https://glitch.com/edit/#!/bootstrap-4-example-checkout?path=index.html%3A223%3A0 -->
 <!-- conatiner -wrapper -->
 <div class="checkout-container-wrapper">
-	<!-- container -->
+	<!-- row -->
 	<div class="container mt-5">
-		<!-- row -->
 		<div class="row">
 			<!-- col -->
 			<div class="col-lg-6 order-lg-2 mb-4">

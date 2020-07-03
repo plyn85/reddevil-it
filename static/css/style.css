@@ -233,11 +233,11 @@ select option[value=""] {
   border: 0.0625rem solid #000;
 }
 
-/* added to fix internet explorer issue with bootstrap flex on col class */
 
 .internet-explorer-fix {
   flex: none;
-  -ms-flex: none;
+    -ms-flex: none;
+    -moz-box-flex: none;
 }
 
 /* end of internet explorer fix */
@@ -296,3 +296,4 @@ select option[value=""] {
    
   }
 }
+
