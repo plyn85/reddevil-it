@@ -146,6 +146,7 @@ def checkout(request):
             cart = json.loads(request.COOKIES['cart'])
         except: 
             cart = {}
+        if not cart:    
             messages.warning(
                 request, "There's nothing in your cart at the moment")
             return redirect(reverse('shop'))
