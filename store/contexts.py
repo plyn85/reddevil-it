@@ -16,7 +16,6 @@ def cart_contents(request):
 
     try:
         cart = json.loads(request.COOKIES['cart'])
-        print('CART:', cart)
     except:
         cart = {}
 
@@ -30,7 +29,6 @@ def cart_contents(request):
         try:
             product = Product.objects.get(id=item)
             item_quantity = cart[item]['quantity']
-            # print(item_quantity)
             total += item_quantity * product.price
             product_count += item_quantity
             cart_items.append({

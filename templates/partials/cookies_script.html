@@ -46,8 +46,6 @@
 	//  If the browser doesnt contain a cart cookie create one
 	if(cart == undefined) {
 		cart = {};
-		console.log("Cart created");
 		document.cookie = "cart=" + JSON.stringify(cart) + ";path=/";
 	}
-	console.log("Cart:", cart);
 	</script>

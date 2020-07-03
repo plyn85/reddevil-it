@@ -21,7 +21,6 @@ $(".update-cart").click(function () {
   
   */
 function addCookieItem(productId, action) {
-  console.log("not logged In");
   if (action == "add") {
     alert("You added one Item to your cart!");
     if (cart[productId] == undefined) {
