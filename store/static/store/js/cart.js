@@ -36,7 +36,6 @@ function addCookieItem(productId, action) {
     alert("You deleted  one Item to your cart!");
     cart[productId]["quantity"] -= 1;
     if (cart[productId]["quantity"] <= 0) {
-      console.log("item deleted");
       delete cart[productId];
     }
   }
